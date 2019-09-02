@@ -16,14 +16,15 @@
     flex-direction: row;
     align-self: stretch;
     flex-wrap: wrap;
+    [data-orientation="reverse"] & {
+      flex-direction: row-reverse;
+    }
   }
 
   &__inner {
     width: 50%;
     padding: 61px 71px 78px;
-    &[data-first] {
-      order: -1;
-    }
+    
     @include b(desktop) {
       padding: 40px 25px;
     }

@@ -16,6 +16,9 @@
     display: flex;
    
     @include rlist;
+    [data-orientation="reverse"] & {
+      flex-direction: row-reverse;
+    }
   }
 
   &__inner {
@@ -25,9 +28,7 @@
     padding: 64px 68px 177px;
     position: relative;
     flex-shrink: 0;
-    &[data-first] {
-      order: -1;
-    }
+    
 
     @include b(desktop) {
       padding: 40px 25px 152px;
