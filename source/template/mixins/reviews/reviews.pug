@@ -1,0 +1,74 @@
+//- Все примеси в этом файле должны начинаться c имени блока (reviews)
+
+mixin reviews(mods)
+
+  //- Принимает:
+  //-   mods    {string} - список модификаторов
+  //- Вызов:
+        +reviews('mod-name1, mod-name2')
+
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' reviews--' + modsList[i].trim();
+      }
+    }
+
+  .reviews(class=allMods)
+    .container
+      .reviews__slider(data-controller="reviews-slider")
+        .reviews__item(data-slide="1")
+          .reviews__item-inner.b-lazy(data-src="assets/img/reviews/reviews-01.jpg")
+            .reviews__item-info
+              span.subtitle.reviews__item-subtitle Отзывы
+              span.reviews__item-caption О нашей работе
+              span.reviews__item-name Максим Павликов, гг. Иваново, Владимир
+              span.reviews__item-title Дарья об открытие франчайзи в Иваново и выручки в 843 000 ₽
+              .reviews__item-descr
+                p Откройте студию аппаратного удаления волос и получайте доход от 100 000 до 400 000 рублей уже с первого месяца.Откройте студию аппаратного удаления волос и получайте доход от 100 000 до 400 000 рублей уже с первого месяца.
+
+                p Откройте студию аппаратного удаления волос и получайте доход от 100 000 до 400 000 рублей уже с первого месяца.
+              .reviews__item-ctrl
+                a.btn.js-popup-open.reviews__item-btn(href="#popup-subscribe") Оставить заявку
+                a.reviews__item-link(href="#") Ссылка
+              a.reviews__video(href="https://www.youtube.com/watch?v=4YucA7IhDKs" data-fancybox)
+                span.reviews__video-txt Смотреть видео
+                span.reviews__video-btn
+        .reviews__item(data-slide="2")
+          .reviews__item-inner.b-lazy(data-src="assets/img/reviews/reviews-01.jpg")
+            .reviews__item-info
+              span.subtitle.reviews__item-subtitle Отзывы
+              span.reviews__item-caption О нашей работе
+              span.reviews__item-name Максим Павликов, гг. Иваново, Владимир
+              span.reviews__item-title Дарья об открытие франчайзи в Иваново и выручки в 843 000 ₽
+              .reviews__item-descr
+                p Откройте студию аппаратного удаления волос и получайте доход от 100 000 до 400 000 рублей уже с первого месяца.Откройте студию аппаратного удаления волос и получайте доход от 100 000 до 400 000 рублей уже с первого месяца.
+
+                p Откройте студию аппаратного удаления волос и получайте доход от 100 000 до 400 000 рублей уже с первого месяца.
+              .reviews__item-ctrl
+                a.btn.js-popup-open.reviews__item-btn(href="#popup-subscribe") Оставить заявку
+                a.reviews__item-link(href="#") Ссылка
+              a.reviews__video(href="https://www.youtube.com/watch?v=4YucA7IhDKs" data-fancybox)
+                span.reviews__video-txt Смотреть видео
+                span.reviews__video-btn
+        .reviews__item(data-slide="3")
+          .reviews__item-inner.b-lazy(data-src="assets/img/reviews/reviews-01.jpg")
+            .reviews__item-info
+              span.subtitle.reviews__item-subtitle Отзывы
+              span.reviews__item-caption О нашей работе
+              span.reviews__item-name Максим Павликов, гг. Иваново, Владимир
+              span.reviews__item-title Дарья об открытие франчайзи в Иваново и выручки в 843 000 ₽
+              .reviews__item-descr
+                p Откройте студию аппаратного удаления волос и получайте доход от 100 000 до 400 000 рублей уже с первого месяца.Откройте студию аппаратного удаления волос и получайте доход от 100 000 до 400 000 рублей уже с первого месяца.
+
+                p Откройте студию аппаратного удаления волос и получайте доход от 100 000 до 400 000 рублей уже с первого месяца.
+              .reviews__item-ctrl
+                a.btn.js-popup-open.reviews__item-btn(href="#popup-subscribe") Оставить заявку
+                a.reviews__item-link(href="#") Ссылка
+              a.reviews__video(href="https://www.youtube.com/watch?v=4YucA7IhDKs" data-fancybox)
+                span.reviews__video-txt Смотреть видео
+                span.reviews__video-btn
+

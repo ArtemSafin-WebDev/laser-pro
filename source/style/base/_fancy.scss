@@ -1,0 +1,38 @@
+
+.fancybox-bg {
+  background: #fff;
+}
+
+.fancybox-slide--html .fancybox-close-small {
+  padding: 0;
+  top: 15px;
+  right: 15px;
+
+  @include b(mobile) {
+    padding: 5px;
+    top: 0;
+    right: 0;
+  }
+
+  svg {
+
+    path {
+      fill: #fff;
+      transition: all .3s ease-in-out;
+    }
+  }
+
+  &:hover {
+
+    svg > path {
+      fill: $main-hover;
+    }
+  }
+}
+
+.fancybox-slide--current .popup-city__row {
+  transition-delay: .1s;
+  opacity: 1;
+  transform: translateY(0);
+}
+

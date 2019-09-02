@@ -1,0 +1,53 @@
+include mixins/_mixin-list
+
+block variables
+
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title #{title}
+    meta(content="" name="author")
+    meta(content="" name="description")
+    meta(content="" name="keywords")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0")
+    meta(content="ie=edge" http-equiv="x-ua-compatible")
+    meta(name="format-detection" content="telephone=no")
+
+    // favicon block start
+    link(rel="icon" href="favicon.ico" type="image/x-icon")
+    link(rel="shortcut icon" href="favicon.ico" type="image/x-icon")
+    // favicon block end
+
+    if($.isPacking)
+      link(rel="stylesheet" href="assets/css/foundation%=suffix=%.css")
+      link(rel="stylesheet" href="assets/css/app%=suffix=%.css")
+    else
+      link(rel="stylesheet" href="assets/css/foundation%=suffix=%.css%=version=%")
+      link(rel="stylesheet" href="assets/css/app%=suffix=%.css%=version=%")
+
+
+    <!--[if lt IE 10]>    
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
+    script(src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js")
+    script(src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js")
+    <![endif]-->
+
+    style
+      include ../fonts/fonts.css
+
+  body
+    include ./components/preloader/preloader
+
+    block content
+    
+    block script
+      if($.isPacking)
+        script(src="assets/js/foundation%=suffix=%.js" defer)
+        script(src="assets/js/app%=suffix=%.js" defer)
+      else
+        script(src="assets/js/foundation%=suffix=%.js%=version=%" defer)
+        script(src="assets/js/app%=suffix=%.js%=version=%" defer)       
+
+    if($.dev && !$.isPacking)
+      include ./develop-only/admin-panel/admin-panel

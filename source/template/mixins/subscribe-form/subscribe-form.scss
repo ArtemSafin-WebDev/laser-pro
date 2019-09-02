@@ -1,0 +1,200 @@
+.subscribe-form {
+
+  &--white {
+
+    .subscribe-form__policy {
+      color: #fff;
+
+      a {
+        color: #fff;
+  
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  &--mod {
+
+    .btn {
+      background-color: #000;
+
+      &:hover {
+        background-color: $main-hover;
+      }
+    }
+
+    .subscribe-form__inputs {
+      @include b(desktop) {
+        width: 100%;
+        padding-right: 0;
+      }
+
+      @include b(tablet) {
+        width: calc(100% - 223px);
+        padding-right: 10px;
+      }
+
+      @include b(mobile) {
+        width: 100%;
+        padding-right: 0;
+      }
+    }
+
+    .subscribe-form__btn {
+
+      @include b(desktop) {
+        display: block;
+        margin-top: 10px;
+      }
+
+      @include b(tablet) {
+        display: inline-block;
+        margin-top: 0;
+      }
+
+      @include b(mobile) {
+        max-width: 195px;
+      }
+    }
+
+    .subscribe-form__policy {
+      color: #fff;
+      opacity: .7;
+
+      a {
+        color: #fff;
+  
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  &__holder {
+    @include rlist;
+    margin-bottom: 16px;
+
+    @include b(mobile) {
+      margin-bottom: 21px;
+    }
+  }
+
+  &__inputs {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - 223px);
+    padding-right: 9px;
+
+    @include b(mobile) {
+      width: 100%;
+      padding-right: 0;
+      padding-bottom: 10px;
+    }
+
+    &-inner {
+      @include rlist;
+      border: 1px solid #bcbdc4;
+      border-radius: 4px;
+      background-color: #fff;
+      overflow: hidden;
+
+      &.focus {
+        border-color: $accent;
+        transition: all .3s ease-in-out;
+      }
+    }
+  }
+
+  &__input {
+    padding: 0 35px 0 18px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border-width: 0;
+    border-radius: 0;
+
+    &-title {
+      font-size: 14px;
+      color: #bcbdc4;
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: all .3s ease-in-out;
+
+      &.active {
+        font-size: 10px;
+        transform: translateY(0);
+        top: 8px;
+      }
+    }
+  }
+
+  &__btn {
+    @include ulist;
+    vertical-align: top;
+    width: 223px;
+
+    @include b(mobile) {
+      width: 100%;
+    }
+  }
+
+  &__box {
+    @include ulist;
+    vertical-align: top;
+    width: 33.33%;
+
+    @include b(mobile) {
+      width: 100%;
+    }
+    
+
+    &:nth-child(2) {
+      
+      input {
+        border-radius: 0;
+        border-width: 0 1px;
+
+        @include b(mobile) {
+          border-width: 1px 0;
+        }
+      }
+    }
+  }
+
+  &__policy {
+    display: block;
+    font-size: 14px;
+    color: #b3b3b3;
+
+    span {
+
+      @include b(mobile) {
+        display: none;
+      }
+    }
+
+    a {
+      color: #b3b3b3;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &-txt {
+      display: none;
+
+      @include b(mobile) {
+        display: block;
+      }
+    }
+
+    @include b(mobile) {
+      font-size: 11px;
+    }
+  }
+}

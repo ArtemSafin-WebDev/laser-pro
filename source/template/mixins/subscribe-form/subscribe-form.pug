@@ -1,0 +1,48 @@
+//- Все примеси в этом файле должны начинаться c имени блока (subscribe-form)
+
+mixin subscribe-form(options, mods)
+
+  //- Принимает:
+  //-   mods    {string} - список модификаторов
+  //- Вызов:
+        +subscribe-form('mod-name1, mod-name2')
+
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' subscribe-form--' + modsList[i].trim();
+      }
+    }
+
+  form.subscribe-form(class=allMods action="#" data-controller="subscribe-form")
+    .subscribe-form__holder
+      .subscribe-form__inputs
+        .subscribe-form__inputs-inner.js-subscribe-wrap
+          .subscribe-form__box
+            label
+              span.subscribe-form__input-title.js-subscribe-title Имя
+              input.subscribe-form__input.js-subscribe-input(type="text" name="name")
+              span.field-error
+              span.field-success
+          .subscribe-form__box
+            label
+              span.subscribe-form__input-title.js-subscribe-title Телефон
+              input.subscribe-form__input.js-subscribe-input(type="tel" name="phone")
+              span.field-error
+              span.field-success
+          .subscribe-form__box
+            label
+              span.subscribe-form__input-title.js-subscribe-title Эл. почта
+              input.subscribe-form__input.js-subscribe-input(type="email" name="email")
+              span.field-error
+              span.field-success
+        span.form-validate-txt.form-txt-error В номере телефона должно быть 11 цифр
+        span.form-validate-txt.form-txt-success Все окей, братишка
+      .subscribe-form__btn
+        button.btn(type="submit")= options.btn
+    span.subscribe-form__policy 
+      span Нажимая кнопку я соглашаюсь с <a href="#">политикой конфиденциальности </a>
+      .subscribe-form__policy-txt Мы пришлем бизнес-план вам на почту в течение 5 минут.

@@ -1,0 +1,24 @@
+//Variables
+@import 'config/variables';
+
+//Mixin
+@import 'config/mixins';
+
+//Sprite
+@import 'config/sprite';
+
+//Base components
+@import 'base/layout';
+@import 'base/typography';
+@import 'base/button';
+@import 'base/input';
+@import 'base/select';
+@import 'base/icons';
+//@import 'base/spinner';
+@import 'base/grid';
+@import 'base/slick';
+@import 'base/fancy';
+
+//Pages & Modules
+@import '../template/components/**/*.scss';
+@import '../template/mixins/**/*.scss';

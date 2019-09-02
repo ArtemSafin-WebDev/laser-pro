@@ -1,0 +1,106 @@
+//- Все примеси в этом файле должны начинаться c имени блока (hero)
+
+mixin hero-v2(mods)
+
+  //- Принимает:
+  //-   mods    {string} - список модификаторов
+  //- Вызов:
+        +hero-v2('mod-name1, mod-name2')
+
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' hero-v2--' + modsList[i].trim();
+      }
+    }
+
+  .hero.hero-v2(class=allMods)
+    .container
+      .hero__wrap(data-controller="hero-slider")
+        .hero__content.js-hero-slide-height(style="background-image: url(assets/img/bg/bg-slider-1.jpg);")
+          span.subtitle.hero__subtitle Laser Pro —
+          span.hero__caption Франшиза федеральной сети студии удаления волос и коррекции фигуры
+          .hero__descr
+            p Откройте студию аппаратного удаления волос и получайте доход от 100 000 до 400 000 рублей уже с первого месяца
+          ul.hero__list
+            li.hero__list-item Без роялти
+            li.hero__list-item Запуск за 4 недели
+            li.hero__list-item Без лицензии
+            li.hero__list-item Прибыль от 120 000 рублей
+          .hero__subscribe
+            span.hero__subscribe-title Получите бизнес-план по построеню франшизы
+            form.subscribe-form.subscribe-form--white.valid(class=allMods action="#" data-controller="subscribe-form")
+              .subscribe-form__holder
+                .subscribe-form__inputs
+                  .subscribe-form__inputs-inner.js-subscribe-wrap
+                    .subscribe-form__box
+                      label
+                        span.subscribe-form__input-title.js-subscribe-title Имя
+                        input.subscribe-form__input.success.js-subscribe-input(type="text" name="name")
+                        span.field-error
+                        span.field-success
+                    .subscribe-form__box
+                      label
+                        span.subscribe-form__input-title.js-subscribe-title Телефон
+                        input.subscribe-form__input.success.js-subscribe-input(type="tel" name="phone")
+                        span.field-error
+                        span.field-success
+                    .subscribe-form__box
+                      label
+                        span.subscribe-form__input-title.js-subscribe-title Эл. почта
+                        input.subscribe-form__input.success.js-subscribe-input(type="email" name="email")
+                        span.field-error
+                        span.field-success
+                      span.field-error
+                      span.field-success
+                  span.form-validate-txt.form-txt-error В номере телефона должно быть 11 цифр
+                  span.form-validate-txt.form-txt-success Все окей, братишка
+                .subscribe-form__btn
+                  button.btn(type="submit") Получить бизнес-план
+              span.subscribe-form__policy 
+                span Нажимая кнопку я соглашаюсь с <a href="#">политикой конфиденциальности </a>
+                .subscribe-form__policy-txt Мы пришлем бизнес-план вам на почту в течение 5 минут.
+        .hero__content.js-hero-slide-height(style="background-image: url(assets/img/bg/bg-slider-1.jpg);")
+          span.subtitle.hero__subtitle Laser Pro —
+          span.hero__caption Lorem ipsum dolor sit amet consectetur.
+          .hero__descr
+            p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus voluptate ratione expedita, animi cumque aut voluptates autem recusandae iure culpa.
+          ul.hero__list
+            li.hero__list-item Без роялти
+            li.hero__list-item Запуск за 4 недели
+            li.hero__list-item Без лицензии
+            li.hero__list-item Прибыль от 120 000 рублей
+          .hero__subscribe
+            span.hero__subscribe-title Получите бизнес-план по построеню франшизы
+            form.subscribe-form.subscribe-form--white.no-validate(class=allMods action="#" data-controller="subscribe-form")
+              .subscribe-form__holder
+                .subscribe-form__inputs
+                  .subscribe-form__inputs-inner.js-subscribe-wrap
+                    .subscribe-form__box
+                      label.subscribe-form__label
+                        span.subscribe-form__input-title.js-subscribe-title Имя
+                        input.subscribe-form__input.error.js-subscribe-input(type="text" name="name")
+                        span.field-error
+                        span.field-success
+                    .subscribe-form__box
+                      label.subscribe-form__label
+                        span.subscribe-form__input-title.js-subscribe-title Телефон
+                        input.subscribe-form__input.error.js-subscribe-input(type="tel" name="phone")
+                        span.field-error
+                        span.field-success
+                    .subscribe-form__box
+                      label.subscribe-form__label
+                        span.subscribe-form__input-title.js-subscribe-title Эл. почта
+                        input.subscribe-form__input.error.js-subscribe-input(type="email" name="email")
+                        span.field-error
+                        span.field-success
+                  span.form-validate-txt.form-txt-error В номере телефона должно быть 11 цифр
+                  span.form-validate-txt.form-txt-success Все окей, братишка
+                .subscribe-form__btn
+                  button.btn(type="submit") Получить бизнес-план
+              span.subscribe-form__policy 
+                span Нажимая кнопку я соглашаюсь с <a href="#">политикой конфиденциальности </a>
+                .subscribe-form__policy-txt Мы пришлем бизнес-план вам на почту в течение 5 минут.

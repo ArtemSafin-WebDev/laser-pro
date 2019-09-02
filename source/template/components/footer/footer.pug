@@ -1,0 +1,70 @@
+mixin footer(mods)
+
+  //- Принимает:
+  //-   mods    {string} - список модификаторов
+  //- Вызов:
+        +header('mod-name1, mod-name2')
+
+  -
+    // список модификаторов
+    var allMods = '';
+      if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+      allMods = allMods + ' footer--' + modsList[i].trim();
+      }
+    }
+
+  footer.footer(class=allMods)
+    .container
+      .footer__holder
+        .footer__inner.footer__inner--sm
+          .footer__holder
+            .footer__inner
+              .footer__logo
+                a.footer__logo-link(href="#")
+                  img(src="assets/img/logo.svg", alt="logo")
+            .footer__inner.footer__inner--nav
+              ul.footer__nav
+                li.footer__nav-item
+                  a.footer__nav-link(href="#") Услуги
+                li.footer__nav-item
+                  a.footer__nav-link(href="#") О франшизе
+                li.footer__nav-item
+                  a.footer__nav-link(href="#") Контакты
+        .footer__inner.footer__inner--lg
+          .footer__social
+            ul.footer__social-list
+              li.footer__social-item
+                a.footer__social-link(href="#" target="_blank")
+                  +icon('fb', 'fb')
+              li.footer__social-item
+                a.footer__social-link(href="#" target="_blank")
+                  +icon('vk', 'vk')
+              li.footer__social-item
+                a.footer__social-link(href="#" target="_blank")
+                  +icon('twitter', 'twitter')
+              li.footer__social-item
+                a.footer__social-link(href="#" target="_blank")
+                  +icon('ok', 'ok')
+          .footer__row
+            .footer__col
+              .footer__item
+                a.footer__item-phone(href="tel:+79120145691") +7 912 014-56-91
+                span.footer__item-txt Пн-пт 8:00-17:00 по Мск
+            .footer__col
+              .footer__item
+                a.footer__item-phone(href="tel:+79120145691") +7 912 014-56-91
+                span.footer__item-txt Пн-пт 8:00-17:00 по Мск
+            .footer__col
+              .footer__callback
+                a.btn.footer__callback-btn.js-popup-open(href="#popup-subscribe") Связаться
+          .footer__descr
+            p ООО «Лазер Про», ИНН: 1841071121 , ОГРН: 1171832011185, юридический и фактический адреса: <span>г. Ижевск, ул. К. Маркса, 218, оф. 207</span>
+      .footer__bottom
+          div
+            span.footer__bottom-txt Laser Pro, 2019
+          div
+            span.footer__bottom-txt.footer__bottom-txt--mod Создание сайта
+            span.footer__bottom-img 
+              img(src="assets/img/mark-logo.png", alt="mark")

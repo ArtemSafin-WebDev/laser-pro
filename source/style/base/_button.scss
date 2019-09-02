@@ -1,0 +1,39 @@
+.btn {
+  @include trs;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1;
+  padding: 22px 10px;
+  background: $accent;
+  color: $white;
+  border: none;
+  border-radius: 4px;
+  position: relative;
+  width: 100%;
+  display: block;
+
+  @include b(mobile) {
+    font-size: 14px;
+    padding: 18px 10px;
+  }
+
+  &:hover,
+  &.active {
+    background: $main-hover;
+  }
+
+  &:focus {
+    //focus
+  }
+
+  &.disabled,
+  &[disabled='disabled'],
+  &[disabled] {
+    background: $gray;
+    color: $medium-gray;
+    cursor: not-allowed;
+    border-color: $medium-gray;
+  }
+}

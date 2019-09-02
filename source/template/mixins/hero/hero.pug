@@ -1,0 +1,48 @@
+//- Все примеси в этом файле должны начинаться c имени блока (hero)
+
+mixin hero(mods)
+
+  //- Принимает:
+  //-   mods    {string} - список модификаторов
+  //- Вызов:
+        +hero('mod-name1, mod-name2')
+
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' hero--' + modsList[i].trim();
+      }
+    }
+
+  .hero(class=allMods)
+    .container
+      .hero__wrap
+        .hero__content
+          span.subtitle.hero__subtitle Laser Pro —
+          span.hero__caption Франшиза федеральной сети студии удаления волос и коррекции фигуры
+          .hero__descr
+            p Откройте студию аппаратного удаления волос и получайте доход от 100 000 до 400 000 рублей уже с первого месяца
+          ul.hero__list
+            li.hero__list-item Без роялти
+            li.hero__list-item Запуск за 4 недели
+            li.hero__list-item Без лицензии
+            li.hero__list-item Прибыль от 120 000 рублей
+          .hero__subscribe
+            span.hero__subscribe-title Получите бизнес-план по построеню франшизы
+            +subscribe-form({
+              btn: 'Получить бизнес-план'
+            })
+        .hero__slider(data-controller="hero-slider")
+          .hero__slider-item
+            img(data-lazy="assets/img/people/people-01.png", alt="img")
+            .hero__slider-info
+              span.hero__slider-name Кристина Иванова
+              span.hero__slider-txt Бренд-врач Laser Pro
+          .hero__slider-item
+            img(data-lazy="assets/img/people/people-02.png", alt="img")
+            .hero__slider-info
+              span.hero__slider-name Тимур, франчайзи из Ижевска
+              span.hero__slider-txt Прибыль со второго месяца 300 000 ₽ 

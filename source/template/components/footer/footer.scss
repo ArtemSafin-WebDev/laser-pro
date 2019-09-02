@@ -1,0 +1,344 @@
+.footer {
+  flex: 0 0 auto;
+  padding: 102px 0 82px;
+  overflow: hidden;
+
+  @include b(desktop) {
+    padding: 70px 0 60px;
+  }
+
+  @include b(tablet) {
+    padding: 50px 0 38px;
+  }
+
+  @include b(mobile) {
+    padding: 50px 25px 40px;
+  }
+
+  &__holder {
+    @include rlist;
+  }
+
+  &__inner {
+    @include ulist;
+    vertical-align: top;
+    width: 50%;
+
+    @include b(mobile) {
+      width: 100%;
+    }
+
+    &--sm {
+
+      @include b(desktop) {
+        width: 40%;
+      }
+
+      @include b(tablet) {
+        width: 200px;
+      }
+    }
+
+    &--lg {
+      @include b(desktop) {
+        width: 60%;
+      }
+
+      @include b(tablet) {
+        width: calc(100% - 200px);
+      }
+    }
+
+    &--nav {
+      @include b(tablet) {
+        display: none;
+      }
+    }
+  }
+
+  &__logo {
+    width: 172px;
+
+    @include b(mobile) {
+      padding-bottom: 48px;
+      width: 127px;
+    }
+
+    &-link {
+      display: block;
+
+      &:hover {
+        opacity: .8;
+      }
+    }
+  }
+
+  &__nav {
+    padding-top: 2px;
+    padding-left: 20px;
+
+    &-item {
+      padding-bottom: 30px;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+
+    &-link {
+      color: #000;
+      font-size: 17px;
+      font-weight: 500;
+
+      &:hover {
+        color: $main-hover;
+      }
+    }
+  }
+
+  &__social {
+    padding-bottom: 41px;
+
+    @include b(tablet) {
+      padding-top: 6px;
+    }
+
+    @include b(mobile) {
+      padding-bottom: 28px;
+    }
+
+    &-list {
+      @include rlist;
+      margin: 0 -18px;
+
+      @include b(mobile) {
+        margin: 0 -16px;
+      }
+    }
+
+    &-item {
+      @include ulist;
+      vertical-align: middle;
+      padding: 0 18px;
+
+      @include b(mobile) {
+        padding: 0 16px;
+      }
+    }
+
+    &-link {
+      display: block;
+
+      &:hover {
+
+        svg {
+          fill: $main-hover;
+        }
+      }
+    }
+
+    svg {
+      transition: all .3s ease-in-out;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .icon-fb {
+      width: 12px;
+      height: 20px;
+
+      @include b(mobile) {
+        width: 8px;
+      }
+    }
+
+    .icon-vk {
+      width: 19px;
+      height: 12px;
+
+      @include b(mobile) {
+        width: 16px;
+        height: 13px;
+      }
+    }
+
+    .icon-twitter {
+      width: 20px;
+      height: 20px;
+
+      @include b(mobile) {
+        width: 17px;
+      }
+    }
+
+    .icon-ok {
+      width: 12px;
+      height: 20px;
+
+      @include b(mobile) {
+        width: 10px;
+      }
+    }
+  }
+
+  &__row {
+    @include rlist;
+    margin: 0 -10px 51px;
+
+    @include b(mobile) {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__col {
+    @include ulist;
+    vertical-align: top;
+    width: 31%;
+    padding: 0 10px;
+
+    @include b(tablet) {
+      width: 33.33%;
+    }
+
+    @include b(mobile) {
+      display: block;
+      width: 100%;
+    }
+
+    &:last-child {
+
+      @include b(mobile) {
+        display: none;
+      }
+    }
+  }
+
+  &__item {
+
+    @include b(mobile) {
+      padding-bottom: 33px;
+    }
+
+    &-phone {
+      color: #000;
+      font-size: 20px;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 11px;
+      margin-top: 2px;
+      white-space: nowrap;
+
+      @include b(mobile) {
+        margin-top: 0;
+        font-size: 16px;
+        margin-bottom: 15px;
+      }
+
+      &:hover {
+        color: $main-hover;
+      }
+    }
+
+    &-txt {
+      display: block;
+      font-size: 14px;
+
+      @include b(mobile) {
+        font-size: 12px;
+      }
+    }
+  }
+
+  &__callback {
+
+    &-btn {
+      color: $accent;
+      background-color: #fff;
+      font-weight: 600;
+      padding: 15px 10px;
+      width: 115px;
+
+      &:hover {
+        color: $main-hover;
+        background-color: #fff;
+      }
+    }
+  }
+
+  &__descr {
+    font-size: 14px;
+    line-height: 21px;
+
+    @include b(mobile) {
+      font-size: 12px;
+      line-height: 20px;
+    }
+
+    span {
+      display: inline-block;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 72px;
+
+    @include b(desktop) {
+      padding-top: 45px;
+      flex-wrap: inherit;
+      justify-content: space-between;
+    }
+
+    @include b(mobile) {
+      padding-top: 28px;
+      flex-direction: row-reverse;
+    }
+
+    div {
+      width: 50%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      @include b(desktop) {
+        width: auto;
+      }
+    }
+
+    &-txt {
+      font-size: 14px;
+      display: inline-block;
+
+      @include b(mobile) {
+        font-size: 12px;
+      }
+
+      &--mod {
+
+        @include b(mobile) {
+          font-weight: 600;
+        }
+      }
+    }
+
+    &-img {
+      padding-left: 13px;
+      display: inline-block;
+      position: relative;
+      top: 5px;
+
+      @include b(mobile) {
+        padding-left: 6px;
+      }
+
+      img {
+        @include b(mobile) {
+          width: 70px;
+        }
+      }
+    }
+  }
+}

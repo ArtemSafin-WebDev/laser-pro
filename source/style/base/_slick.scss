@@ -1,0 +1,141 @@
+.slick {
+
+  &-arrow {
+    width: 54px;
+    height: 54px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    border-radius: 50%;
+    background-color: #eff1fa;
+    position: absolute;
+    bottom: 61px;
+    z-index: 1;
+
+    @include b(tablet) {
+      width: 36px;
+      height: 36px;
+      bottom: auto;
+      top: calc(50% - 5px);
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border: 2px solid #000;
+      transition: all .3s ease-in-out;
+      top: calc(50% - 7px);
+
+      @include b(tablet) {
+        width: 10px;
+        height: 10px;
+        top: calc(50% - 5px);
+      }
+    }
+
+    &:hover {
+      background-color: #faeffa;
+
+      &:before {
+        border-color: $main-hover;
+      }
+    }
+  }
+
+  &-prev {
+    right: 130px;
+
+    @include b(tablet) {
+      right: auto;
+      left: 25px;
+    }
+
+    @include b(mobile) {
+      left: 0;
+    }
+
+    &:before {
+      left: 23px;
+      border-width: 0 0 2px 2px;
+      transform: rotate(45deg);
+
+      @include b(tablet) {
+        left: 16px;
+        border-width: 0 0 1px 1px;
+      }
+    }
+  }
+
+  &-next {
+    right: 64px;
+
+    @include b(tablet) {
+      right: 25px;
+    }
+
+    @include b(mobile) {
+      right: 0;
+    }
+
+    &:before {
+      right: 23px;
+      border-width: 0 2px 2px 0;
+      transform: rotate(-45deg);
+
+      @include b(tablet) {
+        right: 16px;
+        border-width: 0 1px 1px 0;
+      }
+    }
+  }
+
+  &-dots {
+    @include rlist;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @include b(mobile) {
+      bottom: 38px;
+    }
+
+    li {
+      display: inline-block;
+      vertical-align: middle;
+      padding: 0 7.5px;
+
+      &.slick-active {
+
+        button {
+          border: 2px solid #fff;
+          width: 19px;
+          height: 19px;
+          background-color: transparent;
+        }
+
+        button:hover {
+          border-color: $main-hover;
+        }
+      }
+    }
+
+    button {
+      background-color: #fff;
+      border: none;
+      padding: 0;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      opacity: .7;
+      transition: all .3s ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 1;
+        background-color: $main-hover;
+      }
+    }
+  }
+}

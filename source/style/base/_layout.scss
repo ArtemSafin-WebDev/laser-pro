@@ -1,0 +1,148 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  outline: 0;
+}
+
+body {
+  height: 100%;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+
+  &.hidden {
+    overflow: hidden;
+  }
+}
+
+.hide {
+  opacity: 0;
+  visibility: hidden;
+  transition: all .4s ease-in-out;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+html {
+  height: 100%;
+}
+
+.container {
+  padding: 0 $container-padding;
+  max-width: $container-width;
+  margin: 0 auto;
+  @include clearfix;
+
+  @include b(mobile) {
+    padding: 0;
+  }
+}
+
+.wrapper {
+  flex: 1 0 auto;
+  overflow: hidden;
+}
+
+form {
+
+  &.no-validate {
+
+    .form-txt-error {
+      display: block;
+    }
+  }
+
+  &.valid {
+
+    .form-txt-success {
+      display: block;
+    }
+  }
+}
+
+.form-validate-txt {
+  padding: 5px 0;
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: 500;
+  display: none;
+
+  &.form-txt-error {
+    color: $main-hover;
+  }
+
+  &.form-txt-success {
+    color: #17bb80;
+  }
+}
+
+label {
+  display: block;
+  position: relative;
+}
+
+input.error + .field-error {
+  opacity: 1;
+  visibility: visible;
+}
+
+input.success ~ .field-success {
+  opacity: 1;
+  visibility: visible;
+}
+
+.field-error {
+  display: block;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  opacity: 0;
+  visibility: hidden;
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 2px;
+    background-color: $main-hover;
+  }
+
+  &:before {
+    transform: rotate(45deg);
+  }
+
+  &:after {
+    transform: rotate(-45deg);
+  }
+}
+
+.field-success {
+  width: 17px;
+  height: 17px;
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 12px;
+  opacity: 0;
+  visibility: hidden;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 17px;
+    height: 12px;
+    border-left: 2px solid #17bb80;
+    border-bottom: 2px solid #17bb80;
+    transform: rotate(-45deg);
+  }
+}

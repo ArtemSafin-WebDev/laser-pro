@@ -1,0 +1,30 @@
+extends ../_template
+
+block variables
+  - var title = 'Home page'
+
+block content
+  .wrapper
+    
+    +header()
+    div.wow.fadeInUp.hide(data-wow-offset="100" data-wow-delay=".1s")
+      +hero()
+
+      include ../components/about/about
+
+      include ../components/geography/geography
+
+      include ../components/indicators/indicators
+
+      include ../components/concept/concept
+
+      +reviews()
+
+      +callback()
+
+    
+    include ../components/popup/popup-city
+    include ../components/popup/popup-success
+    include ../components/popup/popup-subscribe
+ 
+  +footer()

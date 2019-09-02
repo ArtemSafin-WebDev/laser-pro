@@ -1,0 +1,34 @@
+.popup.popup-subscribe#popup-subscribe
+  .popup-subscribe__decor
+    .popup-subscribe__decor-inner
+  .popup-subscribe__holder
+    .popup-subscribe__content
+      span.popup-subscribe__subtitle Обратная связь
+      span.popup-subscribe__caption Напишите нам и получите доступ к финансовым отчетам о работе студий
+      .popup-subscribe__descr 
+        p После подписания договора вы начинаете готовить студию к открытию, набираете персонал и делаете ремонт, а мы тем временем...
+      form.popup-subscribe__form(action="#")
+        .popup-subscribe__form-box
+          label
+            input(type="text" name="name" placeholder="Имя и фамилия")
+            span.field-error
+            span.field-success
+        .popup-subscribe__form-box
+          label
+            input(type="tel" name="phone" placeholder="Телефон")
+            span.field-error
+            span.field-success
+        .popup-subscribe__form-box
+          label
+            input(type="email" name="email" placeholder="E-mail")
+            span.field-error
+            span.field-success
+        .popup-subscribe__form-box
+          textarea(name="mess" placeholder="Сообщение")
+        span.form-validate-txt.form-txt-error В номере телефона должно быть 11 цифр
+        span.form-validate-txt.form-txt-success Все окей, братишка
+        .popup-subscribe__form-check
+          +checkbox("Нажимая кнопку я соглашаюсь с политикой конфиденциальности", {mods: 'inverse', name: 'popup-check', checked: true})
+        button.btn.popup-subscribe__form-btn(type="submit") Получить бизнес-план
+    .popup-subscribe__img
+      img(src="assets/img/phone-decor.png", alt="img")

@@ -1,0 +1,210 @@
+.about {
+  margin-bottom: 80px;
+
+  @include b(mobile) {
+    margin-bottom: 0;
+  }
+
+  &__wrap {
+    background-color: #fff;
+    border-radius: 30px;
+  }
+
+  &__holder {
+    padding: 71px 68px 65px;
+
+    @include b(desktop) {
+      padding: 40px 25px;
+    }
+
+    @include b(mobile) {
+      padding: 26px 25px 35px;
+    }
+  }
+
+  &__subtitle {
+    padding-bottom: 20px;
+
+    @include b(mobile) {
+      padding-bottom: 9px;
+    }
+  }
+
+  &__caption {
+    display: block;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 50px;
+    padding-bottom: 30px;
+
+    @include b(tablet) {
+      font-size: 34px;
+      line-height: 1.2;
+    }
+
+    @include b(mobile) {
+      font-size: 21px;
+      line-height: 29px;
+      padding-bottom: 20px;
+    }
+
+    span[style*='text-decoration-line: underline'] {
+      color: #5873f5;
+      text-decoration: unset !important;
+    }
+  }
+
+  &__descr {
+    font-size: 17px;
+    line-height: 25px;
+    max-width: 510px;
+    padding-bottom: 64px;
+
+    @include b(tablet) {
+      padding-bottom: 40px;
+    }
+
+    @include b(mobile) {
+      font-size: 14px;
+      line-height: 20px;
+      padding-bottom: 51px;
+    }
+  }
+
+  &__row {
+    @include rlist;
+    margin: 0 -15px 35px;
+
+    @include b(mobile) {
+      margin: 0 -9px 6px;
+    }
+  }
+
+  &__col {
+    @include ulist;
+    vertical-align: top;
+    width: 25%;
+    padding: 0 15px;
+    margin-bottom: 68px;
+
+    @include b(tablet) {
+      width: 50%;
+      margin-bottom: 40px;
+    }
+
+    @include b(mobile) {
+      padding: 0 9px;
+      margin-bottom: 37px;
+    }
+  }
+
+  &__item {
+
+    &-title {
+      display: block;
+      font-size: 17px;
+      padding-bottom: 9px;
+
+      @include b(mobile) {
+        font-size: 14px;
+        line-height: 20px;
+        padding-bottom: 2px;
+      }
+    }
+
+    &-val {
+      display: block;
+      font-weight: 600;
+      color: $accent;
+      font-size: 80px;
+      line-height: 95px;
+      padding-bottom: 6px;
+      white-space: nowrap;
+
+      @include b(1280) {
+        font-size: 60px;
+        line-height: 1.2;
+      }
+
+      @include b(mobile) {
+        font-size: 40px;
+        line-height: 48px;
+        padding-bottom: 3px;
+      }
+
+      &-desc {
+        display: inline;
+
+        @include b(1280) {
+          display: none;
+        }
+      }
+
+      &-mob {
+        display: none;
+
+        @include b(1280) {
+          display: inline;
+        }
+      }
+    }
+
+    &-name {
+      display: block;
+      color: $accent;
+      font-size: 24px;
+      line-height: 26px;
+      padding-bottom: 24px;
+      font-weight: 600;
+
+      @include b(mobile) {
+        font-size: 15px;
+        line-height: 20px;
+        padding-bottom: 11px;
+      }
+    }
+
+    &-descr {
+      font-size: 17px;
+      line-height: 25px;
+
+      @include b(mobile) {
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+  }
+
+  &__ctrl {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &-btn {
+      margin-right: 42px;
+      max-width: 213px;
+      width: 100%;
+
+      @include b(mobile) {
+        width: 190px;
+        margin-right: 24px;
+        white-space: nowrap;
+      }
+    }
+
+    &-link {
+      border-bottom: 1px solid $accent;
+      font-size: 17px;
+      line-height: 1.2;
+
+      @include b(mobile) {
+        font-size: 14px;
+      }
+
+      &:hover {
+        color: $main-hover;
+        border-bottom-color: $main-hover;
+      }
+    }
+  }
+}

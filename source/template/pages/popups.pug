@@ -1,0 +1,26 @@
+extends ../_template
+
+block variables
+  - var title = 'Popups'
+
+block content
+  .wrapper
+    
+    +header()
+
+    .container
+      div
+        a(href="javascript:;" data-src="#popup-city" data-fancybox) popup-city
+      div
+        a(href="javascript:;" data-src="#popup-video" data-fancybox) popup-video
+      div
+        a(href="javascript:;" data-src="#popup-success" data-fancybox) popup-success
+      div
+        a(href="javascript:;" data-src="#popup-subscribe" data-fancybox) popup-subscribe
+
+    include ../components/popup/popup-video
+    include ../components/popup/popup-city
+    include ../components/popup/popup-success
+    include ../components/popup/popup-subscribe
+ 
+  +footer()

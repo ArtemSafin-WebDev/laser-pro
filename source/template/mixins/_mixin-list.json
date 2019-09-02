@@ -1,0 +1,14 @@
+[
+  "./lipsum/lipsum",
+  "./icon/icon",
+  "./img/img",
+  "./checkbox/checkbox",
+  "./radio/radio",
+  "../components/header/header",
+  "../components/footer/footer",
+  "./hero/hero",
+  "./hero/hero-v2",
+  "./subscribe-form/subscribe-form",
+  "./callback/callback",
+  "./reviews/reviews"
+]

@@ -1,0 +1,336 @@
+.concept {
+  margin-bottom: 81px;
+
+  @include b(mobile) {
+    margin-bottom: 35px;
+  }
+
+  &__wrap {
+    background-color: #fff;
+    border-radius: 30px;
+    overflow: hidden;
+  }
+
+  &__holder {
+    display: flex;
+    flex-direction: row;
+    align-self: stretch;
+    flex-wrap: wrap;
+  }
+
+  &__inner {
+    width: 50%;
+    padding: 61px 71px 78px;
+    &[data-first] {
+      order: -1;
+    }
+    @include b(desktop) {
+      padding: 40px 25px;
+    }
+
+    @include b(tablet) {
+      width: 100%;
+    }
+
+    @include b(mobile) {
+      padding: 24px 25px 26px;
+    }
+
+    &--img {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      position: relative;
+
+      @include b(tablet) {
+        height: 316px;
+        background-position: 0% 45%;
+      }
+    }
+  }
+
+  &__subtitle {
+    padding-bottom: 17px;
+
+    @include b(mobile) {
+      padding-bottom: 5px;
+    }
+  }
+
+  &__caption {
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 44px;
+    display: block;
+    padding-bottom: 33px;
+
+    @include b(tablet) {
+      font-size: 34px;
+      line-height: 1.2;
+    }
+
+    @include b(mobile) {
+      font-size: 21px;
+      line-height: 29px;
+      padding-bottom: 20px;
+    }
+  }
+
+  &__descr {
+    font-size: 17px;
+    line-height: 25px;
+    padding-bottom: 42px;
+
+    @include b(mobile) {
+      font-size: 14px;
+      line-height: 20px;
+      padding-bottom: 35px;
+    }
+  }
+
+  &__info {
+    @include rlist;
+    margin: 0 -10px;
+    padding-bottom: 18px;
+
+    @include b(mobile) {
+      padding-bottom: 19px;
+    }
+
+    &-item {
+      @include ulist;
+      vertical-align: top;
+      width: 50%;
+      padding: 0 10px;
+      margin-bottom: 32px;
+
+      @include b(mobile) {
+        margin-bottom: 20px;
+      }
+    }
+
+    &-name {
+      display: block;
+      font-size: 17px;
+      line-height: 25px;
+      padding-bottom: 3px;
+
+      @include b(mobile) {
+        font-size: 14px;
+        line-height: 20px;
+        padding-bottom: 5px;
+      }
+    }
+
+    &-price {
+      display: block;
+      color: $accent;
+      font-size: 26px;
+      font-weight: 600;
+
+      @include b(mobile) {
+        font-size: 18px;
+      }
+    }
+  }
+
+  &__title {
+    display: block;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    padding-bottom: 23px;
+
+    @include b(mobile) {
+      font-size: 15px;
+      line-height: 20px;
+      padding-bottom: 17px;
+    }
+  }
+
+  &__list {
+    padding-bottom: 27px;
+
+    @include b(mobile) {
+      padding-bottom: 13px;
+    }
+
+    &-item {
+      position: relative;
+      padding-left: 31px;
+      margin-bottom: 21px;
+      font-size: 17px;
+
+      @include b(mobile) {
+        font-size: 14px;
+        line-height: 18px;
+        padding-left: 21px;
+        margin-bottom: 14px;
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 10px;
+        left: 0;
+        height: 2px;
+        width: 10px;
+        background-color: $accent;
+
+        @include b(mobile) {
+          top: 8px;
+        }
+      }
+    }
+  }
+
+  &__indicators {
+    @include rlist;
+    margin: 0 -10px;
+    padding-bottom: 61px;
+
+    @include b(mobile) {
+      padding-bottom: 28px;
+    }
+
+    &-item {
+      @include ulist;
+      vertical-align: top;
+      width: 50%;
+      padding: 0 10px;
+    }
+
+    &-num {
+      display: block;
+      color: $accent;
+      font-size: 80px;
+      line-height: 95px;
+      padding-bottom: 6px;
+      font-weight: 600;
+
+      @include b(tablet) {
+        font-size: 60px;
+        line-height: 68px;
+      }
+
+      @include b(mobile) {
+        font-size: 40px;
+        line-height: 48px;
+        padding-bottom: 2px;
+      }
+    }
+
+    &-txt {
+      display: block;
+      color: $accent;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 26px;
+
+      @include b(mobile) {
+        font-size: 15px;
+        line-height: 20px;
+      }
+    }
+  }
+
+  &__ctrl {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &-btn {
+      width: 250px;
+      margin-right: 35px;
+
+      @include b(mobile) {
+        width: 190px;
+        margin-right: 24px;
+        white-space: nowrap;
+      }
+    }
+
+    &-link {
+      border-bottom: 1px solid $accent;
+
+      @include b(mobile) {
+        font-size: 14px;
+      }
+
+      &:hover {
+        color: $main-hover;
+        border-bottom-color: $main-hover;
+      }
+    }
+  }
+
+  &__video {
+    display: block;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &:hover {
+
+      .concept__video-btn:before {
+        border-left-color: $main-hover;
+      }
+
+      .concept__video-txt {
+        color: $main-hover;
+        opacity: 1;
+      }
+    }
+
+    &-btn {
+      display: block;
+      width: 94px;
+      height: 94px;
+      border-radius: 50%;
+      background-color: #fff;
+      position: relative;
+      margin: 0 auto 16px;
+
+      @include b(mobile) {
+        width: 56px;
+        height: 56px;
+        margin-bottom: 19px;
+      }
+
+      &:before {
+        position: absolute;
+        top: calc(50% - 10px);
+        left: calc(50% - 5px);
+        content: '';
+        transition: all .3s ease-in-out;
+        border: 11px solid transparent;
+        border-left: 15px solid #5873f5;
+
+        @include b(mobile) {
+          top: calc(50% - 7px);
+          left: calc(50% - 4px);
+          border: 7px solid transparent;
+          border-left: 11px solid #5873f5;
+        }
+      }
+    }
+
+    &-txt {
+      display: block;
+      margin: 0 auto;
+      max-width: 300px;
+      color: #fff;
+      opacity: .8;
+      font-size: 20px;
+      line-height: 28px;
+      transition: all .3s ease-in-out;
+
+      @include b(mobile) {
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+  }
+}

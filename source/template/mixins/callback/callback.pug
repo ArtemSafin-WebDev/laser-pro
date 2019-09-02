@@ -1,0 +1,36 @@
+//- Все примеси в этом файле должны начинаться c имени блока (callback)
+
+mixin callback(mods)
+
+  //- Принимает:
+  //-   mods    {string} - список модификаторов
+  //- Вызов:
+        +callback('mod-name1, mod-name2')
+
+  -
+    // список модификаторов
+    var allMods = '';
+    if(typeof(mods) !== 'undefined' && mods) {
+      var modsList = mods.split(',');
+      for (var i = 0; i < modsList.length; i++) {
+        allMods = allMods + ' callback--' + modsList[i].trim();
+      }
+    }
+
+  .callback#callback(class=allMods data-controller="callback")
+    .container
+      .callback__wrap
+        .callback__decor
+          .callback__decor-inner
+        .callback__holder
+          .callback__content
+            span.subtitle.callback__subtitle Обратная связь
+            span.callback__caption Напишите нам и получите доступ к финансовым отчетам о работе студий
+            .callback__descr
+              p После подписания договора вы начинаете готовить студию к открытию, набираете персонал и делаете ремонт, а мы тем временем...
+            span.callback__title Получите бизнес-план по построеню франшизы
+            +subscribe-form({
+              btn: 'Получить бизнес-план'
+            },'mod')
+          .callback__img
+            img.b-lazy(data-src="assets/img/phone-decor.png", alt="phone")

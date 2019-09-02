@@ -1,0 +1,28 @@
+extends ../_template
+
+block variables
+  - var title = 'Home page v2'
+
+block content
+  .wrapper
+    
+    +header()
+
+    +hero-v2()
+
+    include ../components/about/about
+
+    include ../components/geography/geography
+
+    include ../components/concept/concept
+
+    +reviews()
+
+    +callback()
+
+    
+    include ../components/popup/popup-city
+    include ../components/popup/popup-success
+    include ../components/popup/popup-subscribe
+ 
+  +footer()

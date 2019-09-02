@@ -1,0 +1,405 @@
+.hero {
+  margin-bottom: 81px;
+
+  @include b(tablet) {
+    margin-bottom: 50px;
+  }
+
+  @include b(mobile) {
+    margin-bottom: 30px;
+  }
+
+  &__wrap {
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+
+    @include b(tablet) {
+      overflow: visible;
+      position: relative;
+      padding-bottom: 122px;
+    }
+
+    @include b(mobile) {
+      padding: 0 25px 272px;
+    }
+  }
+
+  &__content {
+    padding: 66px 0 67px 68px;
+    width: 60%;
+
+    @include b(desktop) {
+      padding: 40px 0 40px 30px;
+    }
+
+    @include b(tablet) {
+      width: 100%;
+      padding: 26px 25px 28px;
+    }
+
+    @include b(mobile) {
+      padding: 26px 0 28px;
+    }
+  }
+
+  &__subtitle {
+    padding-bottom: 20px;
+
+    @include b(mobile) {
+      padding-bottom: 6px;
+    }
+  }
+
+  &__caption {
+    display: block;
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 57px;
+    padding-bottom: 32px;
+
+    @include b(tablet) {
+      line-height: 1.2;
+      font-size: 34px;
+      padding-bottom: 20px;
+    }
+
+    @include b(mobile) {
+      font-size: 27px;
+      line-height: 33px;
+    }
+  }
+
+  &__descr {
+    max-width: 600px;
+    font-size: 22px;
+    line-height: 32px;
+    padding-bottom: 45px;
+
+    @include b(tablet) {
+      line-height: 1.2;
+      font-size: 18px;
+    }
+
+    @include b(mobile) {
+      font-size: 14px;
+      line-height: 20px;
+      padding-bottom: 17px;
+    }
+  }
+
+  &__list {
+    @include rlist;
+    margin-bottom: 56px;
+
+    @include b(tablet) {
+      margin-bottom: 0;
+    }
+
+    &-item {
+      @include ulist;
+      vertical-align: top;
+      width: 50%;
+      position: relative;
+      font-size: 20px;
+      padding-left: 36px;
+      margin-bottom: 19px;
+
+      @include b(tablet) {
+        font-size: 18px;
+      }
+
+      @include b(mobile) {
+        font-size: 15px;
+        line-height: 30px;
+        width: 100%;
+        margin-bottom: 0;
+        padding-left: 28px;
+      }
+
+      &:nth-child(odd) {
+        width: 28%;
+
+        @include b(mobile) {
+          width: 100%;
+        }
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 5px;
+        left: 3px;
+        width: 18px;
+        height: 9px;
+        border: 2px solid $accent;
+        border-width: 0 0 2px 2px;
+        transform: rotate(-45deg);
+
+        @include b(mobile) {
+          top: 11px;
+          left: 0px;
+          width: 15px;
+          height: 8px;
+        }
+      }
+    }
+  }
+
+  &__subscribe {
+    max-width: 756px;
+    position: relative;
+    z-index: 10;
+
+    @include b(tablet) {
+      position: absolute;
+      left: 25px;
+      right: 25px;
+      bottom: 30px;
+      z-index: 3;
+      max-width: 100%;
+    }
+
+    &-title {
+      display: block;
+      font-size: 24px;
+      line-height: 25px;
+      padding-bottom: 24px;
+      font-weight: 600;
+
+      @include b(mobile) {
+        font-size: 14px;
+        line-height: 20px;
+        max-width: 290px;
+        padding-bottom: 14px;
+      }
+    }
+  }
+
+  &__slider {
+    width: 40%;
+    padding-top: 20px;
+    // margin-top: -20px;
+    max-height: 805px;
+
+    @include b(tablet) {
+      width: 100%;
+      margin-top: 0;
+      min-height: inherit;
+    }
+
+    .slick-list {
+      margin: 0 -200px;
+      padding-left: 200px;
+
+      @include b(tablet) {
+        margin: 0;
+        padding-left: 0;
+      }
+    }
+
+    .slick-track {
+      display: flex !important;
+    }
+
+    .slick-dots {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .slick-arrow {
+      
+      &.slick-disabled {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    &-item {
+      height: inherit;
+      display: flex !important;
+      position: relative;
+      padding: 0 14px;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(.7) translate(135px, 177px);
+      transition: all .3s ease-in-out;
+
+      @include b(tablet) {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1) translate(0, 0);
+      }
+
+      &.slick-current {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1) translate(0, 0);
+      }
+    }
+
+    img {
+      height: inherit;
+
+      @include b(tablet) {
+        height: 520px;
+        margin: 0 auto;
+      }
+
+      @include b(mobile) {
+        height: 403px;
+      }
+    }
+    
+    &-info {
+      position: absolute;
+      left: 0;
+      padding-left: 48px;
+      padding-right: 205px;
+      bottom: 104px;
+      width: 100%;
+
+      @include b(tablet) {
+        bottom: 97px;
+      }
+
+      @include b(mobile) {
+        padding-right: 0;
+        padding-left: 60%;
+      }
+
+      @include b(480) {
+        padding-left: 0;
+      }
+    }
+
+    &-name {
+      display: block;
+      font-weight: 700;
+      font-size: 20px;
+      padding-bottom: 10px;
+
+      @include b(mobile) {
+        font-size: 12px;
+      }
+    }
+
+    &-txt {
+      display: block;
+      font-size: 14px;
+
+      @include b(mobile) {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.hero-v2 {
+
+  .slick-arrow {
+    
+    @include b(mobile) {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  .slick-next {
+    @include b(tablet) {
+      right: 25px;
+    }
+  }
+
+  .slick-prev {
+
+    @include b(tablet) {
+      left: auto;
+      right: 71px;
+    }
+  }
+
+  .slick-dots {
+    @include b(mobile) {
+      bottom: 20px;
+    }
+  }
+
+  .hero__wrap {
+    overflow: hidden;
+    display: block;
+
+    @include b(tablet) {
+      padding-bottom: 0;
+    }
+
+    @include b(mobile) {
+      padding: 0;
+    }
+  }
+
+  .hero__content {
+    padding: 66px 68px 67px;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    // min-height: 749px;
+
+    @include b(desktop) {
+      padding: 40px 30px 40px;
+    }
+
+    @include b(tablet) {
+      width: 100%;
+      min-height: 590px;
+      padding: 26px 25px 28px;
+    }
+
+    @include b(mobile) {
+      min-height: inherit;
+      padding: 26px 25px 58px;
+    }
+
+    .hero__subtitle{
+      color: #fff;
+    }
+
+    .hero__caption {
+      color: #fff;
+    }
+
+    .hero__descr {
+      color: #fff;
+
+      @include b(mobile) {
+        padding-bottom: 20px;
+      }
+    }
+
+    .hero__list-item {
+      color: #fff;
+    }
+
+    .hero__subscribe-title {
+      color: #fff;
+    }
+
+    .subscribe-form__policy {
+      color: #fff;
+    }
+
+    .hero__subscribe {
+      @include b(mobile) {
+        position: static;
+      }
+    }
+
+    // .subscribe-form__box:last-child input {
+    //   border-width: 1px 1px 1px 1px;
+    // }
+  }
+}

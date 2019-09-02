@@ -1,0 +1,7 @@
+@import 'config/mixins';
+
+//EXAMPLE RM THIS!!!
+@include font-face('Gilroy', 'assets/fonts/gilroy/bold/Gilroy-Bold', 700);
+@include font-face('Gilroy', 'assets/fonts/gilroy/medium/Gilroy-Medium', 500);
+@include font-face('Gilroy', 'assets/fonts/gilroy/regular/Gilroy-Regular', 400);
+@include font-face('Gilroy', 'assets/fonts/gilroy/semibold/Gilroy-SemiBold', 600);

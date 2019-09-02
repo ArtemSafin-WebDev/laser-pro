@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Popups</title>
+    <meta content="" name="author">
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/foundation.css?rel=62791">
+    <link rel="stylesheet" href="assets/css/app.css?rel=62791"><!--[if lt IE 10]>    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+    <style>@font-face
+{
+    font-family: 'Gilroy';
+    font-weight: 700;
+    font-style: normal;
+
+    font-display: swap;
+    src: url('assets/fonts/gilroy/bold/Gilroy-Bold.eot');
+    src: url('assets/fonts/gilroy/bold/Gilroy-Bold.eot?#iefix') format('embedded-opentype'), url('assets/fonts/gilroy/bold/Gilroy-Bold.woff') format('woff'), url('assets/fonts/gilroy/bold/Gilroy-Bold.ttf') format('truetype'), url('assets/fonts/gilroy/bold/Gilroy-Bold.svg#Gilroy') format('svg');
+}
+
+@font-face
+{
+    font-family: 'Gilroy';
+    font-weight: 500;
+    font-style: normal;
+
+    font-display: swap;
+    src: url('assets/fonts/gilroy/medium/Gilroy-Medium.eot');
+    src: url('assets/fonts/gilroy/medium/Gilroy-Medium.eot?#iefix') format('embedded-opentype'), url('assets/fonts/gilroy/medium/Gilroy-Medium.woff') format('woff'), url('assets/fonts/gilroy/medium/Gilroy-Medium.ttf') format('truetype'), url('assets/fonts/gilroy/medium/Gilroy-Medium.svg#Gilroy') format('svg');
+}
+
+@font-face
+{
+    font-family: 'Gilroy';
+    font-weight: 400;
+    font-style: normal;
+
+    font-display: swap;
+    src: url('assets/fonts/gilroy/regular/Gilroy-Regular.eot');
+    src: url('assets/fonts/gilroy/regular/Gilroy-Regular.eot?#iefix') format('embedded-opentype'), url('assets/fonts/gilroy/regular/Gilroy-Regular.woff') format('woff'), url('assets/fonts/gilroy/regular/Gilroy-Regular.ttf') format('truetype'), url('assets/fonts/gilroy/regular/Gilroy-Regular.svg#Gilroy') format('svg');
+}
+
+@font-face
+{
+    font-family: 'Gilroy';
+    font-weight: 600;
+    font-style: normal;
+
+    font-display: swap;
+    src: url('assets/fonts/gilroy/semibold/Gilroy-SemiBold.eot');
+    src: url('assets/fonts/gilroy/semibold/Gilroy-SemiBold.eot?#iefix') format('embedded-opentype'), url('assets/fonts/gilroy/semibold/Gilroy-SemiBold.woff') format('woff'), url('assets/fonts/gilroy/semibold/Gilroy-SemiBold.ttf') format('truetype'), url('assets/fonts/gilroy/semibold/Gilroy-SemiBold.svg#Gilroy') format('svg');
+}
+
+    </style>
+  </head>
+  <body>
+    <div id="preloader" data-controller="preloader">
+      <div class="preloader-wrapper">
+        <div class="preloader-center">
+          <div class="tcon-loader--spinner360" aria-label="loading">
+            <div class="tcon-visuallyhidden"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wrapper">
+      <header class="header wow fadeInDown hide" data-controller="header" data-wow-offset="100" data-wow-delay=".1s">
+        <div class="header__overlay js-header-overlay"></div>
+        <div class="container">
+          <div class="header__wrap">
+            <div class="header__left">
+              <div class="header__logo"><a class="header__logo-link" href="#"><img src="assets/img/logo.svg" alt="logo"/></a></div>
+              <ul class="header__nav">
+                <li class="header__nav-item"><a class="header__nav-link" href="#">Услуги</a></li>
+                <li class="header__nav-item"><a class="header__nav-link" href="#">О франшизе</a></li>
+                <li class="header__nav-item"><a class="header__nav-link" href="#">Контакты</a></li>
+              </ul>
+            </div>
+            <div class="header__right">
+              <div class="header__social">
+                <ul class="header__social-list">
+                  <li class="header__social-item"><a class="header__social-link" href="#" target="_blank">
+                      <svg class="icon-svg  icon-fb">
+                        <use xlink:href="assets/img/sprite.svg#fb"></use>
+                      </svg></a></li>
+                  <li class="header__social-item"><a class="header__social-link" href="#" target="_blank">
+                      <svg class="icon-svg  icon-vk">
+                        <use xlink:href="assets/img/sprite.svg#vk"></use>
+                      </svg></a></li>
+                  <li class="header__social-item"><a class="header__social-link" href="#" target="_blank">
+                      <svg class="icon-svg  icon-twitter">
+                        <use xlink:href="assets/img/sprite.svg#twitter"></use>
+                      </svg></a></li>
+                  <li class="header__social-item"><a class="header__social-link" href="#" target="_blank">
+                      <svg class="icon-svg  icon-ok">
+                        <use xlink:href="assets/img/sprite.svg#ok"></use>
+                      </svg></a></li>
+                </ul>
+              </div>
+              <div class="header__phone"><a class="header__phone-link" href="tel:+79120145691">+7 912 014-56-91</a></div>
+              <div class="header__callback"><a class="btn header__callback-btn js-popup-open" href="#popup-subscribe">Связаться</a></div>
+              <div class="header__menu">
+                <div class="header__menu-btn js-header-btn"><span class="line"></span></div>
+                <div class="header__menu-drop js-header-drop">
+                  <ul class="header__nav header__nav--mob">
+                    <li class="header__nav-item"><a class="header__nav-link" href="#">Услуги</a></li>
+                    <li class="header__nav-item"><a class="header__nav-link" href="#">О франшизе</a></li>
+                    <li class="header__nav-item"><a class="header__nav-link" href="#">Контакты</a></li>
+                  </ul>
+                  <div class="header__callback header__callback--mob"><a class="btn header__callback-btn" href="#">Связаться</a></div>
+                  <div class="header__social header__social--mob">
+                    <ul class="header__social-list">
+                      <li class="header__social-item"><a class="header__social-link" href="#" target="_blank">
+                          <svg class="icon-svg  icon-fb">
+                            <use xlink:href="assets/img/sprite.svg#fb"></use>
+                          </svg></a></li>
+                      <li class="header__social-item"><a class="header__social-link" href="#" target="_blank">
+                          <svg class="icon-svg  icon-vk">
+                            <use xlink:href="assets/img/sprite.svg#vk"></use>
+                          </svg></a></li>
+                      <li class="header__social-item"><a class="header__social-link" href="#" target="_blank">
+                          <svg class="icon-svg  icon-twitter">
+                            <use xlink:href="assets/img/sprite.svg#twitter"></use>
+                          </svg></a></li>
+                      <li class="header__social-item"><a class="header__social-link" href="#" target="_blank">
+                          <svg class="icon-svg  icon-ok">
+                            <use xlink:href="assets/img/sprite.svg#ok"></use>
+                          </svg></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="container">
+        <div><a href="javascript:;" data-src="#popup-city" data-fancybox>popup-city</a></div>
+        <div><a href="javascript:;" data-src="#popup-video" data-fancybox>popup-video</a></div>
+        <div><a href="javascript:;" data-src="#popup-success" data-fancybox>popup-success</a></div>
+        <div><a href="javascript:;" data-src="#popup-subscribe" data-fancybox>popup-subscribe</a></div>
+      </div>
+      <div class="popup popup-video" id="popup-video">
+        <div class="popup-video__holder"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/4YucA7IhDKs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      </div>
+      <div class="popup popup-city" id="popup-city"><span class="popup-city__caption">Список всех студий</span>
+        <div class="popup-city__holder">
+          <div class="popup-city__row">
+            <div class="popup-city__col"> <span class="popup-city__title">А</span>
+              <ul class="popup-city__list">
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Абакан</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Азнакаево</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Азов</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Алатырь</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Александровское</a></li>
+                <li class="popup-city__list-item"> <a class="popup-city__list-link" href="#">Алексеевское</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Алексин</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Альметьевск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Анапа</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Арзамас</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Армавир</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Арск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link popup-city__list-link--mod" href="#">Астрахань</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Аткарск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Ахтубинск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Ачинск</a></li>
+              </ul><span class="popup-city__title">Б</span>
+              <ul class="popup-city__list">
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Балаково</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Балаково Жилгород</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Балахна</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Балашиха</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Балашов</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link popup-city__list-link--mod" href="#">Барнаул</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Батайск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Безенчук</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link popup-city__list-link--mod" href="#">Белгород</a></li>
+              </ul>
+            </div>
+            <div class="popup-city__col"><span class="popup-city__title">Г</span>
+              <ul class="popup-city__list">
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Гатчина</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link popup-city__list-link--mod" href="#">Геленджик</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Георгиевск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Глазов</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Городец</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Гороховец</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Грязи</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Губкин</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Гуково</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Гусь-Хрустальный</a></li>
+              </ul><span class="popup-city__title">Д</span>
+              <ul class="popup-city__list">
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Дзержинск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Дивеево</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Дивное</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Димитровград</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Дмитров</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Добрянка</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Долгопрудный</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Домодедово</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Донецк</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Дубна</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Дубовка</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Дюртюли</a></li>
+              </ul>
+            </div>
+            <div class="popup-city__col"> <span class="popup-city__title">А</span>
+              <ul class="popup-city__list">
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Абакан</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Азнакаево</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Азов</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Алатырь</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Александровское</a></li>
+                <li class="popup-city__list-item"> <a class="popup-city__list-link" href="#">Алексеевское</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Алексин</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Альметьевск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Анапа</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Арзамас</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Армавир</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Арск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link popup-city__list-link--mod" href="#">Астрахань</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Аткарск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Ахтубинск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Ачинск</a></li>
+              </ul><span class="popup-city__title">Б</span>
+              <ul class="popup-city__list">
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Балаково</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Балаково Жилгород</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Балахна</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Балашиха</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Балашов</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link popup-city__list-link--mod" href="#">Барнаул</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Батайск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Безенчук</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link popup-city__list-link--mod" href="#">Белгород</a></li>
+              </ul>
+            </div>
+            <div class="popup-city__col"><span class="popup-city__title">Г</span>
+              <ul class="popup-city__list">
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Гатчина</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link popup-city__list-link--mod" href="#">Геленджик</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Георгиевск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Глазов</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Городец</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Гороховец</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Грязи</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Губкин</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Гуково</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Гусь-Хрустальный</a></li>
+              </ul><span class="popup-city__title">Д</span>
+              <ul class="popup-city__list">
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Дзержинск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Дивеево</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Дивное</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Димитровград</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Дмитров</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Добрянка</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Долгопрудный</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Домодедово</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Донецк</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Дубна</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Дубовка</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Дюртюли</a></li>
+              </ul>
+            </div>
+            <div class="popup-city__col"> <span class="popup-city__title">А</span>
+              <ul class="popup-city__list">
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Абакан</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Азнакаево</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Азов</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Алатырь</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Александровское</a></li>
+                <li class="popup-city__list-item"> <a class="popup-city__list-link" href="#">Алексеевское</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Алексин</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Альметьевск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Анапа</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Арзамас</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Армавир</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Арск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link popup-city__list-link--mod" href="#">Астрахань</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Аткарск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Ахтубинск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Ачинск</a></li>
+              </ul><span class="popup-city__title">Б</span>
+              <ul class="popup-city__list">
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Балаково</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Балаково Жилгород</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Балахна</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Балашиха</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Балашов</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link popup-city__list-link--mod" href="#">Барнаул</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Батайск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Безенчук</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link popup-city__list-link--mod" href="#">Белгород</a></li>
+              </ul>
+            </div>
+            <div class="popup-city__col"><span class="popup-city__title">Г</span>
+              <ul class="popup-city__list">
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Гатчина</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link popup-city__list-link--mod" href="#">Геленджик</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Георгиевск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Глазов</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Городец</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Гороховец</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Грязи</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Губкин</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Гуково</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Гусь-Хрустальный</a></li>
+              </ul><span class="popup-city__title">Д</span>
+              <ul class="popup-city__list">
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Дзержинск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Дивеево</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Дивное</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Димитровград</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Дмитров</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Добрянка</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Долгопрудный</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Домодедово</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Донецк</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Дубна</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Дубовка</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Дюртюли</a></li>
+              </ul>
+            </div>
+            <div class="popup-city__col"> <span class="popup-city__title">А</span>
+              <ul class="popup-city__list">
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Абакан</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Азнакаево</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Азов</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Алатырь</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Александровское</a></li>
+                <li class="popup-city__list-item"> <a class="popup-city__list-link" href="#">Алексеевское</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Алексин</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Альметьевск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Анапа</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Арзамас</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Армавир</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Арск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link popup-city__list-link--mod" href="#">Астрахань</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Аткарск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Ахтубинск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Ачинск</a></li>
+              </ul><span class="popup-city__title">Б</span>
+              <ul class="popup-city__list">
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Балаково</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Балаково Жилгород</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Балахна</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Балашиха</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Балашов</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link popup-city__list-link--mod" href="#">Барнаул</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Батайск</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link" href="#">Безенчук</a></li>
+                <li class="popup-city__list-item"><a class="popup-city__list-link popup-city__list-link--mod" href="#">Белгород</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="popup popup-success" id="popup-success">
+        <div class="popup-success__holder">
+          <div class="popup-success__img">
+            <div class="popup-success__img-inner"><img src="assets/img/success.png" alt="img"></div>
+          </div>
+          <div class="popup-success__info"><span class="popup-success__info-title">Обратная связь</span><span class="popup-success__info-caption">Заявка отправлена. <span>Вы прекрасны!</span></span><span class="popup-success__info-txt">Наши менеджеры свяжутся с вами в течении хх минут.</span></div>
+        </div>
+      </div>
+      <div class="popup popup-subscribe" id="popup-subscribe">
+        <div class="popup-subscribe__decor">
+          <div class="popup-subscribe__decor-inner"></div>
+        </div>
+        <div class="popup-subscribe__holder">
+          <div class="popup-subscribe__content"><span class="popup-subscribe__subtitle">Обратная связь</span><span class="popup-subscribe__caption">Напишите нам и получите доступ к финансовым отчетам о работе студий</span>
+            <div class="popup-subscribe__descr"> 
+              <p>После подписания договора вы начинаете готовить студию к открытию, набираете персонал и делаете ремонт, а мы тем временем...</p>
+            </div>
+            <form class="popup-subscribe__form" action="#">
+              <div class="popup-subscribe__form-box">
+                <label>
+                  <input type="text" name="name" placeholder="Имя и фамилия"><span class="field-error"></span><span class="field-success"></span>
+                </label>
+              </div>
+              <div class="popup-subscribe__form-box">
+                <label>
+                  <input type="tel" name="phone" placeholder="Телефон"><span class="field-error"></span><span class="field-success"></span>
+                </label>
+              </div>
+              <div class="popup-subscribe__form-box">
+                <label>
+                  <input type="email" name="email" placeholder="E-mail"><span class="field-error"></span><span class="field-success"></span>
+                </label>
+              </div>
+              <div class="popup-subscribe__form-box">
+                <textarea name="mess" placeholder="Сообщение"></textarea>
+              </div><span class="form-validate-txt form-txt-error">В номере телефона должно быть 11 цифр</span><span class="form-validate-txt form-txt-success">Все окей, братишка</span>
+              <div class="popup-subscribe__form-check">
+                <label class="checkbox  checkbox--inverse">
+                  <input type="checkbox" checked="checked" name="popup-check"/><span>Нажимая кнопку я соглашаюсь с политикой конфиденциальности</span>
+                </label>
+              </div>
+              <button class="btn popup-subscribe__form-btn" type="submit">Получить бизнес-план</button>
+            </form>
+          </div>
+          <div class="popup-subscribe__img"><img src="assets/img/phone-decor.png" alt="img"></div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__holder">
+          <div class="footer__inner footer__inner--sm">
+            <div class="footer__holder">
+              <div class="footer__inner">
+                <div class="footer__logo"><a class="footer__logo-link" href="#"><img src="assets/img/logo.svg" alt="logo"/></a></div>
+              </div>
+              <div class="footer__inner footer__inner--nav">
+                <ul class="footer__nav">
+                  <li class="footer__nav-item"><a class="footer__nav-link" href="#">Услуги</a></li>
+                  <li class="footer__nav-item"><a class="footer__nav-link" href="#">О франшизе</a></li>
+                  <li class="footer__nav-item"><a class="footer__nav-link" href="#">Контакты</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer__inner footer__inner--lg">
+            <div class="footer__social">
+              <ul class="footer__social-list">
+                <li class="footer__social-item"><a class="footer__social-link" href="#" target="_blank">
+                    <svg class="icon-svg  icon-fb">
+                      <use xlink:href="assets/img/sprite.svg#fb"></use>
+                    </svg></a></li>
+                <li class="footer__social-item"><a class="footer__social-link" href="#" target="_blank">
+                    <svg class="icon-svg  icon-vk">
+                      <use xlink:href="assets/img/sprite.svg#vk"></use>
+                    </svg></a></li>
+                <li class="footer__social-item"><a class="footer__social-link" href="#" target="_blank">
+                    <svg class="icon-svg  icon-twitter">
+                      <use xlink:href="assets/img/sprite.svg#twitter"></use>
+                    </svg></a></li>
+                <li class="footer__social-item"><a class="footer__social-link" href="#" target="_blank">
+                    <svg class="icon-svg  icon-ok">
+                      <use xlink:href="assets/img/sprite.svg#ok"></use>
+                    </svg></a></li>
+              </ul>
+            </div>
+            <div class="footer__row">
+              <div class="footer__col">
+                <div class="footer__item"><a class="footer__item-phone" href="tel:+79120145691">+7 912 014-56-91</a><span class="footer__item-txt">Пн-пт 8:00-17:00 по Мск</span></div>
+              </div>
+              <div class="footer__col">
+                <div class="footer__item"><a class="footer__item-phone" href="tel:+79120145691">+7 912 014-56-91</a><span class="footer__item-txt">Пн-пт 8:00-17:00 по Мск</span></div>
+              </div>
+              <div class="footer__col">
+                <div class="footer__callback"><a class="btn footer__callback-btn js-popup-open" href="#popup-subscribe">Связаться</a></div>
+              </div>
+            </div>
+            <div class="footer__descr">
+              <p>ООО «Лазер Про», ИНН: 1841071121 , ОГРН: 1171832011185, юридический и фактический адреса: <span>г. Ижевск, ул. К. Маркса, 218, оф. 207</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <div><span class="footer__bottom-txt">Laser Pro, 2019</span></div>
+          <div><span class="footer__bottom-txt footer__bottom-txt--mod">Создание сайта</span><span class="footer__bottom-img"> <img src="assets/img/mark-logo.png" alt="mark"/></span></div>
+        </div>
+      </div>
+    </footer>
+    <script src="assets/js/foundation.js?rel=62791" defer></script>
+    <script src="assets/js/app.js?rel=62791" defer>      </script>
+    <script type="text/javascript" defer>setTimeout(() => {
+  (function () {
+    const $admin = $('._AP');
+    const $triggerBtn = $('._AP-nav');
+    const $close = $('._AP-close');
+    const $mobCloseThis = $('._AP-close-this');
+    const $test = $('._TEST');
+
+
+    $(document).on('keydown', onKeyPress);
+
+    $triggerBtn.on('click', () => {
+      $admin.slideToggle()
+    });
+
+    $close.on('click', () => {
+      $admin.slideUp();
+    });
+
+    $mobCloseThis.on('click', () => {
+      $triggerBtn.detach();
+      $admin.detach();
+    });
+
+    if (isTouch()) {
+      $triggerBtn.addClass('touch');
+      $admin.addClass('touch');
+    }
+
+    function onKeyPress(e) {
+      const keyCode = e.keyCode;
+
+      if (keyCode === 90 && e.ctrlKey) {
+        $admin.slideToggle()
+      }
+
+      if (keyCode === 88 && e.ctrlKey) {
+        $test.slideToggle()
+      }
+    }
+
+    function isTouch() {
+      try {
+        document.createEvent("TouchEvent");
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+  })();
+}, 1000);
+
+    </script>
+    <style>._AP {
+  padding: 10px 30px;
+  position: fixed;
+  left: 30px;
+  top: 25px;
+  background-color: #a5b5cc;
+  display: none;
+  border-radius: 0 10px 10px 10px;
+  max-height: calc(100vh - 40px);
+  overflow: auto;
+}
+
+._AP__holder {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+._AP.touch {
+  top: 0;
+  left: 40px;
+  border-radius: 0;
+  max-height: calc(100vh - 100px);
+  padding: 10px;
+}
+
+._AP.touch ._AP-close {
+  display: none;
+}
+
+._AP.touch ._TEST {
+  padding-left: 10px;
+
+  /*is necessary to display on mobile ?*/
+  display: none;
+}
+
+._AP-pageList .list-group-item {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+._AP-close-this {
+  display: none;
+  padding: 0;
+  margin-bottom: 15px;
+  width: 100%;
+  text-align: center;
+}
+
+._AP.touch ._AP-close-this {
+  display: block;
+}
+
+._AP-nav {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  background-color: #a5b5cc;
+}
+
+._AP-nav__btn {
+  width: 20px;
+  height: 16px;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+  position: relative;
+}
+
+._AP-nav__btn::before {
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: #000;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+._AP-nav.touch {
+  display: block;
+}
+
+    </style>
+    <style>._TEST {
+  padding: 10px 30px;
+  position: fixed;
+  right: 30px;
+  top: 25px;
+  background-color: #a5b5cc;
+  display: none;
+  border-radius: 10px 0 10px 10px;
+  max-height: calc(100vh - 40px);
+  overflow: auto;
+}
+
+._TEST .list-group-item {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+    </style>
+    <script>var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+setTimeout(()=>{
+  (function () {
+    'use strict';
+
+    var createSettingList = function createSettingList() {
+      var $list = $('<ul class="setting-block-change list-group"></ul>');
+      $list.append('<li class="js-static-plus list-group-item list-group-item-action">static +</li>');
+      $list.append('<li class="js-dynamic-plus list-group-item list-group-item-action">dynamic +</li>');
+      $list.append('<li class="js-check-forms list-group-item list-group-item-action">check forms</li>');
+      $list.append('<li class="js-check-popups list-group-item list-group-item-action">check popups</li>');
+      $list.append('<li class="js-check-drop list-group-item list-group-item-action">check drop</li>');
+      $list.append('<li class="js-check-br list-group-item list-group-item-action">check br</li>');
+      $list.append('<li class="js-rules-init list-group-item list-group-item-action">RULES</li>');
+
+            $('._TEST').append($list);
+      return $list;
+    };
+
+    var tagsFn = function () {
+      function tagsFn() {
+        _classCallCheck(this, tagsFn);
+
+        this.cloneClass = 'is-clone';
+        this.moreClass = 'is-more-text';
+      }
+
+      _createClass(tagsFn, [{
+        key: 'p',
+        value: function p(tag, text) {
+          var cloneTag = $(tag).clone();
+          cloneTag.addClass(this.cloneClass).text(cloneTag.text() + ' ' + text);
+          $(tag).after(cloneTag);
+        }
+      }, {
+        key: 'list',
+        value: function list(tag, text) {
+          var $this = $(tag);
+          var newElem = $this.find('>li').last().clone();
+          newElem.addClass(this.cloneClass);
+          $this.append(newElem);
+        }
+      }, {
+        key: 'texts',
+        value: function texts(tag, text) {
+          var $this = $(tag);
+          if (!$this.find('span, a, select').length) {
+            var cont = $this.text().replace(/\s{2,}/g, ' ');
+            if (cont !== ' ' && cont !== '') {
+              $this.addClass(this.moreClass).text($this.text() + ' ' + text);
+            }
+          }
+        }
+      }, {
+        key: 'resetAllPlugins',
+        value: function resetAllPlugins() {
+          //slick slider
+          var $slick = $('.slick-initialized');
+          if ($slick.length) {
+            $slick.slick('unslick');
+          };
+
+          //bxslider
+          var $bxslider = $('.bx-wrapper');
+          if ($bxslider.length) {
+            $bxslider.find('[style]').removeAttr('style');
+            $bxslider.find('.bx-clone').remove();
+            $bxslider.parent().find('.bx-controls').remove();
+            $bxslider.find('.bx-viewport > *').removeAttr('style').unwrap();
+            $bxslider.find('> *').removeAttr('style').unwrap();
+          }
+
+          //owl slider
+          var $owl = $('.owl-loaded');
+          if ($owl.length) {
+            $owl.trigger('destroy.owl.carousel');
+          }
+          //flexslider
+          var $flexslider = $('.flex-viewport');
+          if ($flexslider.length) {
+            $flexslider.find('[style]').removeAttr('style');
+            $flexslider.find('.clone').remove();
+            $flexslider.find('.flex-active-slide').removeClass('flex-active-slide');
+            $flexslider.parent().find('.flex-control-nav, .flex-direction-nav').remove();
+            $flexslider.find('.slides').removeAttr('style').unwrap();
+          }
+
+          //custom scroll bar
+          var $customScrollBar = $('.scrollable');
+          if ($customScrollBar.length) {
+            $customScrollBar.find('.overview').unwrap();
+            $customScrollBar.find('.overview > *').unwrap('');
+            $customScrollBar.removeClass('scrollable').find('.scroll-bar').remove();
+          }
+
+          //jscrollPane
+          var $jscrollPane = $('.jspScrollable');
+          if ($jscrollPane.length) {
+            $jscrollPane.each(function () {
+              var scroll = $(this).jScrollPane().data().jsp;
+              scroll.destroy();
+            });
+          }
+        }
+      }, {
+        key: 'update',
+        value: function update(status) {
+          if (status == 'dynamic') {
+            this.resetAllPlugins();
+            var yourDOCTYPE = "<!DOCTYPE html>"; // your doctype declaration
+            var printPreview = window.open('about:blank', '', "");
+            var printDocument = printPreview.document;
+            var HTML = document.documentElement.innerHTML;
+
+            printDocument.write(yourDOCTYPE + "<html>" + HTML + "</html>");
+            printDocument.close();
+
+            location.reload(); // for reload main page
+          }
+        }
+      }]);
+
+      return tagsFn;
+    }();
+
+    ;
+
+    var addAllText = function addAllText(fnObj) {
+      var ignore = 'el-ignore';
+      var dinamicIignore = 'js-dinamic-elems';
+
+      var tags = {
+        "P": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias unde fuga dicta architecto molestiae tempore earum nam, porro voluptatibus? Reprehenderit.",
+        "UL": "UL Lorem ipsum dolor.",
+        "OL": "OL Lorem ipsum dolor.",
+        "SPAN": "Lorem ipsum dolor sit amet.",
+        "H1": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, modi. h1",
+        "H2": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, modi. h2",
+        "H3": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, modi. h3",
+        "H4": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, modi. h4",
+        "H5": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, modi. h5",
+        "H6": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, modi. h6",
+        "A": "Lorem ipsum.",
+        "BUTTON": "Lorem ipsum. button"
+      };
+
+      var app = {
+
+        getAllTags: function () {
+          var a = []; // accessory array
+          var res = []; //main array;
+          for (var i in tags) {
+            a.push($(i));
+          }
+          for (var _i = 0; _i < a.length; _i++) {
+            var m = a[_i];
+            for (var x = 0; x < m.length; x++) {
+              var el = m[x];
+              if (!$(el).hasClass(ignore) && !$(el).parents('.' + ignore).length) {
+                res.push(el); // push tag in main array
+              }
+            }
+          }
+          return res;
+        }(),
+        deligate: function deligate(status) {
+          var array = this.getAllTags;
+
+          if (status === 'static') {
+            array = array.filter(function (el, i) {
+              if (!$(el).hasClass(dinamicIignore) && !$(el).parents('.' + dinamicIignore).length) {
+                return el;
+              }
+            });
+          };
+          console.log(array);
+          for (var i = 0; i < array.length; i++) {
+            var thisTag = array[i];
+
+            switch (thisTag.nodeName) {
+              case 'P':
+                fnObj.p(thisTag, tags[thisTag.nodeName]);
+                break;
+              case 'UL':
+              case 'OL':
+                fnObj.list(thisTag, tags[thisTag.nodeName]);
+                break;
+              case 'SPAN':
+              case 'H1':
+              case 'H2':
+              case 'H3':
+              case 'H4':
+              case 'H5':
+              case 'H6':
+              case 'A':
+              case 'BUTTON':
+                fnObj.texts(thisTag, tags[thisTag.nodeName]);
+                break;
+              default:
+                console.log('page hasn`t ' + thisTag + ' tag');
+            }
+          }
+          fnObj.update(status);
+        }
+      };
+
+      return {
+        init: function init() {
+          app.deligate();
+        },
+        statics: function statics() {
+          app.deligate('static');
+        },
+        dynamic: function dynamic() {
+          app.deligate('dynamic');
+        }
+      };
+    };
+
+    var checkForm = function checkForm() {
+      var allElems = $('input, textarea, select');
+      var inputText = 'Lorem ipsum.';
+      var allFn = {
+        input: function input(elem) {
+          if ($(elem).attr('type') === 'checkbox' || $(elem).attr('type') === 'radio') {
+            $(elem).prop('checked', true);
+          } else {
+            inputText = inputText + inputText;
+            $(elem).val(inputText);
+          }
+        },
+        select: function select(elem) {
+          $(elem).find('option').eq(1).prop('selected', true);
+        }
+      };
+
+      return {
+        addText: function addText() {
+          for (var i = 0; i < allElems.length; i++) {
+            var elem = allElems[i];
+            switch (elem.nodeName) {
+              case 'INPUT':
+              case 'TEXTAREA':
+                allFn.input(elem);
+                break;
+
+              case 'SELECT':
+                allFn.select(elem);
+                break;
+
+              default:
+                console.log('xz');
+            }
+          }
+        },
+        check: function check() {
+          $(allElems).each(function () {
+            var $form = $(this).parents('form');
+            if ($form.length) {
+              $form.css({
+                'border': '4px solid green'
+              });
+            } else {
+              // $(this).css({
+              //   'border': '2px solid red' 
+              // })
+            }
+          });
+        }
+      };
+    };
+
+    var checkPopups = function checkPopups() {
+      var selectors = ['[data-fancybox]'];
+      return {
+        open: function open() {
+          selectors.forEach(function (el) {
+            $(el).trigger('click');
+          });
+        }
+      };
+    };
+
+    var checkBr = function checkBr() {
+      return {
+        init: function init() {
+          var elems = $('br');
+          elems.parent().css({
+            'border': '1px solid yellow'
+          });
+          alert('на странице ' + elems.length + ' тегов <br>');
+        }
+      };
+    };
+
+    var checkDrop = function checkDrop() {
+      var selectors = ['.js-drop-checked'];
+      return {
+        open: function open() {
+          selectors.forEach(function (el) {
+            $(el).trigger('click');
+          });
+        }
+      };
+    };
+
+    var rulsFn = function rulsFn() {
+      var posit = function posit() {
+        var cont = $('.container'),
+          allWidth = cont.outerWidth(),
+          minWidth = cont.width(),
+          left = cont.offset().left + (allWidth - minWidth) / 2;
+        return left;
+      };
+      var create = function create() {
+        var elemL = $('<div class="rules-left"></div>');
+        var elemR = $('<div class="rules-right"></div>');
+        var pos = posit();
+        elemL.css({
+          'position': 'fixed',
+          'width': '1px',
+          'height': '100%',
+          'background': '#000',
+          'top': '0',
+          'left': pos,
+          'zIndex': '9999'
+        });
+        elemR.css({
+          'position': 'fixed',
+          'width': '1px',
+          'height': '100%',
+          'background': '#000',
+          'top': '0',
+          'right': pos,
+          'zIndex': '9999'
+        });
+        $('body').append(elemL);
+        $('body').append(elemR);
+        $('body').css('position', 'relative');
+        $(window).on('resize.rules', function () {
+          pos = posit();
+          elemL.css('left', pos);
+          elemR.css('right', pos);
+        });
+      };
+      var remove = function remove() {
+        $('.rules-right, .rules-left').remove();
+        $(window).off('resize.rules');
+      };
+      return {
+        toggle: function toggle() {
+          if (!$('.rules-right').length) {
+            create();
+          } else {
+            remove();
+          }
+        }
+      };
+    };
+
+    var myForm = checkForm();
+    var myText = addAllText(new tagsFn());
+    var myPopyp = checkPopups();
+    var myDrop = checkDrop();
+    var myBr = checkBr();
+    var myRuls = rulsFn();
+
+       var $list = createSettingList();
+
+    $(window).on('click', function (e) {
+      var $this = $(e.target);
+
+      // if ($this.closest('#addElems').length) {
+      //   $list.css('visibility', 'visible');
+      // } else if (!$this.closest('#addElems').length && !$this.closest('.setting-block-change').length) {
+      //   $list.css('visibility', 'hidden');
+      // };
+
+      if ($this.closest('.js-static-plus').length) {
+        myText.statics();
+      };
+      if ($this.closest('.js-dynamic-plus').length) {
+        myText.dynamic();
+      };
+      if ($this.closest('.js-check-forms').length) {
+        myForm.addText();
+        myForm.check();
+      };
+      if ($this.closest('.js-check-popups').length) {
+        myPopyp.open();
+      };
+      if ($this.closest('.js-check-br').length) {
+        myBr.init();
+      };
+      if ($this.closest('.js-rules-init').length) {
+        myRuls.toggle();
+      }
+    });
+
+    window.addEventListener('click', function (e) {
+
+      var $this = $(e.target);
+      if ($this.closest('.js-check-drop').length) {
+        myDrop.open();
+      }
+    }, false);
+  })();
+},1600);
+
+    </script>
+    <div class="_TEST"></div>
+    <div class="_AP-nav">
+      <div class="_AP-nav__btn"></div>
+    </div>
+    <div class="_AP">
+      <div class="_AP__holder">    
+        <script type="text/javascript" defer>setTimeout(() => {
+  (function () {
+    const list = $('._AP-pageList a.list-group-item');
+    const hrefList = window.location.href.split('/');
+    const pageName = hrefList[hrefList.length - 1];
+
+    list.each((i, el) => {
+      const href = $(el).attr('href');
+
+      if (href === pageName || !pageName && href === 'index.html') {
+        $(el).addClass('active')
+      }
+    })
+
+  })();
+}, 1000);
+
+        </script>
+        <div class="_AP-pageList">
+          <div class="_AP-close-this">remove this menu</div>
+          <div class="list-group"><a class="list-group-item list-group-item-action list-group-item-info" href="template-svg.html" target="_blank">SVG Preview</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
