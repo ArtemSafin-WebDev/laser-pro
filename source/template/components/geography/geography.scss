@@ -17,27 +17,27 @@
     background: linear-gradient(to right, rgba(239, 241, 250, 1) 0%, rgba(239, 241, 250, .8) 75%, rgba(255, 255, 255, 0) 100%);
     width: 55%;
     z-index: 2;
-
+    
     @include b(mobile) {
       width: 60px;
       background: linear-gradient(to right, rgba(239, 241, 250, 1) 0%, rgba(255, 255, 255, 0) 100%);
     }
   }
 
-  &:after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background: linear-gradient(to left, rgba(239, 241, 250, 1) 0%, rgba(255, 255, 255, 0) 100%);
-    width: 180px;
-    z-index: 2;
+  // &:after {
+  //   content: '';
+  //   position: absolute;
+  //   right: 0;
+  //   top: 0;
+  //   bottom: 0;
+  //   background: linear-gradient(to left, rgba(239, 241, 250, 1) 0%, rgba(255, 255, 255, 0) 100%);
+  //   width: 180px;
+  //   z-index: 2;
 
-    @include b(mobile) {
-      width: 60px;
-    }
-  }
+  //   @include b(mobile) {
+  //     width: 60px;
+  //   }
+  // }
 
   &__map {
     position: absolute;

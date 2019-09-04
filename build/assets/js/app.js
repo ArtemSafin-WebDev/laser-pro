@@ -537,7 +537,30 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _controller2.default)();
 (0, _preloader2.default)();
-(0, _browserUpdate2.default)(_browserUpdateOptions2.default);
+(0, _browserUpdate2.default)(_browserUpdateOptions2.default); // Полифилл для метода element.matches();
+
+(function () {
+  // проверяем поддержку
+  if (!Element.prototype.matches) {
+    // определяем свойство
+    Element.prototype.matches = Element.prototype.matchesSelector || Element.prototype.webkitMatchesSelector || Element.prototype.mozMatchesSelector || Element.prototype.msMatchesSelector;
+  }
+})(); // Полифилл метода element.closest();
+
+
+(function (ELEMENT) {
+  ELEMENT.matches = ELEMENT.matches || ELEMENT.mozMatchesSelector || ELEMENT.msMatchesSelector || ELEMENT.oMatchesSelector || ELEMENT.webkitMatchesSelector;
+
+  ELEMENT.closest = ELEMENT.closest || function closest(selector) {
+    if (!this) return null;
+    if (this.matches(selector)) return this;
+
+    if (!this.parentElement) {
+      return null;
+    } else return this.parentElement.closest(selector);
+  };
+})(Element.prototype);
+
 $(document).ready(function () {
   svg4everybody();
 
@@ -547,16 +570,16 @@ $(document).ready(function () {
 
   new WOW().init();
   var bLazy = new Blazy();
-  $(window).on('preloaderRemoved', function () {
+  $(window).on("preloaderRemoved", function () {
     bLazy.revalidate();
-    $('.hide').addClass('show');
+    $(".hide").addClass("show");
   });
-  (0, _equalHeight2.default)($('.js-concept-height'));
-  (0, _equalHeight2.default)($('.js-indicators-height'));
-  (0, _equalHeight2.default)($('.js-about-name'));
-  (0, _equalHeight2.default)($('.js-about-title'));
-  (0, _equalHeight2.default)($('.js-hero-slide-height'));
-  (0, _equalHeight2.default)($('.js-indicators-equal-height'));
+  (0, _equalHeight2.default)($(".js-concept-height"));
+  (0, _equalHeight2.default)($(".js-indicators-height"));
+  (0, _equalHeight2.default)($(".js-about-name"));
+  (0, _equalHeight2.default)($(".js-about-title"));
+  (0, _equalHeight2.default)($(".js-hero-slide-height"));
+  (0, _equalHeight2.default)($(".js-indicators-equal-height"));
 });
 
 },{"./browserUpdateOptions":3,"./controller/index":9,"./controller/preloader":12,"./utils/controller":15,"./utils/equalHeight":16,"browser-update":1}],3:[function(require,module,exports){
@@ -623,22 +646,25 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function () {
-  controller('about', function (self) {
-    var val = self.find('.js-about-val');
+  controller("about", function (self) {
+    var val = self.find(".js-about-val");
     var about = new Waypoint({
-      element: document.getElementById('about'),
+      element: document.getElementById("about"),
+      offset: "80%",
       handler: function handler(direction) {
-        val.each(function () {
-          $(this).prop('counter', 0).animate({
-            counter: $(this).parents('.about__col').data('count')
-          }, {
-            duration: 2000,
-            easing: 'swing',
-            step: function step(now) {
-              $(this).text(Math.ceil(now));
-            }
+        if (direction === "down") {
+          val.each(function () {
+            $(this).prop("counter", 0).animate({
+              counter: $(this).parents(".about__col").data("count")
+            }, {
+              duration: 2000,
+              easing: "swing",
+              step: function step(now) {
+                $(this).text(Math.ceil(now));
+              }
+            });
           });
-        });
+        }
       }
     });
   });
@@ -673,153 +699,158 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = function () {
   try {
-    jQuery.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyCvHcKiu2OsmAL4BELxFvuDxmjG5ntLBac', function () {
-      var locations = [['Title A', 55.806109, 49.482632, 1], ['Title B', 56.874011, 52.741233, 2], ['Title C', 55.566889, 52.657276, 3]];
+    jQuery.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyCvHcKiu2OsmAL4BELxFvuDxmjG5ntLBac", function () {
+      var locations = [["Title A", 55.806109, 49.482632, 1], ["Title B", 56.874011, 52.741233, 2], ["Title C", 55.566889, 52.657276, 3]];
       var uluru = {
         lat: 56.841354,
-        lng: 48.903880
+        lng: 48.90388
       };
-      var map = new google.maps.Map(document.getElementById('map'), {
+      var map = new google.maps.Map(document.getElementById("map"), {
         zoom: 6,
-        gestureHandling: 'greedy',
+        gestureHandling: "greedy",
         styles: [{
-          "elementType": "geometry",
-          "stylers": [{
-            "color": "#444444"
+          elementType: "geometry",
+          stylers: [{
+            color: "#444444"
           }]
         }, {
-          "featureType": "administrative",
-          "elementType": "labels.text.fill",
-          "stylers": [{
-            "color": "#000000"
+          featureType: "administrative",
+          elementType: "labels.text.fill",
+          stylers: [{
+            color: "#000000"
           }]
         }, {
-          "featureType": "landscape",
-          "elementType": "all",
-          "stylers": [{
-            "color": "#cccccc"
+          featureType: "landscape",
+          elementType: "all",
+          stylers: [{
+            color: "#cccccc"
           }]
         }, {
-          "featureType": "landscape",
-          "elementType": "geometry.fill",
-          "stylers": [{
-            "visibility": "on"
+          featureType: "landscape",
+          elementType: "geometry.fill",
+          stylers: [{
+            visibility: "on"
           }, {
-            "hue": "#cccccc"
+            hue: "#cccccc"
           }]
         }, {
-          "featureType": "landscape.man_made",
-          "elementType": "geometry",
-          "stylers": [{
-            "color": "#eff1fa"
+          featureType: "landscape.man_made",
+          elementType: "geometry",
+          stylers: [{
+            color: "#eff1fa"
           }]
         }, {
-          "featureType": "landscape.man_made",
-          "elementType": "labels",
-          "stylers": [{
-            "color": "#eff1fa"
+          featureType: "landscape.man_made",
+          elementType: "labels",
+          stylers: [{
+            color: "#eff1fa"
           }]
         }, {
-          "featureType": "landscape.natural",
-          "elementType": "geometry.fill",
-          "stylers": [{
-            "color": "#eff1fa"
+          featureType: "landscape.natural",
+          elementType: "geometry.fill",
+          stylers: [{
+            color: "#eff1fa"
           }]
         }, {
-          "featureType": "landscape.natural",
-          "elementType": "labels",
-          "stylers": [{
-            "visibility": "off"
+          featureType: "landscape.natural",
+          elementType: "labels",
+          stylers: [{
+            visibility: "off"
           }]
         }, {
-          "featureType": "landscape.natural.landcover",
-          "elementType": "geometry.fill",
-          "stylers": [{
-            "visibility": "on"
+          featureType: "landscape.natural.landcover",
+          elementType: "geometry.fill",
+          stylers: [{
+            visibility: "on"
           }]
         }, {
-          "featureType": "landscape.natural.terrain",
-          "elementType": "geometry",
-          "stylers": [{
-            "lightness": "100"
+          featureType: "landscape.natural.terrain",
+          elementType: "geometry",
+          stylers: [{
+            lightness: "100"
           }]
         }, {
-          "featureType": "landscape.natural.terrain",
-          "elementType": "geometry.fill",
-          "stylers": [{
-            "visibility": "off"
+          featureType: "landscape.natural.terrain",
+          elementType: "geometry.fill",
+          stylers: [{
+            visibility: "off"
           }, {
-            "lightness": "23"
+            lightness: "23"
           }]
         }, {
-          "featureType": "poi",
-          "elementType": "all",
-          "stylers": [{
-            "visibility": "off"
+          featureType: "poi",
+          elementType: "all",
+          stylers: [{
+            visibility: "off"
           }]
         }, {
-          "featureType": "road",
-          "elementType": "all",
-          "stylers": [{
-            "saturation": -100
+          featureType: "road",
+          elementType: "all",
+          stylers: [{
+            saturation: -100
           }, {
-            "lightness": 45
+            lightness: 45
           }]
         }, {
-          "featureType": "road.highway",
-          "elementType": "all",
-          "stylers": [{
-            "visibility": "simplified"
+          featureType: "road.highway",
+          elementType: "all",
+          stylers: [{
+            visibility: "simplified"
           }]
         }, {
-          "featureType": "road.highway",
-          "elementType": "geometry.fill",
-          "stylers": [{
-            "color": "#ffd900"
+          featureType: "road.highway",
+          elementType: "geometry.fill",
+          stylers: [{
+            color: "#ffd900"
           }]
         }, {
-          "featureType": "road.arterial",
-          "elementType": "labels.icon",
-          "stylers": [{
-            "visibility": "off"
+          featureType: "road.arterial",
+          elementType: "labels.icon",
+          stylers: [{
+            visibility: "off"
           }]
         }, {
-          "featureType": "transit",
-          "elementType": "all",
-          "stylers": [{
-            "visibility": "off"
+          featureType: "transit",
+          elementType: "all",
+          stylers: [{
+            visibility: "off"
           }]
         }, {
-          "featureType": "water",
-          "elementType": "all",
-          "stylers": [{
-            "color": "#ffd900"
+          featureType: "water",
+          elementType: "all",
+          stylers: [{
+            color: "#ffd900"
           }, {
-            "visibility": "on"
+            visibility: "on"
           }]
         }, {
-          "featureType": "water",
-          "elementType": "geometry.fill",
-          "stylers": [{
-            "visibility": "on"
+          featureType: "water",
+          elementType: "geometry.fill",
+          stylers: [{
+            visibility: "on"
           }, {
-            "color": "#bdc8ff"
+            color: "#bdc8ff"
           }]
         }, {
-          "featureType": "water",
-          "elementType": "labels",
-          "stylers": [{
-            "visibility": "off"
+          featureType: "water",
+          elementType: "labels",
+          stylers: [{
+            visibility: "off"
           }]
         }],
         center: {
           lat: 55.979513,
-          lng: 46.904520
+          lng: 46.90452
         },
-        zoomControl: false,
+        zoomControl: true,
+        streetViewControl: false,
+        zoomControlOptions: {
+          position: google.maps.ControlPosition.RIGHT_CENTER
+        },
         scaleControl: false,
         mapTypeControl: false,
-        fullscreenControl: false
+        fullscreenControl: false,
+        scrollwheel: false
       });
       var infowindow = new google.maps.InfoWindow();
       var marker = void 0,
@@ -829,10 +860,9 @@ exports.default = function () {
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(locations[i][1], locations[i][2]),
           map: map,
-          icon: 'assets/img/pin.svg',
-          animation: google.maps.Animation.BOUNCE
+          icon: "assets/img/pin.svg"
         });
-        google.maps.event.addListener(marker, 'click', function (marker, i) {
+        google.maps.event.addListener(marker, "click", function (marker, i) {
           return function () {
             infowindow.setContent(locations[i][0]);
             infowindow.open(map, marker);
@@ -841,7 +871,7 @@ exports.default = function () {
       }
     });
   } catch (e) {
-    console.warn('Cannot load map');
+    console.warn("Cannot load map");
   }
 };
 
@@ -1106,23 +1136,150 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function () {
-  controller('subscribe-form', function (self) {
-    var wrap = self.find('.js-subscribe-wrap'),
-        input = self.find('.js-subscribe-input'),
-        placeholder = self.find('.js-subscribe-title');
-    input.on('focusin', function () {
-      wrap.addClass('focus');
-      $(this).closest('.subscribe-form__box').find(placeholder).addClass('active');
-    });
-    input.on('focusout', function () {
-      wrap.removeClass('focus');
-      var length = $(this).val().length;
+  controller("subscribe-form", function (self) {
+    console.log(self);
 
-      if (length != 0) {
-        $(this).closest('.subscribe-form__box').find(placeholder).addClass('active');
-      } else {
-        $(this).closest('.subscribe-form__box').find(placeholder).removeClass('active');
-      }
+    function isEmailAddress(str) {
+      var pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      return pattern.test(str); // returns a boolean
+    }
+
+    var forms = self.toArray();
+    forms.forEach(function (form) {
+      console.log(form);
+      var wrap = form.querySelector(".js-subscribe-wrap");
+      var formErrorContainer = form.querySelector(".form-txt-error");
+      var formSuccessContainer = form.querySelector(".form-txt-success");
+      var formBtn = form.querySelector("button");
+      var inputs = Array.prototype.slice.call(form.querySelectorAll(".js-subscribe-input"));
+      var telInputs = inputs.filter(function (element) {
+        return element.matches('[type="tel"]');
+      });
+      telInputs.forEach(function (telInput) {
+        console.log("Phone input", telInput);
+        $(telInput).mask("+7 (999) 999-99-99");
+      });
+      inputs.forEach(function (input) {
+        var placeholder = input.closest(".subscribe-form__box").querySelector(".js-subscribe-title");
+        input.addEventListener("focus", function () {
+          wrap.classList.add("focus");
+          placeholder.classList.add("active");
+        });
+        input.addEventListener("blur", function () {
+          wrap.classList.remove("focus");
+          var length = input.value.length;
+
+          if (length !== 0) {
+            placeholder.classList.add("active");
+          } else {
+            placeholder.classList.remove("active");
+          }
+        });
+        input.addEventListener("keyup", function () {
+          formErrorContainer.style.display = "none";
+          formErrorContainer.textContent = "";
+          var value = input.value;
+          var type = input.type;
+          console.log("Validating value", value);
+
+          switch (type) {
+            case "text":
+              console.log("validating as text");
+
+              if (value !== "") {
+                input.classList.add("success");
+                console.log("Valid field");
+              } else {
+                input.classList.remove("success");
+                console.log("Invalid field");
+                formErrorContainer.textContent = "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 " + placeholder.textContent;
+                formErrorContainer.style.display = "block";
+              }
+
+              break;
+
+            case "tel":
+              console.log("validating as phone");
+              var phone = value.replace(/\D+/g, "");
+
+              if (phone.length === 11) {
+                input.classList.add("success");
+                console.log("Valid field");
+              } else {
+                input.classList.remove("success");
+                console.log("Invalid field");
+                formErrorContainer.textContent = "Укажите корректное значение телефона";
+                formErrorContainer.style.display = "block";
+              }
+
+              break;
+
+            case "email":
+              console.log("validating as email");
+
+              if (isEmailAddress(value)) {
+                input.classList.add("success");
+                console.log("Valid field");
+              } else {
+                input.classList.remove("success");
+                console.log("Invalid field");
+                formErrorContainer.textContent = "Укажите корректное значение Email";
+                formErrorContainer.style.display = "block";
+              }
+
+              break;
+          }
+        });
+      });
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        var data = new FormData(form);
+        data.append("form", formBtn.textContent);
+        data.append("type", "callback");
+        var inputsWithError = inputs.filter(function (element) {
+          return element.matches(".js-subscribe-input:not(.success)");
+        });
+        console.log("Submitting form");
+        formErrorContainer.style.display = "none";
+        formSuccessContainer.style.display = "none";
+
+        if (inputsWithError.length > 0) {
+          inputsWithError[0].focus();
+          console.log("Errors present");
+        } else {
+          console.log("Sending request");
+          $.ajax({
+            url: "/.ajax.php",
+            dataType: "json",
+            data: data,
+            beforeSend: function beforeSend() {
+              inputs.forEach(function (input) {
+                return input.disabled = true;
+              });
+              formBtn.disabled = true;
+            },
+            success: function success(data) {
+              inputs.forEach(function (input) {
+                return input.disabled = false;
+              });
+              formBtn.disabled = false;
+
+              if (data.status) {
+                if (data.status == "success") {
+                  inputs.forEach(function (input) {
+                    input.value = "";
+                    input.classList.remove("success");
+                  });
+                  formSuccessContainer.style.display = "block";
+                } else {
+                  formErrorContainer.textContent = "Не удалось отправить. Попробуйте повторно";
+                  formErrorContainer.style.display = "block";
+                }
+              }
+            }
+          });
+        }
+      });
     });
   });
 };

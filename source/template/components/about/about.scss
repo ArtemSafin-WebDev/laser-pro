@@ -2,7 +2,7 @@
   margin-bottom: 80px;
 
   @include b(mobile) {
-    margin-bottom: 0;
+    margin-bottom: 35px;
   }
 
   &__wrap {
