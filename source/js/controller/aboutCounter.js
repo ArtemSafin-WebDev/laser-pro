@@ -28,5 +28,41 @@ export default function() {
                 }
             }
         });
+
+        if (!$("body").hasClass("is-admin")) {
+            $(".about__holder").each(function() {
+                var flag1,
+                    flag2 = false;
+                var holder = $(this);
+
+                holder.find(".js-about-title").each(function() {
+                    if (
+                        $(this)
+                            .text()
+                            .replace(/\s/g, "") != ""
+                    )
+                        flag1 = true;
+                });
+                holder.find(".about__item-descr").each(function() {
+                    if (
+                        $(this)
+                            .text()
+                            .replace(/\s/g, "") != ""
+                    )
+                        flag2 = true;
+                });
+
+                if (!flag1) {
+                    holder.find(".js-about-title").each(function() {
+                        $(this).remove();
+                    });
+                }
+                if (!flag2) {
+                    holder.find(".about__item-descr").each(function() {
+                        $(this).remove();
+                    });
+                }
+            });
+        }
     });
 }

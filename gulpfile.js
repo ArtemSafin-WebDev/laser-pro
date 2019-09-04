@@ -86,7 +86,7 @@ $.gulp.task('build', $.gulp.series(
     'sprite:svg',
     'sprite:png',
     'css:foundation',
-    'sass-lint'
+    // 'sass-lint'
   )
 ));
 
