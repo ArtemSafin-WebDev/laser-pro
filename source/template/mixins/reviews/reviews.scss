@@ -49,14 +49,14 @@
   }
 
   &__item {
-    padding: 0 40px;
+    margin: 0 40px;
     position: relative;
     z-index: 1;
     opacity: .6;
     transition: all .3s ease-in-out;
 
     @include b(mobile) {
-      padding: 0 25px;
+      margin: 0 25px;
     }
 
     &-inner {
