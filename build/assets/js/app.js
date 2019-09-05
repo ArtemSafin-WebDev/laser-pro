@@ -724,6 +724,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function () {
+  var mapElement = document.getElementById("map");
+
+  if (!mapElement) {
+    console.log('No map element');
+    return;
+  }
+
   try {
     jQuery.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyCvHcKiu2OsmAL4BELxFvuDxmjG5ntLBac", function () {
       var locations = [["Title A", 55.806109, 49.482632, 1], ["Title B", 56.874011, 52.741233, 2], ["Title C", 55.566889, 52.657276, 3]];
@@ -731,7 +738,7 @@ exports.default = function () {
         lat: 56.841354,
         lng: 48.90388
       };
-      var map = new google.maps.Map(document.getElementById("map"), {
+      var map = new google.maps.Map(mapElement, {
         zoom: 6,
         gestureHandling: "greedy",
         styles: [{
@@ -881,12 +888,19 @@ exports.default = function () {
       var infowindow = new google.maps.InfoWindow();
       var marker = void 0,
           i = void 0;
+      var markerPath = void 0;
+
+      try {
+        markerPath = mapElement.parentElement.querySelector("input[type='hidden']").value;
+      } catch (e) {
+        console.error(e);
+      }
 
       for (i = 0; i < locations.length; i++) {
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(locations[i][1], locations[i][2]),
           map: map,
-          icon: "assets/img/pin.svg"
+          icon: markerPath || "assets/img/pin.svg"
         });
         google.maps.event.addListener(marker, "click", function (marker, i) {
           return function () {
