@@ -163,6 +163,7 @@
       opacity: .05;
       border-radius: 50%;
       background-color: #fff;
+      pointer-events: none;
     }
 
     &:after {
@@ -177,6 +178,7 @@
       transform: translate(-50%, -50%);
       top: 50%;
       z-index: -1;
+      pointer-events: none;
     }
 
     &-inner {
@@ -191,6 +193,7 @@
         opacity: .05;
         border-radius: 50%;
         background-color: #fff;
+        pointer-events: none;
       }
 
       &:before {
