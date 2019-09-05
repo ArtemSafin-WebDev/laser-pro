@@ -103,12 +103,18 @@ export default function() {
 
             form.addEventListener("submit", function(event) {
                 event.preventDefault();
-                const data = new FormData(form);
+                console.log(form);
+                console.log(formBtn.textContent);
+                var data = $(form).serialize();
+                data += '&type=callback';
+                data += '&form=' + formBtn.textContent;
+                /*const data = new FormData(form);
                 data.append("form", formBtn.textContent);
-                data.append("type", "callback");
+                data.append("type", "callback");*/
                 const inputsWithError = inputs.filter(element =>
                     element.matches(".js-subscribe-input:not(.success)")
                 );
+                console.log(data);
                 console.log("Submitting form");
                 formErrorContainer.style.display = "none";
                 formSuccessContainer.style.display = "none";
@@ -118,6 +124,8 @@ export default function() {
                     console.log("Errors present");
                 } else {
                     console.log("Sending request");
+                    console.log(data);
+
                     $.ajax({
                         url: "/.ajax.php",
                         dataType: "json",
@@ -146,6 +154,7 @@ export default function() {
                             }
                         }
                     });
+                    $.ajax();
                 }
             });
         });

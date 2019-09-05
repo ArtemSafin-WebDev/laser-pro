@@ -1331,12 +1331,19 @@ exports.default = function () {
       });
       form.addEventListener("submit", function (event) {
         event.preventDefault();
-        var data = new FormData(form);
+        console.log(form);
+        console.log(formBtn.textContent);
+        var data = $(form).serialize();
+        data += '&type=callback';
+        data += '&form=' + formBtn.textContent;
+        /*const data = new FormData(form);
         data.append("form", formBtn.textContent);
-        data.append("type", "callback");
+        data.append("type", "callback");*/
+
         var inputsWithError = inputs.filter(function (element) {
           return element.matches(".js-subscribe-input:not(.success)");
         });
+        console.log(data);
         console.log("Submitting form");
         formErrorContainer.style.display = "none";
         formSuccessContainer.style.display = "none";
@@ -1346,6 +1353,7 @@ exports.default = function () {
           console.log("Errors present");
         } else {
           console.log("Sending request");
+          console.log(data);
           $.ajax({
             url: "/.ajax.php",
             dataType: "json",
@@ -1376,6 +1384,7 @@ exports.default = function () {
               }
             }
           });
+          $.ajax();
         }
       });
     });
