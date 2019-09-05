@@ -900,7 +900,7 @@ exports.default = function () {
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(locations[i][1], locations[i][2]),
           map: map,
-          icon: markerPath || "assets/img/pin.svg"
+          icon: markerPath ? markerPath + "/assets/img/pin.svg" : "assets/img/pin.svg"
         });
         google.maps.event.addListener(marker, "click", function (marker, i) {
           return function () {
@@ -1263,8 +1263,8 @@ exports.default = function () {
     });
     var navItem = $('.reviews__item');
     navItem.on('click', function () {
-      var slideIndex = $(this).data('slide');
-      self.slick('slickGoTo', slideIndex - 1);
+      var slideIndex = $(this).data('slick-index');
+      self.slick('slickGoTo', slideIndex);
     });
   });
 };

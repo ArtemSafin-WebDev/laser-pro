@@ -248,7 +248,7 @@ export default function() {
                             locations[i][2]
                         ),
                         map: map,
-                        icon: markerPath || "assets/img/pin.svg"
+                        icon: markerPath ? markerPath + "/assets/img/pin.svg" : "assets/img/pin.svg"
                     });
 
                     google.maps.event.addListener(

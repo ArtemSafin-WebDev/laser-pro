@@ -20,8 +20,8 @@ export default function () {
     let navItem = $('.reviews__item');
 
     navItem.on('click', function() {
-      let slideIndex = $(this).data('slide');
-      self.slick('slickGoTo', slideIndex -1);
+      let slideIndex = $(this).data('slick-index');
+      self.slick('slickGoTo', slideIndex);
     })
   })
 }
