@@ -733,7 +733,7 @@ exports.default = function () {
 
   try {
     jQuery.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyCvHcKiu2OsmAL4BELxFvuDxmjG5ntLBac", function () {
-      var locations = [["Title A", 55.806109, 49.482632, 1], ["Title B", 56.874011, 52.741233, 2], ["Title C", 55.566889, 52.657276, 3]];
+      var locations = window.locations || [["Title A", 55.806109, 49.482632, 1], ["Title B", 56.874011, 52.741233, 2], ["Title C", 55.566889, 52.657276, 3]];
       var uluru = {
         lat: 56.841354,
         lng: 48.90388
