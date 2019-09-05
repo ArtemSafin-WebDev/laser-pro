@@ -891,9 +891,9 @@ exports.default = function () {
       var markerPath = void 0;
 
       try {
-        markerPath = mapElement.parentElement.querySelector("input[type='hidden']").value;
+        markerPath = mapElement.parentElement.parentElement.querySelector("input[type='hidden']").value;
       } catch (e) {
-        console.error(e);
+        console.warning(e);
       }
 
       for (i = 0; i < locations.length; i++) {
