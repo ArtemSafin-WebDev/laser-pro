@@ -1234,8 +1234,8 @@ exports.default = function () {
     });
     var navItem = $('.reviews__item');
     navItem.on('click', function () {
-      var slideIndex = $(this).data('slide');
-      self.slick('slickGoTo', slideIndex - 1);
+      var slideIndex = $(this).data('slick-index');
+      self.slick('slickGoTo', slideIndex);
     });
   });
 };
