@@ -12,7 +12,7 @@ export default function() {
         jQuery.getScript(
             "https://maps.googleapis.com/maps/api/js?key=AIzaSyCvHcKiu2OsmAL4BELxFvuDxmjG5ntLBac",
             function() {
-                const locations = [
+                const locations = window.locations || [
                     ["Title A", 55.806109, 49.482632, 1],
                     ["Title B", 56.874011, 52.741233, 2],
                     ["Title C", 55.566889, 52.657276, 3]
