@@ -1,4 +1,13 @@
 export default function() {
+    const mapElement = document.getElementById("map");
+
+
+    if (!mapElement) {
+        console.log('No map element');
+        return;
+    }
+
+
     try {
         jQuery.getScript(
             "https://maps.googleapis.com/maps/api/js?key=AIzaSyCvHcKiu2OsmAL4BELxFvuDxmjG5ntLBac",
@@ -10,7 +19,7 @@ export default function() {
                 ];
                 const uluru = { lat: 56.841354, lng: 48.90388 };
                 const map = new google.maps.Map(
-                    document.getElementById("map"),
+                    mapElement,
                     {
                         zoom: 6,
                         gestureHandling: "greedy",
@@ -224,6 +233,13 @@ export default function() {
                 );
                 const infowindow = new google.maps.InfoWindow();
                 let marker, i;
+                let markerPath;
+
+                try {
+                    markerPath = mapElement.parentElement.querySelector("input[type='hidden']").value;
+                } catch(e) {
+                    console.error(e);
+                }
 
                 for (i = 0; i < locations.length; i++) {
                     marker = new google.maps.Marker({
@@ -232,7 +248,7 @@ export default function() {
                             locations[i][2]
                         ),
                         map: map,
-                        icon: "assets/img/pin.svg"
+                        icon: markerPath || "assets/img/pin.svg"
                     });
 
                     google.maps.event.addListener(
