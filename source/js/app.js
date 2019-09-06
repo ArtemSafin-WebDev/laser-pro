@@ -43,6 +43,30 @@ browserUpdate(browserUpdateOptions);
         };
 })(Element.prototype);
 
+// Полифилл для поиска соседей с классом
+
+window.findNextSibling = function(elem, selector) {
+    let sibling = elem.nextElementSibling;
+
+    if (!selector) return sibling;
+
+    while (sibling) {
+        if (sibling.matches(selector)) return sibling;
+        sibling = sibling.nextElementSibling;
+    }
+}
+
+window.findPreviousSibling = function(elem, selector) {
+    let sibling = elem.previousElementSibling;
+
+    if (!selector) return sibling;
+
+    while (sibling) {
+        if (sibling.matches(selector)) return sibling;
+        sibling = sibling.previousElementSibling;
+    }
+}
+
 $(document).ready(() => {
     svg4everybody();
 

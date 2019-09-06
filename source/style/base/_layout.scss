@@ -97,11 +97,11 @@ input.success ~ .field-success {
 
 .field-error {
   display: block;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   position: absolute;
   top: 50%;
-  right: 6px;
+  right: 12px;
   opacity: 0;
   visibility: hidden;
 
@@ -109,7 +109,7 @@ input.success ~ .field-success {
   &:after {
     content: '';
     position: absolute;
-    width: 16px;
+    width: 18px;
     height: 2px;
     background-color: $main-hover;
   }
@@ -146,3 +146,7 @@ input.success ~ .field-success {
     transform: rotate(-45deg);
   }
 }
+
+
+
+

@@ -238,7 +238,7 @@ export default function() {
                 try {
                     markerPath = mapElement.parentElement.parentElement.querySelector("input[type='hidden']").value;
                 } catch(e) {
-                    console.warning(e);
+                    console.log(e);
                 }
 
                 for (i = 0; i < locations.length; i++) {
