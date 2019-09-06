@@ -590,9 +590,11 @@ $(document).ready(function () {
   });
 
   new WOW().init();
-  var bLazy = new Blazy();
+  window.bLazyInstance = new Blazy({
+    loadInvisible: true
+  });
   $(window).on("preloaderRemoved", function () {
-    bLazy.revalidate();
+    bLazyInstance.revalidate();
     $(".hide").addClass("show");
   });
   (0, _equalHeight2.default)($(".js-concept-height"));

@@ -335,9 +335,10 @@
       }
 
       img {
-        @include b(mobile) {
-          width: 70px;
-        }
+        width: 80px;
+        // @include b(mobile) {
+        //   width: 70px;
+        // }
       }
     }
   }

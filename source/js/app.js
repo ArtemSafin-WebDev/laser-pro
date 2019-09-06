@@ -74,9 +74,11 @@ $(document).ready(() => {
 
     new WOW().init();
 
-    const bLazy = new Blazy();
+    window.bLazyInstance = new Blazy({
+        loadInvisible: true
+    });
     $(window).on("preloaderRemoved", () => {
-        bLazy.revalidate();
+        bLazyInstance.revalidate();
         $(".hide").addClass("show");
     });
 
