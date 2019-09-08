@@ -3,12 +3,11 @@ export default function () {
 
     const content = Array.from(document.querySelectorAll('.indicators__content'));
     const placeToPutContent = document.querySelector('.js-place-to-put-content');
-    if (!placeToPutContent) {
-      return;
+    if (placeToPutContent) {
+        content.forEach(item => {
+            placeToPutContent.appendChild(item);
+        });
     }
-    content.forEach(item => {
-      placeToPutContent.appendChild(item);
-    })
 
     let slider = self.find('.js-indicators-slider'),
         sliderNav = self.find('.js-indicators-nav');
@@ -63,7 +62,7 @@ export default function () {
   });
 
 
-  if (!$('body').hasClass('is-body')) {
+  if (!$('body').hasClass('is-admin')) {
 
       $('.concept__info').each(function () {
           if ($(this).children().length == 1) {

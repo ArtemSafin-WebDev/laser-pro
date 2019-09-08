@@ -559,7 +559,28 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
       return null;
     } else return this.parentElement.closest(selector);
   };
-})(Element.prototype);
+})(Element.prototype); // Полифилл для поиска соседей с классом
+
+
+window.findNextSibling = function (elem, selector) {
+  var sibling = elem.nextElementSibling;
+  if (!selector) return sibling;
+
+  while (sibling) {
+    if (sibling.matches(selector)) return sibling;
+    sibling = sibling.nextElementSibling;
+  }
+};
+
+window.findPreviousSibling = function (elem, selector) {
+  var sibling = elem.previousElementSibling;
+  if (!selector) return sibling;
+
+  while (sibling) {
+    if (sibling.matches(selector)) return sibling;
+    sibling = sibling.previousElementSibling;
+  }
+};
 
 $(document).ready(function () {
   svg4everybody();
@@ -569,9 +590,11 @@ $(document).ready(function () {
   });
 
   new WOW().init();
-  var bLazy = new Blazy();
+  window.bLazyInstance = new Blazy({
+    loadInvisible: true
+  });
   $(window).on("preloaderRemoved", function () {
-    bLazy.revalidate();
+    bLazyInstance.revalidate();
     $(".hide").addClass("show");
   });
   (0, _equalHeight2.default)($(".js-concept-height"));
@@ -705,6 +728,7 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = function () {
   controller('callback', function (self) {
+    console.log(self);
     var item = self.find('.callback__img');
     var callback = new Waypoint({
       element: document.getElementById('callback'),
@@ -893,7 +917,7 @@ exports.default = function () {
       try {
         markerPath = mapElement.parentElement.parentElement.querySelector("input[type='hidden']").value;
       } catch (e) {
-        console.warning(e);
+        console.log(e);
       }
 
       for (i = 0; i < locations.length; i++) {
@@ -1033,13 +1057,12 @@ exports.default = function () {
     var content = Array.from(document.querySelectorAll('.indicators__content'));
     var placeToPutContent = document.querySelector('.js-place-to-put-content');
 
-    if (!placeToPutContent) {
-      return;
+    if (placeToPutContent) {
+      content.forEach(function (item) {
+        placeToPutContent.appendChild(item);
+      });
     }
 
-    content.forEach(function (item) {
-      placeToPutContent.appendChild(item);
-    });
     var slider = self.find('.js-indicators-slider'),
         sliderNav = self.find('.js-indicators-nav');
     slider.slick({
@@ -1085,7 +1108,7 @@ exports.default = function () {
     });
   });
 
-  if (!$('body').hasClass('is-body')) {
+  if (!$('body').hasClass('is-admin')) {
     $('.concept__info').each(function () {
       if ($(this).children().length == 1) {
         if ($(this).find('.concept__info-name').text().replace(/\s/g, "") == '' && $(this).find('.concept__info-price').text().replace(/\s/g, "") == '') {
@@ -1134,79 +1157,72 @@ exports.default = function () {
       autoFocus: false,
       touch: false
     });
-  });
-  var popup = $('.popup-subscribe');
-  popup.find('input[type="tel"]').mask('+7 (999) 999-99-99');
-  var input = popup.find('input');
-  var form = popup.find('form');
-  input.on('keyup', function () {
-    popup.find('.form-txt-error').text('').hide();
-
-    if ($(this).attr('type') == 'text') {
-      if ($(this).val() != '') {
-        $(this).addClass('success');
-      } else {
-        $(this).removeClass('success');
-        popup.find('.form-txt-error').text('Укажите имя').show();
-      }
-    } else if ($(this).attr('type') == 'tel') {
-      var phone = $(this).val().replace(/\D+/g, '');
-
-      if (phone.length == 11) {
-        $(this).addClass('success');
-      } else {
-        $(this).removeClass('success');
-        popup.find('.form-txt-error').text('Укажите корректное значение телефона').show();
-      }
-    } else if ($(this).attr('type') == 'email') {
-      if (isEmailAddress($(this).val())) {
-        $(this).addClass('success');
-      } else {
-        $(this).removeClass('success');
-        popup.find('.form-txt-error').text('Укажите корректное значение Email').show();
-      }
-    }
-  });
-
-  function isEmailAddress(str) {
-    var pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    return pattern.test(str); // returns a boolean
-  }
-
-  form.on('submit', function (e) {
-    e.preventDefault();
-    var form = $(this);
-    var button = form.find('button');
-    form.find('.form-txt-success').hide();
-    form.find('.form-txt-error').hide();
-
-    if (input.length > form.find('.js-subscribe-input.success')) {
-      form.find('.js-subscribe-input:not(.success):first').focus();
-    } else {
-      $.ajax({
-        url: '/.ajax.php',
-        dataType: 'json',
-        data: form.serialize() + '&form=' + button + '&type=callback',
-        beforeSend: function beforeSend() {
-          input.attr('disabled', 'disabled');
-          button.attr('disabled', 'disabled');
-        },
-        success: function success(data) {
-          input.removeAttr('disabled');
-          button.removeAttr('disabled');
-
-          if (data.status) {
-            if (data.status == 'success') {
-              input.val('').removeClass('success');
-              form.find('.form-txt-success').show();
-            } else {
-              form.find('.form-txt-error').text('Не удалось отправить. Попробуйте повторно').show();
-            }
-          }
-        }
-      });
-    }
-  });
+  }); //   var popup = $('.popup-subscribe');
+  //     popup.find('input[type="tel"]').mask('+7 (999) 999-99-99');
+  //     var input = popup.find('input');
+  //     var form = popup.find('form');
+  //     input.on('keyup', function(){
+  //         popup.find('.form-txt-error').text('').hide();
+  //         if ($(this).attr('type') == 'text') {
+  //             if ($(this).val() != '') {
+  //                 $(this).addClass('success');
+  //             } else {
+  //                 $(this).removeClass('success');
+  //                 popup.find('.form-txt-error').text('Укажите имя').show();
+  //             }
+  //         } else if ($(this).attr('type') == 'tel') {
+  //             var phone = $(this).val().replace(/\D+/g, '');
+  //             if( phone.length == 11) {
+  //                 $(this).addClass('success');
+  //             } else {
+  //                 $(this).removeClass('success');
+  //                 popup.find('.form-txt-error').text('Укажите корректное значение телефона').show();
+  //             }
+  //         } else if ($(this).attr('type') == 'email') {
+  //             if( isEmailAddress($(this).val())) {
+  //                 $(this).addClass('success');
+  //             } else {
+  //                 $(this).removeClass('success');
+  //                 popup.find('.form-txt-error').text('Укажите корректное значение Email').show();
+  //             }
+  //         }
+  //     });
+  //     function isEmailAddress(str) {
+  //         var pattern =/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  //         return pattern.test(str);  // returns a boolean
+  //     }
+  //     form.on('submit', function(e){
+  //         e.preventDefault();
+  //         var form = $(this);
+  //         var button = form.find('button');
+  //         form.find('.form-txt-success').hide();
+  //         form.find('.form-txt-error').hide();
+  //         if (input.length > form.find('.js-subscribe-input.success')){
+  //             form.find('.js-subscribe-input:not(.success):first').focus();
+  //         } else {
+  //             $.ajax({
+  //                 url : '/.ajax.php',
+  //                 dataType: 'json',
+  //                 data : form.serialize() + '&form=' + button + '&type=callback',
+  //                 beforeSend: function() {
+  //                     input.attr('disabled', 'disabled');
+  //                     button.attr('disabled', 'disabled');
+  //                 },
+  //                 success: function(data) {
+  //                     input.removeAttr('disabled');
+  //                     button.removeAttr('disabled');
+  //                     if(data.status) {
+  //                         if (data.status == 'success' ) {
+  //                             input.val('').removeClass('success');
+  //                             form.find('.form-txt-success').show();
+  //                         } else {
+  //                             form.find('.form-txt-error').text('Не удалось отправить. Попробуйте повторно').show();
+  //                         }
+  //                     }
+  //                 }
+  //             })
+  //         }
+  //     });
 };
 
 },{}],12:[function(require,module,exports){
@@ -1278,8 +1294,6 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = function () {
   controller("subscribe-form", function (self) {
-    console.log(self);
-
     function isEmailAddress(str) {
       var pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       return pattern.test(str); // returns a boolean
@@ -1287,12 +1301,11 @@ exports.default = function () {
 
     var forms = self.toArray();
     forms.forEach(function (form) {
-      console.log(form);
       var wrap = form.querySelector(".js-subscribe-wrap");
       var formErrorContainer = form.querySelector(".form-txt-error");
       var formSuccessContainer = form.querySelector(".form-txt-success");
       var formBtn = form.querySelector("button");
-      var inputs = Array.prototype.slice.call(form.querySelectorAll(".js-subscribe-input"));
+      var inputs = Array.prototype.slice.call(form.querySelectorAll("input, textarea"));
       var telInputs = inputs.filter(function (element) {
         return element.matches('[type="tel"]');
       });
@@ -1301,14 +1314,29 @@ exports.default = function () {
         $(telInput).mask("+7 (999) 999-99-99");
       });
       inputs.forEach(function (input) {
-        var placeholder = input.closest(".subscribe-form__box").querySelector(".js-subscribe-title");
+        var placeholder = void 0;
+
+        try {
+          placeholder = input.closest(".subscribe-form__box").querySelector(".js-subscribe-title");
+        } catch (e) {
+          console.log("No placeholder present");
+        }
+
         input.addEventListener("focus", function () {
-          wrap.classList.add("focus");
+          if (wrap) {
+            wrap.classList.add("focus");
+          }
+
+          if (!placeholder) return;
           placeholder.classList.add("active");
         });
         input.addEventListener("blur", function () {
-          wrap.classList.remove("focus");
+          if (wrap) {
+            wrap.classList.remove("focus");
+          }
+
           var length = input.value.length;
+          if (!placeholder) return;
 
           if (length !== 0) {
             placeholder.classList.add("active");
@@ -1316,9 +1344,13 @@ exports.default = function () {
             placeholder.classList.remove("active");
           }
         });
-        input.addEventListener("keyup", function () {
-          formErrorContainer.style.display = "none";
-          formErrorContainer.textContent = "";
+
+        var validator = function validator() {
+          if (formErrorContainer) {
+            formErrorContainer.style.display = "none";
+            formErrorContainer.textContent = "";
+          }
+
           var value = input.value;
           var type = input.type;
           console.log("Validating value", value);
@@ -1329,12 +1361,17 @@ exports.default = function () {
 
               if (value !== "") {
                 input.classList.add("success");
+                input.classList.remove("error");
                 console.log("Valid field");
               } else {
                 input.classList.remove("success");
+                input.classList.add("error");
                 console.log("Invalid field");
-                formErrorContainer.textContent = "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 " + placeholder.textContent;
-                formErrorContainer.style.display = "block";
+
+                if (formErrorContainer) {
+                  formErrorContainer.textContent = "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 " + placeholder.textContent.toLowerCase();
+                  formErrorContainer.style.display = "block";
+                }
               }
 
               break;
@@ -1345,12 +1382,17 @@ exports.default = function () {
 
               if (phone.length === 11) {
                 input.classList.add("success");
+                input.classList.remove("error");
                 console.log("Valid field");
               } else {
                 input.classList.remove("success");
+                input.classList.add("error");
                 console.log("Invalid field");
-                formErrorContainer.textContent = "Укажите корректное значение телефона";
-                formErrorContainer.style.display = "block";
+
+                if (formErrorContainer) {
+                  formErrorContainer.textContent = "Укажите корректное значение телефона";
+                  formErrorContainer.style.display = "block";
+                }
               }
 
               break;
@@ -1360,36 +1402,54 @@ exports.default = function () {
 
               if (isEmailAddress(value)) {
                 input.classList.add("success");
+                input.classList.remove("error");
                 console.log("Valid field");
               } else {
                 input.classList.remove("success");
+                input.classList.add("error");
                 console.log("Invalid field");
-                formErrorContainer.textContent = "Укажите корректное значение Email";
-                formErrorContainer.style.display = "block";
+
+                if (formErrorContainer) {
+                  formErrorContainer.textContent = "Укажите корректное значение Email";
+                  formErrorContainer.style.display = "block";
+                }
+              }
+
+              break;
+
+            case "checkbox":
+              console.log("validating checkbox");
+
+              if (input.checked) {
+                input.classList.add("success");
+                input.classList.remove("error");
+                console.log("Valid field");
+              } else {
+                input.classList.remove("success");
+                input.classList.add("error");
+                console.log("Invalid field");
+
+                if (formErrorContainer) {
+                  formErrorContainer.textContent = "Подтвердите согласие";
+                  formErrorContainer.style.display = "block";
+                }
               }
 
               break;
           }
-        });
+        };
+
+        input.addEventListener("keyup", validator);
+        input.addEventListener("change", validator);
       });
       form.addEventListener("submit", function (event) {
         event.preventDefault();
-        console.log(form);
-        console.log(formBtn.textContent);
         var data = $(form).serialize();
-        data += '&type=callback';
-        data += '&form=' + formBtn.textContent;
-        /*const data = new FormData(form);
-        data.append("form", formBtn.textContent);
-        data.append("type", "callback");*/
-
+        data += "&type=callback";
+        data += "&form=" + formBtn.textContent;
         var inputsWithError = inputs.filter(function (element) {
-          return element.matches(".js-subscribe-input:not(.success)");
+          return element.matches("input:not(.success)");
         });
-        console.log(data);
-        console.log("Submitting form");
-        formErrorContainer.style.display = "none";
-        formSuccessContainer.style.display = "none";
 
         if (inputsWithError.length > 0) {
           inputsWithError[0].focus();
@@ -1419,10 +1479,15 @@ exports.default = function () {
                     input.value = "";
                     input.classList.remove("success");
                   });
-                  formSuccessContainer.style.display = "block";
+
+                  if (formSuccessContainer) {
+                    formSuccessContainer.style.display = "block";
+                  }
                 } else {
-                  formErrorContainer.textContent = "Не удалось отправить. Попробуйте повторно";
-                  formErrorContainer.style.display = "block";
+                  if (formErrorContainer) {
+                    formErrorContainer.textContent = "Не удалось отправить. Попробуйте повторно";
+                    formErrorContainer.style.display = "block";
+                  }
                 }
               }
             }

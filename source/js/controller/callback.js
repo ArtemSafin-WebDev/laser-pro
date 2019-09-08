@@ -1,6 +1,8 @@
 export default function () {
   controller('callback', self => {
 
+      console.log(self);
+
     let item = self.find('.callback__img');
 
     let callback = new Waypoint({

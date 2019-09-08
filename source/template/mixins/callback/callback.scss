@@ -1,7 +1,11 @@
 .callback {
   position: relative;
   z-index: 1;
+  margin-bottom: 81px;
 
+  @include b(mobile) {
+    margin-bottom: 35px;
+  }
   &__wrap {
     background-color: $accent;
     border-radius: 30px;
@@ -31,7 +35,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: flex-end;
+    // align-items: flex-end;
     overflow: hidden;
   }
 
@@ -40,7 +44,8 @@
     padding-bottom: 64px;
     position: relative;
     z-index: 1;
-
+    display: flex;
+    flex-direction: column;
     @include b(desktop) {
       padding-bottom: 50px;
     }
@@ -77,6 +82,8 @@
       display: block;
       max-width: 399px;
       width: 100%;
+      position: absolute;
+      bottom: 0;
 
       @include b(tablet) {
         width: 260px;
@@ -138,7 +145,7 @@
     font-size: 24px;
     font-weight: 600;
     padding-bottom: 33px;
-
+    margin-top: auto;
     @include b(mobile) {
       font-size: 14px;
       line-height: 20px;
@@ -205,6 +212,14 @@
         width: 1390px;
         height: 1390px;
       }
+    }
+  }
+}
+
+.block-index-02-callback {
+  &:last-child {
+    .callback {
+      margin-bottom: 0;
     }
   }
 }
