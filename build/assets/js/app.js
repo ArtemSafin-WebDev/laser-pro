@@ -728,14 +728,16 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = function () {
   controller('callback', function (self) {
-    console.log(self);
-    var item = self.find('.callback__img');
-    var callback = new Waypoint({
-      element: document.getElementById('callback'),
-      handler: function handler(direction) {
-        item.toggleClass('callback-animate');
-      },
-      offset: '45%'
+    self.each(function () {
+      var callbackItem = $(this);
+      var item = callbackItem.find('.callback__img');
+      var callback = new Waypoint({
+        element: this,
+        handler: function handler(direction) {
+          item.toggleClass('callback-animate');
+        },
+        offset: '45%'
+      });
     });
   });
 };
