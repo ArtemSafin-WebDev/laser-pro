@@ -30,10 +30,10 @@ export default function () {
       // infinite: false,
       focusOnSelect: true
     });
-    
+
     let btn = self.find('.js-indicators-btn'),
         drop = self.find('.js-indicators-drop');
-    
+
     btn.on('click', function(e) {
       e.preventDefault();
       var $this = $(this),

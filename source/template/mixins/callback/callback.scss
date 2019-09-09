@@ -88,6 +88,7 @@
       @include b(tablet) {
         width: 260px;
         margin: 0 auto;
+        position: relative;
       }
 
       @include b(mobile) {
