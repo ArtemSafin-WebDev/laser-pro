@@ -751,6 +751,7 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = function () {
   var mapElement = document.getElementById("map");
+  return;
 
   if (!mapElement) {
     console.log('No map element');
@@ -1296,208 +1297,268 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = function () {
   controller("subscribe-form", function (self) {
-    function isEmailAddress(str) {
-      var pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-      return pattern.test(str); // returns a boolean
-    }
+    var formsArray = self.toArray();
+    var errorMessages = {
+      invalidEmail: "Укажите корректное значение E-mail",
+      invalidPhone: "Укажите корректное значение телефона",
+      emptyField: "Поле не должно быть пустым",
+      notChecked: "Вам нужно дать согласие"
+    };
+    formsArray.forEach(function (form) {
+      var errorContainer = form.querySelector(".form-txt-error");
+      var submitBtn = form.querySelector("input[type='submit'], button[type='submit']");
+      var fields = Array.from(form.querySelectorAll("input, textarea"));
+      var invalidFields = [];
+      setupInputMasks(fields);
+      setupFocusListeners(fields);
+      setupChangeListeners(fields, invalidFields, errorContainer);
+      setupSubmitHandler(form, fields, invalidFields, errorContainer);
+    });
 
-    var forms = self.toArray();
-    forms.forEach(function (form) {
-      var wrap = form.querySelector(".js-subscribe-wrap");
-      var formErrorContainer = form.querySelector(".form-txt-error");
-      var formSuccessContainer = form.querySelector(".form-txt-success");
-      var formBtn = form.querySelector("button");
-      var inputs = Array.prototype.slice.call(form.querySelectorAll("input, textarea"));
-      var telInputs = inputs.filter(function (element) {
+    function setupInputMasks(fields) {
+      var maskedInputs = fields.filter(function (element) {
         return element.matches('[type="tel"]');
       });
-      telInputs.forEach(function (telInput) {
-        console.log("Phone input", telInput);
-        $(telInput).mask("+7 (999) 999-99-99");
+      maskedInputs.forEach(function (input) {
+        return $(input).mask("+7 (999) 999-99-99");
       });
-      inputs.forEach(function (input) {
-        var placeholder = void 0;
+    }
 
-        try {
-          placeholder = input.closest(".subscribe-form__box").querySelector(".js-subscribe-title");
-        } catch (e) {
-          console.log("No placeholder present");
+    function setupFocusListeners(fields) {
+      if (Array.isArray(fields)) {
+        fields.forEach(function (field) {
+          field.addEventListener("focus", function () {
+            focusHandler(field);
+          });
+          field.addEventListener("blur", function () {
+            blurHandler(field);
+          });
+        });
+      } else {
+        console.log("Not an array");
+      }
+    }
+
+    function focusHandler(field) {
+      var placeholder = findPreviousSibling(field, ".js-subscribe-title");
+      var wrap = field.closest(".js-subscribe-wrap");
+
+      if (wrap) {
+        wrap.classList.add("focus");
+      }
+
+      if (!placeholder) return;
+      placeholder.classList.add("active");
+    }
+
+    function blurHandler(field) {
+      var placeholder = findPreviousSibling(field, ".js-subscribe-title");
+      var wrap = field.closest(".js-subscribe-wrap");
+
+      if (wrap) {
+        wrap.classList.remove("focus");
+      }
+
+      if (!placeholder) return;
+
+      if (field.value.length !== 0) {
+        placeholder.classList.add("active");
+      } else {
+        placeholder.classList.remove("active");
+      }
+    }
+
+    function showErrorMessage(errorContainer, message) {
+      errorContainer.style.display = "block";
+      errorContainer.textContent = message;
+    }
+
+    function hideErrorMessage(errorContainer) {
+      errorContainer.style.display = "none";
+      errorContainer.textContent = "";
+    }
+
+    function setupChangeListeners(fields, errorsList, errorContainer) {
+      fields.forEach(function (field) {
+        var type = field.type;
+
+        if (type === "text" || type === "email" || type === "tel" || field.matches("textarea")) {
+          field.addEventListener("keyup", function () {
+            validateField(field, errorsList, errorContainer);
+          });
+          field.addEventListener("change", function () {
+            validateField(field, errorsList, errorContainer);
+          });
+        } else if (type === "checkbox") {
+          field.addEventListener("change", function () {
+            validateField(field, errorsList, errorContainer);
+          });
+        }
+      });
+    }
+
+    function isEmailAddress(value) {
+      var pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      return pattern.test(value);
+    }
+
+    function isPhoneNumber(value) {
+      var phoneNumber = value.replace(/\D+/g, "");
+
+      if (phoneNumber.length === 11) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    function isNotEmpty(value) {
+      if (value === "" || value === null || typeof value === "undefined") {
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+    function addToErrorsList(field, message, errorsList) {
+      field.classList.remove("success");
+      field.classList.add("error");
+      errorsList.push({
+        field: field,
+        message: message
+      });
+      console.log('Errors list after error addition', errorsList);
+    }
+
+    function removeFromErrorsList(field, errorsList, errorContainer) {
+      var initialErrorsListLength = errorsList.length;
+
+      if (initialErrorsListLength > 0) {
+        field.classList.add("success");
+        field.classList.remove("error");
+        errorsList = errorsList.filter(function (element) {
+          return element.field !== field;
+        });
+        console.log('Errors list after removal', errorsList);
+        var newErrorsListLength = errorsList.length;
+
+        if (initialErrorsListLength === newErrorsListLength) {
+          return;
+        } else {
+          var newError = getFirstError(errorsList);
+
+          if (!newError) {
+            hideErrorMessage(errorContainer);
+            return;
+          } else {
+            showErrorMessage(errorContainer, newError.message);
+          }
+        }
+      }
+    }
+
+    function validateField(field, errorsList, errorContainer) {
+      if (field.hasAttribute("required")) {
+        if (field.type === "checkbox") {
+          var checked = field.checked;
+
+          if (!checked) {
+            addToErrorsList(field, errorMessages.notChecked, errorsList);
+            showErrorMessage(errorContainer, errorMessages.notChecked);
+            return;
+          } else {
+            removeFromErrorsList(field, errorsList, errorContainer);
+          }
+        } else {
+          var notEmpty = isNotEmpty(field.value);
+
+          if (!notEmpty) {
+            addToErrorsList(field, errorMessages.emptyField, errorsList);
+            showErrorMessage(errorContainer, errorMessages.emptyField);
+            return;
+          } else {
+            removeFromErrorsList(field, errorsList, errorContainer);
+          }
+        }
+      }
+
+      if (field.type === "email") {
+        var isEmail = isEmailAddress(field.value);
+
+        if (!isEmail) {
+          addToErrorsList(field, errorMessages.invalidEmail, errorsList);
+          showErrorMessage(errorContainer, errorMessages.invalidEmail);
+        } else {
+          removeFromErrorsList(field, errorsList, errorContainer);
+        }
+      }
+
+      if (field.type === "tel") {
+        var isPhone = isPhoneNumber(field.value);
+
+        if (!isPhone) {
+          addToErrorsList(field, errorMessages.invalidPhone, errorsList);
+          showErrorMessage(errorContainer, errorMessages.invalidPhone);
+        } else {
+          removeFromErrorsList(field, errorsList, errorContainer);
+        }
+      }
+    }
+
+    function validateForm(fields, errorsList, errorContainer) {
+      fields.forEach(function (field) {
+        validateField(field, errorsList, errorContainer);
+      });
+
+      if (errorsList.length > 0) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+    function getFirstError(errorsList) {
+      if (errorsList.length > 0) {
+        return errorsList[0];
+      } else {
+        return null;
+      }
+    }
+
+    function clearForm(fields, errorContainer) {
+      fields.forEach(function (field) {
+        if (field.type === "checkbox") {
+          field.checked = false;
+        } else {
+          field.value = "";
         }
 
-        input.addEventListener("focus", function () {
-          if (wrap) {
-            wrap.classList.add("focus");
-          }
-
-          if (!placeholder) return;
-          placeholder.classList.add("active");
-        });
-        input.addEventListener("blur", function () {
-          if (wrap) {
-            wrap.classList.remove("focus");
-          }
-
-          var length = input.value.length;
-          if (!placeholder) return;
-
-          if (length !== 0) {
-            placeholder.classList.add("active");
-          } else {
-            placeholder.classList.remove("active");
-          }
-        });
-
-        var validator = function validator() {
-          if (formErrorContainer) {
-            formErrorContainer.style.display = "none";
-            formErrorContainer.textContent = "";
-          }
-
-          var value = input.value;
-          var type = input.type;
-          console.log("Validating value", value);
-
-          switch (type) {
-            case "text":
-              console.log("validating as text");
-
-              if (value !== "") {
-                input.classList.add("success");
-                input.classList.remove("error");
-                console.log("Valid field");
-              } else {
-                input.classList.remove("success");
-                input.classList.add("error");
-                console.log("Invalid field");
-
-                if (formErrorContainer) {
-                  formErrorContainer.textContent = "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 " + placeholder.textContent.toLowerCase();
-                  formErrorContainer.style.display = "block";
-                }
-              }
-
-              break;
-
-            case "tel":
-              console.log("validating as phone");
-              var phone = value.replace(/\D+/g, "");
-
-              if (phone.length === 11) {
-                input.classList.add("success");
-                input.classList.remove("error");
-                console.log("Valid field");
-              } else {
-                input.classList.remove("success");
-                input.classList.add("error");
-                console.log("Invalid field");
-
-                if (formErrorContainer) {
-                  formErrorContainer.textContent = "Укажите корректное значение телефона";
-                  formErrorContainer.style.display = "block";
-                }
-              }
-
-              break;
-
-            case "email":
-              console.log("validating as email");
-
-              if (isEmailAddress(value)) {
-                input.classList.add("success");
-                input.classList.remove("error");
-                console.log("Valid field");
-              } else {
-                input.classList.remove("success");
-                input.classList.add("error");
-                console.log("Invalid field");
-
-                if (formErrorContainer) {
-                  formErrorContainer.textContent = "Укажите корректное значение Email";
-                  formErrorContainer.style.display = "block";
-                }
-              }
-
-              break;
-
-            case "checkbox":
-              console.log("validating checkbox");
-
-              if (input.checked) {
-                input.classList.add("success");
-                input.classList.remove("error");
-                console.log("Valid field");
-              } else {
-                input.classList.remove("success");
-                input.classList.add("error");
-                console.log("Invalid field");
-
-                if (formErrorContainer) {
-                  formErrorContainer.textContent = "Подтвердите согласие";
-                  formErrorContainer.style.display = "block";
-                }
-              }
-
-              break;
-          }
-        };
-
-        input.addEventListener("keyup", validator);
-        input.addEventListener("change", validator);
+        field.classList.remove("success");
+        field.classList.remove("error");
       });
+      hideErrorMessage(errorContainer);
+    }
+
+    function setupSubmitHandler(form, fields, errorsList, errorContainer) {
+      console.log("Setting up submit handling");
+      console.log(form);
       form.addEventListener("submit", function (event) {
         event.preventDefault();
-        var data = $(form).serialize();
-        data += "&type=callback";
-        data += "&form=" + formBtn.textContent;
-        var inputsWithError = inputs.filter(function (element) {
-          return element.matches("input:not(.success)");
-        });
-
-        if (inputsWithError.length > 0) {
-          inputsWithError[0].focus();
-          console.log("Errors present");
-        } else {
-          console.log("Sending request");
-          console.log(data);
-          $.ajax({
-            url: "/.ajax.php",
-            dataType: "json",
-            data: data,
-            beforeSend: function beforeSend() {
-              inputs.forEach(function (input) {
-                return input.disabled = true;
-              });
-              formBtn.disabled = true;
-            },
-            success: function success(data) {
-              inputs.forEach(function (input) {
-                return input.disabled = false;
-              });
-              formBtn.disabled = false;
-
-              if (data.status) {
-                if (data.status == "success") {
-                  inputs.forEach(function (input) {
-                    input.value = "";
-                    input.classList.remove("success");
-                  });
-
-                  if (formSuccessContainer) {
-                    formSuccessContainer.style.display = "block";
-                  }
-                } else {
-                  if (formErrorContainer) {
-                    formErrorContainer.textContent = "Не удалось отправить. Попробуйте повторно";
-                    formErrorContainer.style.display = "block";
-                  }
-                }
-              }
-            }
-          });
-          $.ajax();
-        }
+        console.log("Handling form submission");
+        handleFormSubmission(fields, errorsList, errorContainer);
       });
-    });
+    }
+
+    function handleFormSubmission(fields, errorsList, errorContainer) {
+      var formValid = validateForm(fields, errorsList, errorContainer);
+      console.log('Errors list', errorsList);
+
+      if (formValid) {
+        console.log("Form valid");
+      } else {
+        console.log("Form invalid");
+      }
+    }
   });
 };
 
