@@ -5,298 +5,213 @@ export default function() {
         const errorMessages = {
             invalidEmail: "Укажите корректное значение E-mail",
             invalidPhone: "Укажите корректное значение телефона",
-            emptyField: "Поле не должно быть пустым",
             notChecked: "Вам нужно дать согласие"
         };
 
         formsArray.forEach(form => {
-            const errorContainer = form.querySelector(".form-txt-error");
-            
-            const submitBtn = form.querySelector(
-                "input[type='submit'], button[type='submit']"
+            const errors = [];
+            const fields = Array.prototype.slice.call(
+                form.querySelectorAll("input, textarea")
             );
-            const fields = Array.from(form.querySelectorAll("input, textarea"));
-            const invalidFields = [];
-
-            setupInputMasks(fields);
-            setupFocusListeners(fields);
-            setupChangeListeners(fields, invalidFields, errorContainer);
-            setupSubmitHandler(form, fields, invalidFields, errorContainer);
-        });
-
-        function setupInputMasks(fields) {
-            const maskedInputs = fields.filter(element =>
+            const maskedFields = fields.filter(element =>
                 element.matches('[type="tel"]')
             );
-            maskedInputs.forEach(input => $(input).mask("+7 (999) 999-99-99"));
-        }
+            const errorContainer = form.querySelector(".form-txt-error");
+            const submitButton = form.querySelector("button[type='submit']");
+            const showError = error => {
+                errorContainer.textContent = error.message;
+                errorContainer.style.display = "block";
+            };
 
-        function setupFocusListeners(fields) {
-            if (Array.isArray(fields)) {
+            const hideError = () => {
+                errorContainer.textContent = "";
+                errorContainer.style.display = "block";
+            };
+            form.setAttribute("novalidate", true);
+            maskedFields.forEach(field => {
+                $(field).mask("+7 (999) 999-99-99");
+            });
+
+            const goToNextError = () => {
+                if (errors.length === 0) {
+                    hideError();
+                } else {
+                    let requiredErrors = errors.filter(
+                        error => error.type === "required"
+                    );
+                    if (requiredErrors.length > 0) {
+                        const requiredError = requiredErrors[0];
+                        showError(requiredError);
+                        requiredError.field.focus();
+                    } else {
+                        const recentError = errors[0];
+                        showError(recentError);
+                        recentError.field.focus();
+                    }
+                }
+            };
+
+            function onChangeValidation() {
+                const field = this;
+                const error = validateField(field, errors);
+                if (error) {
+                    
+                    showError(error);
+                } else {
+                    hideError();
+                }
+            }
+
+            fields.forEach(field => {
+                field.addEventListener("focus", inputFocusHandler);
+                field.addEventListener("blur", inputFocusHandler);
+                field.addEventListener("keyup", onChangeValidation);
+                field.addEventListener("change", onChangeValidation);
+            });
+
+            form.addEventListener("submit", function(event) {
+                event.preventDefault();
+                console.log("Errors list", errors);
                 fields.forEach(field => {
-                    field.addEventListener("focus", () => {
-                        focusHandler(field);
-                    });
-                    field.addEventListener("blur", () => {
-                        blurHandler(field);
-                    });
+                    validateField(field, errors);
                 });
-            } else {
-                console.log("Not an array");
-            }
-        }
+                if (errors.length > 0) {
+                    goToNextError();
+                    return;
+                } else {
+                    console.log("Submitting form");
+                }
+            });
+        });
 
-        function focusHandler(field) {
+        function inputFocusHandler(event) {
+            const wrap = this.closest(".js-subscribe-wrap");
             const placeholder = findPreviousSibling(
-                field,
+                this,
                 ".js-subscribe-title"
             );
-            const wrap = field.closest(".js-subscribe-wrap");
-
             if (wrap) {
-                wrap.classList.add("focus");
+                if (event.type === "focus") {
+                    wrap.classList.add("focus");
+                } else if (event.type === "blur") {
+                    wrap.classList.remove("focus");
+                }
             }
             if (!placeholder) return;
 
-            placeholder.classList.add("active");
-        }
-
-        function blurHandler(field) {
-            const placeholder = findPreviousSibling(
-                field,
-                ".js-subscribe-title"
-            );
-            const wrap = field.closest(".js-subscribe-wrap");
-            if (wrap) {
-                wrap.classList.remove("focus");
-            }
-            if (!placeholder) return;
-
-            if (field.value.length !== 0) {
+            if (event.type === "focus") {
                 placeholder.classList.add("active");
-            } else {
+            } else if (event.type === "blur" && this.value === "") {
                 placeholder.classList.remove("active");
             }
         }
 
-        function showErrorMessage(errorContainer, message) {
-            errorContainer.style.display = "block";
-            errorContainer.textContent = message;
-        }
-
-        function hideErrorMessage(errorContainer) {
-            errorContainer.style.display = "none";
-            errorContainer.textContent = "";
-        }
-
-        function setupChangeListeners(fields, errorsList, errorContainer) {
-            fields.forEach(field => {
-                const type = field.type;
-                if (
-                    type === "text" ||
-                    type === "email" ||
-                    type === "tel" ||
-                    field.matches("textarea")
-                ) {
-                    field.addEventListener("keyup", () => {
-                        validateField(field, errorsList, errorContainer);
-                    });
-                    field.addEventListener("change", () => {
-                        validateField(field, errorsList, errorContainer);
-                    });
-                } else if (type === "checkbox") {
-                    field.addEventListener("change", () => {
-                        validateField(field, errorsList, errorContainer);
-                    });
-                }
-            });
-        }
-
-        function isEmailAddress(value) {
-            const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-            return pattern.test(value);
-        }
-
-        function isPhoneNumber(value) {
-            const phoneNumber = value.replace(/\D+/g, "");
-            if (phoneNumber.length === 11) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        function isNotEmpty(value) {
-            if (
-                value === "" ||
-                value === null ||
-                typeof value === "undefined"
-            ) {
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-        function addToErrorsList(field, message, errorsList) {
+        function removeError(error, errors) {
+            error.field.classList.add("success");
+            error.field.classList.remove("error");
             
-            field.classList.remove("success");
-            field.classList.add("error");
-            errorsList.push({
-                field: field,
-                message: message
+            const sameError = errors.find(element => {
+                if (
+                    element.type === error.type &&
+                    element.field === error.field
+                ) {
+                    return true;
+                } else {
+                    return false;
+                }
             });
-            console.log('Errors list after error addition', errorsList)
-        }
-
-        function removeFromErrorsList(field, errorsList, errorContainer) {
-            const initialErrorsListLength = errorsList.length;
-            if (initialErrorsListLength > 0) {
-                field.classList.add("success");
-                field.classList.remove("error");
-                errorsList = errorsList.filter(
-                    element => element.field !== field
-                );
-                console.log('Errors list after removal', errorsList);
-
-                const newErrorsListLength = errorsList.length;
-                if (initialErrorsListLength === newErrorsListLength) {
-                    return;
-                } else {
-                    const newError = getFirstError(errorsList);
-
-                    if (!newError) {
-                        hideErrorMessage(errorContainer);
-                        return;
-                    } else {
-                        showErrorMessage(errorContainer, newError.message);
-                    }
-                }
+            if (sameError) {
+                const index = errors.indexOf(sameError);
+                errors.splice(index, 1);
+                
             }
         }
 
-        function validateField(field, errorsList, errorContainer) {
-            if (field.hasAttribute("required")) {
-                if (field.type === "checkbox") {
-                    const checked = field.checked;
-                    if (!checked) {
-                        addToErrorsList(
-                            field,
-                            errorMessages.notChecked,
-                            errorsList
-                        );
-                        showErrorMessage(
-                            errorContainer,
-                            errorMessages.notChecked
-                        );
-                        return;
-                    } else {
-                        removeFromErrorsList(field, errorsList, errorContainer);
-                    }
-                } else {
-                    const notEmpty = isNotEmpty(field.value);
+        function addError(error, errors) {
+            
+            error.field.classList.remove("success");
+            error.field.classList.add("error");
 
-                    if (!notEmpty) {
-                        addToErrorsList(
-                            field,
-                            errorMessages.emptyField,
-                            errorsList
-                        );
-                        showErrorMessage(
-                            errorContainer,
-                            errorMessages.emptyField
-                        );
-                        return;
-                    } else {
-                        removeFromErrorsList(field, errorsList, errorContainer);
-                    }
-                }
-            }
-            if (field.type === "email") {
-                const isEmail = isEmailAddress(field.value);
-                if (!isEmail) {
-                    addToErrorsList(
-                        field,
-                        errorMessages.invalidEmail,
-                        errorsList
-                    );
-                    showErrorMessage(
-                        errorContainer,
-                        errorMessages.invalidEmail
-                    );
-                } else {
-                    removeFromErrorsList(field, errorsList, errorContainer);
-                }
-            }
-
-            if (field.type === "tel") {
-                const isPhone = isPhoneNumber(field.value);
-                if (!isPhone) {
-                    addToErrorsList(
-                        field,
-                        errorMessages.invalidPhone,
-                        errorsList
-                    );
-                    showErrorMessage(
-                        errorContainer,
-                        errorMessages.invalidPhone
-                    );
-                } else {
-                    removeFromErrorsList(field, errorsList, errorContainer);
-                }
-            }
-        }
-
-        function validateForm(fields, errorsList, errorContainer) {
-            fields.forEach(field => {
-                validateField(field, errorsList, errorContainer);
-            });
-            if (errorsList.length > 0) {
-                return false;
-            } else {
+            const isErrorAlreadyPresent = errors.find(
+                element =>
+                    element.type === error.type && error.field === element.field
+            );
+            if (!isErrorAlreadyPresent) {
+               
+                errors.push(error);
+              
                 return true;
-            }
-        }
-
-        function getFirstError(errorsList) {
-            if (errorsList.length > 0) {
-                return errorsList[0];
             } else {
-                return null;
+                return false;
             }
         }
 
-        function clearForm(fields, errorContainer) {
-            fields.forEach(field => {
-                if (field.type === "checkbox") {
-                    field.checked = false;
+        function validateField(field, errors) {
+            const type = field.type;
+            if (field.hasAttribute("required")) {
+                if (type === "checkbox") {
+                    const checkboxError = {
+                        type: "required",
+                        field: field,
+                        message: errorMessages.notChecked
+                    };
+                    if (!field.checked) {
+                        addError(checkboxError, errors);
+                        return checkboxError;
+                    } else {
+                        removeError(checkboxError, errors);
+                    }
                 } else {
-                    field.value = "";
+                    const requiredTextError = {
+                        type: "required",
+                        field: field,
+                        message: `Поле ${
+                            field.hasAttribute("placeholder")
+                                ? field
+                                      .getAttribute("placeholder")
+                                      .toLowerCase() + " "
+                                : ""
+                        }обязательно к заполнению`
+                    };
+                    if (!field.value) {
+                        addError(requiredTextError, errors);
+                        return requiredTextError;
+                    } else {
+                        removeError(requiredTextError, errors);
+                    }
                 }
-                field.classList.remove("success");
-                field.classList.remove("error");
-            });
-            hideErrorMessage(errorContainer);
-        }
+            }
 
-        function setupSubmitHandler(form, fields, errorsList, errorContainer) {
-            console.log("Setting up submit handling");
-            console.log(form);
+            if (type === "email") {
+                const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                const isEmail = pattern.test(field.value);
 
-            form.addEventListener("submit", event => {
-                event.preventDefault();
-                console.log("Handling form submission");
-                handleFormSubmission(fields, errorsList, errorContainer);
-            });
-        }
+                const notEmailError = {
+                    type: "email",
+                    field: field,
+                    message: errorMessages.invalidEmail
+                };
+                if (!isEmail) {
+                    addError(notEmailError, errors);
+                    return notEmailError;
+                } else {
+                    removeError(notEmailError, errors);
+                }
+            }
 
-        function handleFormSubmission(fields, errorsList, errorContainer) {
-            const formValid = validateForm(fields, errorsList, errorContainer);
-            console.log('Errors list', errorsList)
-            if (formValid) {
-                console.log("Form valid");
-            } else {
-                console.log("Form invalid");
+            if (type === "tel") {
+                const phoneNumber = field.value.replace(/\D+/g, "");
+                const notPhoneNumber = {
+                    type: "phone",
+                    field: field,
+                    message: errorMessages.invalidPhone
+                };
+                if (!(phoneNumber.length === 11)) {
+                    addError(notPhoneNumber, errors);
+                    return notPhoneNumber;
+                } else {
+                    removeError(notPhoneNumber, errors);
+                }
             }
         }
     });

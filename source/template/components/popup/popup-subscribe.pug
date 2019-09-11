@@ -10,17 +10,17 @@
       form.popup-subscribe__form(action="#" data-controller="subscribe-form")
         .popup-subscribe__form-box
           label
-            input(type="text" name="name" placeholder="Имя и фамилия")
+            input(type="text" name="name" placeholder="Имя и фамилия" required)
             span.field-error
             span.field-success
         .popup-subscribe__form-box
           label
-            input(type="tel" name="phone" placeholder="Телефон")
+            input(type="tel" name="phone" placeholder="Телефон" required)
             span.field-error
             span.field-success
         .popup-subscribe__form-box
           label
-            input(type="email" name="email" placeholder="E-mail")
+            input(type="email" name="email" placeholder="E-mail" required)
             span.field-error
             span.field-success
         .popup-subscribe__form-box

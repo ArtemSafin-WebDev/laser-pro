@@ -1301,262 +1301,202 @@ exports.default = function () {
     var errorMessages = {
       invalidEmail: "Укажите корректное значение E-mail",
       invalidPhone: "Укажите корректное значение телефона",
-      emptyField: "Поле не должно быть пустым",
       notChecked: "Вам нужно дать согласие"
     };
     formsArray.forEach(function (form) {
-      var errorContainer = form.querySelector(".form-txt-error");
-      var submitBtn = form.querySelector("input[type='submit'], button[type='submit']");
-      var fields = Array.from(form.querySelectorAll("input, textarea"));
-      var invalidFields = [];
-      setupInputMasks(fields);
-      setupFocusListeners(fields);
-      setupChangeListeners(fields, invalidFields, errorContainer);
-      setupSubmitHandler(form, fields, invalidFields, errorContainer);
-    });
-
-    function setupInputMasks(fields) {
-      var maskedInputs = fields.filter(function (element) {
+      var errors = [];
+      var fields = Array.prototype.slice.call(form.querySelectorAll("input, textarea"));
+      var maskedFields = fields.filter(function (element) {
         return element.matches('[type="tel"]');
       });
-      maskedInputs.forEach(function (input) {
-        return $(input).mask("+7 (999) 999-99-99");
+      var errorContainer = form.querySelector(".form-txt-error");
+      var submitButton = form.querySelector("button[type='submit']");
+
+      var showError = function showError(error) {
+        errorContainer.textContent = error.message;
+        errorContainer.style.display = "block";
+      };
+
+      var hideError = function hideError() {
+        errorContainer.textContent = "";
+        errorContainer.style.display = "block";
+      };
+
+      form.setAttribute("novalidate", true);
+      maskedFields.forEach(function (field) {
+        $(field).mask("+7 (999) 999-99-99");
       });
-    }
 
-    function setupFocusListeners(fields) {
-      if (Array.isArray(fields)) {
+      var goToNextError = function goToNextError() {
+        if (errors.length === 0) {
+          hideError();
+        } else {
+          var requiredErrors = errors.filter(function (error) {
+            return error.type === "required";
+          });
+
+          if (requiredErrors.length > 0) {
+            var requiredError = requiredErrors[0];
+            showError(requiredError);
+            requiredError.field.focus();
+          } else {
+            var recentError = errors[0];
+            showError(recentError);
+            recentError.field.focus();
+          }
+        }
+      };
+
+      function onChangeValidation() {
+        var field = this;
+        var error = validateField(field, errors);
+
+        if (error) {
+          showError(error);
+        } else {
+          hideError();
+        }
+      }
+
+      fields.forEach(function (field) {
+        field.addEventListener("focus", inputFocusHandler);
+        field.addEventListener("blur", inputFocusHandler);
+        field.addEventListener("keyup", onChangeValidation);
+        field.addEventListener("change", onChangeValidation);
+      });
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        console.log("Errors list", errors);
         fields.forEach(function (field) {
-          field.addEventListener("focus", function () {
-            focusHandler(field);
-          });
-          field.addEventListener("blur", function () {
-            blurHandler(field);
-          });
+          validateField(field, errors);
         });
-      } else {
-        console.log("Not an array");
-      }
-    }
 
-    function focusHandler(field) {
-      var placeholder = findPreviousSibling(field, ".js-subscribe-title");
-      var wrap = field.closest(".js-subscribe-wrap");
+        if (errors.length > 0) {
+          goToNextError();
+          return;
+        } else {
+          console.log("Submitting form");
+        }
+      });
+    });
 
-      if (wrap) {
-        wrap.classList.add("focus");
-      }
-
-      if (!placeholder) return;
-      placeholder.classList.add("active");
-    }
-
-    function blurHandler(field) {
-      var placeholder = findPreviousSibling(field, ".js-subscribe-title");
-      var wrap = field.closest(".js-subscribe-wrap");
+    function inputFocusHandler(event) {
+      var wrap = this.closest(".js-subscribe-wrap");
+      var placeholder = findPreviousSibling(this, ".js-subscribe-title");
 
       if (wrap) {
-        wrap.classList.remove("focus");
+        if (event.type === "focus") {
+          wrap.classList.add("focus");
+        } else if (event.type === "blur") {
+          wrap.classList.remove("focus");
+        }
       }
 
       if (!placeholder) return;
 
-      if (field.value.length !== 0) {
+      if (event.type === "focus") {
         placeholder.classList.add("active");
-      } else {
+      } else if (event.type === "blur" && this.value === "") {
         placeholder.classList.remove("active");
       }
     }
 
-    function showErrorMessage(errorContainer, message) {
-      errorContainer.style.display = "block";
-      errorContainer.textContent = message;
-    }
-
-    function hideErrorMessage(errorContainer) {
-      errorContainer.style.display = "none";
-      errorContainer.textContent = "";
-    }
-
-    function setupChangeListeners(fields, errorsList, errorContainer) {
-      fields.forEach(function (field) {
-        var type = field.type;
-
-        if (type === "text" || type === "email" || type === "tel" || field.matches("textarea")) {
-          field.addEventListener("keyup", function () {
-            validateField(field, errorsList, errorContainer);
-          });
-          field.addEventListener("change", function () {
-            validateField(field, errorsList, errorContainer);
-          });
-        } else if (type === "checkbox") {
-          field.addEventListener("change", function () {
-            validateField(field, errorsList, errorContainer);
-          });
-        }
-      });
-    }
-
-    function isEmailAddress(value) {
-      var pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-      return pattern.test(value);
-    }
-
-    function isPhoneNumber(value) {
-      var phoneNumber = value.replace(/\D+/g, "");
-
-      if (phoneNumber.length === 11) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-
-    function isNotEmpty(value) {
-      if (value === "" || value === null || typeof value === "undefined") {
-        return false;
-      } else {
-        return true;
-      }
-    }
-
-    function addToErrorsList(field, message, errorsList) {
-      field.classList.remove("success");
-      field.classList.add("error");
-      errorsList.push({
-        field: field,
-        message: message
-      });
-      console.log('Errors list after error addition', errorsList);
-    }
-
-    function removeFromErrorsList(field, errorsList, errorContainer) {
-      var initialErrorsListLength = errorsList.length;
-
-      if (initialErrorsListLength > 0) {
-        field.classList.add("success");
-        field.classList.remove("error");
-        errorsList = errorsList.filter(function (element) {
-          return element.field !== field;
-        });
-        console.log('Errors list after removal', errorsList);
-        var newErrorsListLength = errorsList.length;
-
-        if (initialErrorsListLength === newErrorsListLength) {
-          return;
+    function removeError(error, errors) {
+      error.field.classList.add("success");
+      error.field.classList.remove("error");
+      var sameError = errors.find(function (element) {
+        if (element.type === error.type && element.field === error.field) {
+          return true;
         } else {
-          var newError = getFirstError(errorsList);
-
-          if (!newError) {
-            hideErrorMessage(errorContainer);
-            return;
-          } else {
-            showErrorMessage(errorContainer, newError.message);
-          }
+          return false;
         }
+      });
+
+      if (sameError) {
+        var index = errors.indexOf(sameError);
+        errors.splice(index, 1);
       }
     }
 
-    function validateField(field, errorsList, errorContainer) {
+    function addError(error, errors) {
+      error.field.classList.remove("success");
+      error.field.classList.add("error");
+      var isErrorAlreadyPresent = errors.find(function (element) {
+        return element.type === error.type && error.field === element.field;
+      });
+
+      if (!isErrorAlreadyPresent) {
+        errors.push(error);
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    function validateField(field, errors) {
+      var type = field.type;
+
       if (field.hasAttribute("required")) {
-        if (field.type === "checkbox") {
-          var checked = field.checked;
+        if (type === "checkbox") {
+          var checkboxError = {
+            type: "required",
+            field: field,
+            message: errorMessages.notChecked
+          };
 
-          if (!checked) {
-            addToErrorsList(field, errorMessages.notChecked, errorsList);
-            showErrorMessage(errorContainer, errorMessages.notChecked);
-            return;
+          if (!field.checked) {
+            addError(checkboxError, errors);
+            return checkboxError;
           } else {
-            removeFromErrorsList(field, errorsList, errorContainer);
+            removeError(checkboxError, errors);
           }
         } else {
-          var notEmpty = isNotEmpty(field.value);
+          var requiredTextError = {
+            type: "required",
+            field: field,
+            message: "\u041F\u043E\u043B\u0435 " + (field.hasAttribute("placeholder") ? field.getAttribute("placeholder").toLowerCase() + " " : "") + "\u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u043E \u043A \u0437\u0430\u043F\u043E\u043B\u043D\u0435\u043D\u0438\u044E"
+          };
 
-          if (!notEmpty) {
-            addToErrorsList(field, errorMessages.emptyField, errorsList);
-            showErrorMessage(errorContainer, errorMessages.emptyField);
-            return;
+          if (!field.value) {
+            addError(requiredTextError, errors);
+            return requiredTextError;
           } else {
-            removeFromErrorsList(field, errorsList, errorContainer);
+            removeError(requiredTextError, errors);
           }
         }
       }
 
-      if (field.type === "email") {
-        var isEmail = isEmailAddress(field.value);
+      if (type === "email") {
+        var pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        var isEmail = pattern.test(field.value);
+        var notEmailError = {
+          type: "email",
+          field: field,
+          message: errorMessages.invalidEmail
+        };
 
         if (!isEmail) {
-          addToErrorsList(field, errorMessages.invalidEmail, errorsList);
-          showErrorMessage(errorContainer, errorMessages.invalidEmail);
+          addError(notEmailError, errors);
+          return notEmailError;
         } else {
-          removeFromErrorsList(field, errorsList, errorContainer);
+          removeError(notEmailError, errors);
         }
       }
 
-      if (field.type === "tel") {
-        var isPhone = isPhoneNumber(field.value);
+      if (type === "tel") {
+        var phoneNumber = field.value.replace(/\D+/g, "");
+        var notPhoneNumber = {
+          type: "phone",
+          field: field,
+          message: errorMessages.invalidPhone
+        };
 
-        if (!isPhone) {
-          addToErrorsList(field, errorMessages.invalidPhone, errorsList);
-          showErrorMessage(errorContainer, errorMessages.invalidPhone);
+        if (!(phoneNumber.length === 11)) {
+          addError(notPhoneNumber, errors);
+          return notPhoneNumber;
         } else {
-          removeFromErrorsList(field, errorsList, errorContainer);
+          removeError(notPhoneNumber, errors);
         }
-      }
-    }
-
-    function validateForm(fields, errorsList, errorContainer) {
-      fields.forEach(function (field) {
-        validateField(field, errorsList, errorContainer);
-      });
-
-      if (errorsList.length > 0) {
-        return false;
-      } else {
-        return true;
-      }
-    }
-
-    function getFirstError(errorsList) {
-      if (errorsList.length > 0) {
-        return errorsList[0];
-      } else {
-        return null;
-      }
-    }
-
-    function clearForm(fields, errorContainer) {
-      fields.forEach(function (field) {
-        if (field.type === "checkbox") {
-          field.checked = false;
-        } else {
-          field.value = "";
-        }
-
-        field.classList.remove("success");
-        field.classList.remove("error");
-      });
-      hideErrorMessage(errorContainer);
-    }
-
-    function setupSubmitHandler(form, fields, errorsList, errorContainer) {
-      console.log("Setting up submit handling");
-      console.log(form);
-      form.addEventListener("submit", function (event) {
-        event.preventDefault();
-        console.log("Handling form submission");
-        handleFormSubmission(fields, errorsList, errorContainer);
-      });
-    }
-
-    function handleFormSubmission(fields, errorsList, errorContainer) {
-      var formValid = validateForm(fields, errorsList, errorContainer);
-      console.log('Errors list', errorsList);
-
-      if (formValid) {
-        console.log("Form valid");
-      } else {
-        console.log("Form invalid");
       }
     }
   });
