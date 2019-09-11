@@ -84,7 +84,8 @@
       width: 100%;
       position: absolute;
       bottom: 0;
-
+      height: 100%;
+      object-fit: contain;
       @include b(tablet) {
         width: 260px;
         margin: 0 auto;
