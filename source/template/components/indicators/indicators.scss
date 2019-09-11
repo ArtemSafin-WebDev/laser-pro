@@ -28,7 +28,8 @@
     padding: 64px 68px 177px;
     position: relative;
     flex-shrink: 0;
-    
+    display: flex;
+    flex-direction: column;
 
     @include b(desktop) {
       padding: 40px 25px 152px;
@@ -249,14 +250,15 @@
     display: none;
     position: relative;
     height: inherit;
-
+    flex-grow: 1;
     &.active {
-      display: block;
+      display: flex;
+      flex-direction: column;
     }
   }
 
   &__slider {
-    height: inherit;
+    height: 100%;
 
     .slick-list {
       height: inherit;
