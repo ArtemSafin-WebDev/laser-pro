@@ -87,5 +87,5 @@ $(document).ready(() => {
     equalHeight($(".js-about-name"));
     equalHeight($(".js-about-title"));
     equalHeight($(".js-hero-slide-height"));
-    equalHeight($(".js-indicators-equal-height"));
+   
 });

@@ -602,7 +602,6 @@ $(document).ready(function () {
   (0, _equalHeight2.default)($(".js-about-name"));
   (0, _equalHeight2.default)($(".js-about-title"));
   (0, _equalHeight2.default)($(".js-hero-slide-height"));
-  (0, _equalHeight2.default)($(".js-indicators-equal-height"));
 });
 
 },{"./browserUpdateOptions":3,"./controller/index":9,"./controller/preloader":12,"./utils/controller":15,"./utils/equalHeight":16,"browser-update":1}],3:[function(require,module,exports){
