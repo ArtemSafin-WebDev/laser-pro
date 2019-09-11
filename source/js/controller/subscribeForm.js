@@ -17,6 +17,7 @@ export default function() {
                 element.matches('[type="tel"]')
             );
             const errorContainer = form.querySelector(".form-txt-error");
+            const successContainer = form.querySelector(".form-txt-success");
             const submitButton = form.querySelector("button[type='submit']");
             const showError = error => {
                 errorContainer.textContent = error.message;
@@ -55,7 +56,6 @@ export default function() {
                 const field = this;
                 const error = validateField(field, errors);
                 if (error) {
-                    
                     showError(error);
                 } else {
                     hideError();
@@ -80,6 +80,48 @@ export default function() {
                     return;
                 } else {
                     console.log("Submitting form");
+                    var data = $(form).serialize();
+                    data += "&type=callback";
+                    data += "&form=" + submitButton.textContent;
+
+                    console.log(data);
+
+                    $.ajax({
+                        url: "/.ajax.php",
+                        dataType: "json",
+                        data: data,
+                        beforeSend: function() {
+                            fields.forEach(field => (field.disabled = true));
+                            submitButton.disabled = true;
+                        },
+                        success: function(data) {
+                            console.log("Success called");
+                            submitButton.disabled = false;
+                            fields.forEach(field => {
+                                field.value = "";
+                                field.classList.remove("success");
+                                field.disabled = false
+                            });
+                            if (successContainer) {
+                                successContainer.style.display = "block";
+                                setTimeout(function() {
+                                    successContainer.style.display = "none";
+                                }, 1000);
+                            }
+                        },
+                        error: function() {
+                            console.log("Error called");
+                            fields.forEach(field => {
+                                field.value = "";
+                                field.classList.remove("success");
+                                field.disabled = false
+                            });
+                            submitButton.disabled = false;
+                            showError({
+                                message: "Не удалось отправить форму"
+                            });
+                        }
+                    });
                 }
             });
         });
@@ -109,7 +151,7 @@ export default function() {
         function removeError(error, errors) {
             error.field.classList.add("success");
             error.field.classList.remove("error");
-            
+
             const sameError = errors.find(element => {
                 if (
                     element.type === error.type &&
@@ -123,12 +165,10 @@ export default function() {
             if (sameError) {
                 const index = errors.indexOf(sameError);
                 errors.splice(index, 1);
-                
             }
         }
 
         function addError(error, errors) {
-            
             error.field.classList.remove("success");
             error.field.classList.add("error");
 
@@ -137,9 +177,8 @@ export default function() {
                     element.type === error.type && error.field === element.field
             );
             if (!isErrorAlreadyPresent) {
-               
                 errors.push(error);
-              
+
                 return true;
             } else {
                 return false;

@@ -1310,6 +1310,7 @@ exports.default = function () {
         return element.matches('[type="tel"]');
       });
       var errorContainer = form.querySelector(".form-txt-error");
+      var successContainer = form.querySelector(".form-txt-success");
       var submitButton = form.querySelector("button[type='submit']");
 
       var showError = function showError(error) {
@@ -1376,6 +1377,49 @@ exports.default = function () {
           return;
         } else {
           console.log("Submitting form");
+          var data = $(form).serialize();
+          data += "&type=callback";
+          data += "&form=" + submitButton.textContent;
+          console.log(data);
+          $.ajax({
+            url: "/.ajax.php",
+            dataType: "json",
+            data: data,
+            beforeSend: function beforeSend() {
+              fields.forEach(function (field) {
+                return field.disabled = true;
+              });
+              submitButton.disabled = true;
+            },
+            success: function success(data) {
+              console.log("Success called");
+              submitButton.disabled = false;
+              fields.forEach(function (field) {
+                field.value = "";
+                field.classList.remove("success");
+                field.disabled = false;
+              });
+
+              if (successContainer) {
+                successContainer.style.display = "block";
+                setTimeout(function () {
+                  successContainer.style.display = "none";
+                }, 1000);
+              }
+            },
+            error: function error() {
+              console.log("Error called");
+              fields.forEach(function (field) {
+                field.value = "";
+                field.classList.remove("success");
+                field.disabled = false;
+              });
+              submitButton.disabled = false;
+              showError({
+                message: "Не удалось отправить форму"
+              });
+            }
+          });
         }
       });
     });
