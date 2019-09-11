@@ -169,7 +169,7 @@
     display: block;
     font-size: 14px;
     color: #b3b3b3;
-
+    line-height: 1.4;
     span {
 
       @include b(mobile) {
@@ -193,8 +193,8 @@
       }
     }
 
-    @include b(mobile) {
-      font-size: 11px;
-    }
+    // @include b(mobile) {
+    //   font-size: 11px;
+    // }
   }
 }
