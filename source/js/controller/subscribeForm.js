@@ -104,8 +104,10 @@ export default function() {
                             });
                             if (successContainer) {
                                 successContainer.style.display = "block";
+                                form.classList.add('form-success');
                                 setTimeout(function() {
                                     successContainer.style.display = "none";
+                                    form.classList.remove('form-success');
                                 }, 1000);
                             }
                         },

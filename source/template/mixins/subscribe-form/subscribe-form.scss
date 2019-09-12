@@ -171,8 +171,7 @@
     color: #b3b3b3;
     line-height: 1.4;
     span {
-
-      @include b(mobile) {
+      .form-success & {
         display: none;
       }
     }
@@ -187,10 +186,10 @@
 
     &-txt {
       display: none;
-
-      @include b(mobile) {
+      .form-success & {
         display: block;
       }
+      
     }
 
     // @include b(mobile) {
