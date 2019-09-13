@@ -81,58 +81,58 @@ export default function() {
         });
     });
 
-    // if (!$("body").hasClass("is-admin")) {
-    //     $(".concept__info").each(function() {
-    //         if ($(this).children().length == 1) {
-    //             if (
-    //                 $(this)
-    //                     .find(".concept__info-name")
-    //                     .text()
-    //                     .replace(/\s/g, "") == "" &&
-    //                 $(this)
-    //                     .find(".concept__info-price")
-    //                     .text()
-    //                     .replace(/\s/g, "") == ""
-    //             ) {
-    //                 $(this).remove();
-    //             }
-    //         }
-    //     });
+    if (!$("body").hasClass("is-admin")) {
+        $(".concept__info").each(function() {
+            if ($(this).children().length == 1) {
+                if (
+                    $(this)
+                        .find(".concept__info-name")
+                        .text()
+                        .replace(/\s/g, "") == "" &&
+                    $(this)
+                        .find(".concept__info-price")
+                        .text()
+                        .replace(/\s/g, "") == ""
+                ) {
+                    $(this).remove();
+                }
+            }
+        });
 
-    //     $(".concept__title").each(function() {
-    //         if (
-    //             $(this)
-    //                 .text()
-    //                 .replace(/\s/g, "") == ""
-    //         ) {
-    //             $(this).remove();
-    //         }
-    //     });
+        $(".concept__title").each(function() {
+            if (
+                $(this)
+                    .text()
+                    .replace(/\s/g, "") == ""
+            ) {
+                $(this).remove();
+            }
+        });
 
-    //     $(".concept__list").each(function() {
-    //         if ($(this).children().length == 1) {
-    //             if (
-    //                 $(this)
-    //                     .children(".concept__list-item")
-    //                     .text()
-    //                     .replace(/\s/g, "") == ""
-    //             ) {
-    //                 $(this).remove();
-    //             }
-    //         }
-    //     });
+        $(".concept__list").each(function() {
+            if ($(this).children().length == 1) {
+                if (
+                    $(this)
+                        .children(".concept__list-item")
+                        .text()
+                        .replace(/\s/g, "") == ""
+                ) {
+                    $(this).remove();
+                }
+            }
+        });
 
-    //     $(".concept__indicators").each(function() {
-    //         if ($(this).children().length == 1) {
-    //             if (
-    //                 $(this)
-    //                     .children(".concept__indicators-item")
-    //                     .text()
-    //                     .replace(/\s/g, "") == ""
-    //             ) {
-    //                 $(this).remove();
-    //             }
-    //         }
-    //     });
-    // }
+        $(".concept__indicators").each(function() {
+            if ($(this).children().length == 1) {
+                if (
+                    $(this)
+                        .children(".concept__indicators-item")
+                        .text()
+                        .replace(/\s/g, "") == ""
+                ) {
+                    $(this).remove();
+                }
+            }
+        });
+    }
 }
