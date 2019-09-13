@@ -109,8 +109,7 @@ module.exports = function () {
       'copy:image',
       'sprite:svg',
       'sprite:png',
-      'css:foundation',
-      'sass-lint'
+      'css:foundation'
     ),
     'mv-data',
     'zip-project',
