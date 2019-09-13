@@ -1,6 +1,6 @@
 export default function() {
     const mapElement = document.getElementById("map");
-    return;
+    
 
     if (!mapElement) {
         console.log('No map element');
