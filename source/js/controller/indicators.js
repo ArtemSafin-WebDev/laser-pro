@@ -15,14 +15,14 @@ export default function() {
             if (placeToPutContent) {
                 content.forEach(item => {
                     placeToPutContent.appendChild(item);
-                    
+
                 });
             }
 
             let slider = self.find(".js-indicators-slider"),
                 sliderNav = self.find(".js-indicators-nav");
 
-           
+
 
             slider.slick({
                 slidesToShow: 1,
@@ -50,7 +50,7 @@ export default function() {
                 e.preventDefault();
                 let $this = $(this);
                 let item = $this.closest(".js-indicators-item");
-                    
+
 
                 if ($this.hasClass("active")) {
                     self.find(btn).removeClass("active");
