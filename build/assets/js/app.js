@@ -691,6 +691,10 @@ exports.default = function () {
     });
 
     if (!$("body").hasClass("is-admin")) {
+      $(".about__ctrl-link, .concept__ctrl-link, .indicators__ctrl-link").each(function () {
+        console.log($(this).text());
+        if ($(this).text().replace(/\s/g, "") == '') $(this).remove();
+      });
       $(".about__holder").each(function () {
         var flag1,
             flag2 = false;
