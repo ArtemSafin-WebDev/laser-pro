@@ -1,379 +1,391 @@
 .indicators {
-  padding-bottom: 80px;
-
-  @include b(mobile) {
-    padding-bottom: 35px;
-  }
-
-  &__wrap {
-    background-color: #fff;
-    border-radius: 30px;
-    overflow: hidden;
-    
-  }
-
-  &__holder {
-    display: flex;
-   
-    @include rlist;
-    [data-orientation="reverse"] & {
-      flex-direction: row-reverse;
-    }
-  }
-
-  &__inner {
-    @include ulist;
-    vertical-align: top;
-    width: 50%;
-    padding: 64px 68px 177px;
-    position: relative;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-
-    @include b(desktop) {
-      padding: 40px 25px 152px;
-    }
+    padding-bottom: 80px;
 
     @include b(mobile) {
-      width: 100%;
-      padding: 30px 0 34px;
+        padding-bottom: 35px;
     }
 
-    &--mod {
-      position: static;
-      padding: 0;
-
-      @include b(desktop) {
-        padding: 0;
-      }
-
-      @include b(mobile) {
-        display: none;
-      }
-    }
-  }
-
-  &__subtitle {
-    padding-bottom: 20px;
-
-    @include b(mobile) {
-      padding: 0 25px 6px;
-    }
-  }
-
-  &__caption {
-    display: block;
-    font-weight: 600;
-    font-size: 40px;
-    line-height: 44px;
-    padding-bottom: 31px;
-
-    @include b(desktop) {
-      font-size: 34px;
-      line-height: 1.2;
-      padding-bottom: 20px;
+    &__wrap {
+        background-color: #fff;
+        border-radius: 30px;
+        overflow: hidden;
     }
 
-    @include b(mobile) {
-      font-size: 21px;
-      line-height: 29px;
-      padding: 0 25px 14px;
-    }
-  }
+    &__holder {
+        display: flex;
+        .block-index-08-content-gallery & {
+            @include b(mobile) {
+                flex-direction: column;
+            }
+        }
 
-  &__descr {
-    font-size: 17px;
-    line-height: 25px;
-    padding-bottom: 41px;
-    max-width: 510px;
-
-    @include b(mobile) {
-      font-size: 14px;
-      line-height: 20px;
-      padding: 0 25px 38px;
-    }
-  }
-
-  &__item {
-    border-top: 1px solid #d6d6d6;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    &:last-child {
-      border-bottom: 1px solid #d6d6d6;
+        @include rlist;
+        [data-orientation="reverse"] & {
+            flex-direction: row-reverse;
+        }
     }
 
-    &-btn {
-      display: block;
-      font-size: 17px;
-      line-height: 20px;
-      color: $accent;
-      padding: 19px 0;
-      font-weight: 600;
-      cursor: pointer;
-      position: relative;
-      transition: all .3s ease-in-out;
+    &__inner {
+        @include ulist;
+        vertical-align: top;
+        width: 50%;
+        padding: 64px 68px 177px;
+        position: relative;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
 
-      @include b(mobile) {
-        font-size: 14px;
-        padding: 19px 25px;
-      }
-
-      &:before,
-      &:after {
-        content: '';
-        width: 16px;
-        height: 2px;
-        background-color: $accent;
-        position: absolute;
-        top: calc(50% - 1px);
-        right: 0;
-        transition: all .3s ease-in-out;
+        @include b(desktop) {
+            padding: 40px 25px 152px;
+        }
 
         @include b(mobile) {
-          right: 25px;
-        }
-      }
-
-      &:after {
-        transform: rotate(90deg);
-      }
-
-      &:hover {
-        color: $main-hover;
-
-        &:before,
-        &:after {
-          background-color: $main-hover;
-        }
-      }
-
-      &.active {
-        padding: 15px 0;
-
-        @include b(mobile) {
-          padding: 22px 25px 11px;
+            width: 100%;
+            padding: 30px 0 34px;
         }
 
-        &:before {
-          transform: rotate(45deg);
+        &--mod {
+            position: static;
+            padding: 0;
+            .block-index-08-content-gallery & {
+                @include b(mobile) {
+                    display: flex;
+                    height: 400px;
+                }
+            }
+            @include b(desktop) {
+                padding: 0;
+            }
 
-          @include b(mobile) {
-            top: calc(50% + 5px);
-          }
+            @include b(mobile) {
+                display: none;
+            }
         }
-
-        &:after {
-          transform: rotate(135deg);
-          @include b(mobile) {
-            top: calc(50% + 5px);
-          }
-        }
-      }
     }
 
-    &-drop {
-      padding-bottom: 30px;
-      display: none;
+    &__subtitle {
+        padding-bottom: 20px;
 
-      @include b(mobile) {
-        padding-bottom: 0;
-      }
+        @include b(mobile) {
+            padding: 0 25px 6px;
+        }
+    }
 
-      &.active {
+    &__caption {
         display: block;
-      }
+        font-weight: 600;
+        font-size: 40px;
+        line-height: 44px;
+        padding-bottom: 31px;
+
+        @include b(desktop) {
+            font-size: 34px;
+            line-height: 1.2;
+            padding-bottom: 20px;
+        }
+
+        @include b(mobile) {
+            font-size: 21px;
+            line-height: 29px;
+            padding: 0 25px 14px;
+        }
     }
 
-    &-title {
-      display: block;
-      font-weight: 600;
-      font-size: 24px;
-      line-height: 26px;
-      padding-bottom: 14px;
-
-      @include b(mobile) {
-        font-size: 17px;
-        line-height: 20px;
-        padding: 0 25px 13px;
-      }
-    }
-
-    &-list {
-      padding-bottom: 16px;
-
-      @include b(mobile) {
-        padding: 0 25px 14px;
-      }
-
-      li {
+    &__descr {
         font-size: 17px;
         line-height: 25px;
-        font-style: italic;
+        padding-bottom: 41px;
+        max-width: 510px;
 
         @include b(mobile) {
-          font-size: 14px;
-          line-height: 20px;
+            font-size: 14px;
+            line-height: 20px;
+            padding: 0 25px 38px;
         }
-      }
     }
 
-    &-descr {
-      font-size: 17px;
-      line-height: 25px;
-      max-width: 510px;
+    &__item {
+        border-top: 1px solid #d6d6d6;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        &:last-child {
+            border-bottom: 1px solid #d6d6d6;
+        }
 
-      @include b(mobile) {
-        font-size: 14px;
-        line-height: 20px;
-        padding: 0 25px 29px;
-      }
+        &-btn {
+            display: block;
+            font-size: 17px;
+            line-height: 20px;
+            color: $accent;
+            padding: 19px 0;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+
+            @include b(mobile) {
+                font-size: 14px;
+                padding: 19px 25px;
+            }
+
+            &:before,
+            &:after {
+                content: "";
+                width: 16px;
+                height: 2px;
+                background-color: $accent;
+                position: absolute;
+                top: calc(50% - 1px);
+                right: 0;
+                transition: all 0.3s ease-in-out;
+
+                @include b(mobile) {
+                    right: 25px;
+                }
+            }
+
+            &:after {
+                transform: rotate(90deg);
+            }
+
+            &:hover {
+                color: $main-hover;
+
+                &:before,
+                &:after {
+                    background-color: $main-hover;
+                }
+            }
+
+            &.active {
+                padding: 15px 0;
+
+                @include b(mobile) {
+                    padding: 22px 25px 11px;
+                }
+
+                &:before {
+                    transform: rotate(45deg);
+
+                    @include b(mobile) {
+                        top: calc(50% + 5px);
+                    }
+                }
+
+                &:after {
+                    transform: rotate(135deg);
+                    @include b(mobile) {
+                        top: calc(50% + 5px);
+                    }
+                }
+            }
+        }
+
+        &-drop {
+            padding-bottom: 30px;
+            display: none;
+
+            @include b(mobile) {
+                padding-bottom: 0;
+            }
+
+            &.active {
+                display: block;
+            }
+        }
+
+        &-title {
+            display: block;
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 26px;
+            padding-bottom: 14px;
+
+            @include b(mobile) {
+                font-size: 17px;
+                line-height: 20px;
+                padding: 0 25px 13px;
+            }
+        }
+
+        &-list {
+            padding-bottom: 16px;
+
+            @include b(mobile) {
+                padding: 0 25px 14px;
+            }
+
+            li {
+                font-size: 17px;
+                line-height: 25px;
+                font-style: italic;
+
+                @include b(mobile) {
+                    font-size: 14px;
+                    line-height: 20px;
+                }
+            }
+        }
+
+        &-descr {
+            font-size: 17px;
+            line-height: 25px;
+            max-width: 510px;
+
+            @include b(mobile) {
+                font-size: 14px;
+                line-height: 20px;
+                padding: 0 25px 29px;
+            }
+        }
+
+        &-img {
+            display: none;
+            height: 296px;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            @include b(mobile) {
+                display: block;
+            }
+        }
     }
 
-    &-img {
-      display: none;
-      height: 296px;
-      overflow: hidden;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      @include b(mobile) {
-        display: block;
-      }
-    }
-  }
-
-  &__content {
-    display: none;
-    position: relative;
-    height: inherit;
-    flex-grow: 1;
-    &.active {
-      display: flex;
-      flex-direction: column;
-    }
-  }
-
-  &__slider {
-    height: 100%;
-
-    .slick-list {
-      height: inherit;
-    }
-
-    .slick-track {
-      height: inherit;
-    }
-
-    &-item {
-      // height: 929px;
-      opacity: 0;
-      visibility: hidden;
-      transition: all .2s, .8s;
-      border-radius: 0 30px 30px 0;
-      overflow: hidden;
-
-      &.slick-current {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      @include b(desktop) {
+    &__content {
+        display: none;
+        position: relative;
         height: inherit;
-      }
-
-      img {
-        width: 100%;
-        height: inherit;
-        object-fit: cover;
-        display: block;
-      }
+        flex-grow: 1;
+        &.active {
+            display: flex;
+            flex-direction: column;
+        }
     }
-  }
 
-  &__nav {
-    position: absolute;
-    bottom: 56px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    width: 295px;
-    
-    &-item {
-      width: 73px;
-      height: 63px;
-      padding: 0 5px;
-      transition: all .3s ease-in-out;
-      cursor: pointer;
-
-      img {
-        display: block;
-        width: 100%;
+    &__slider {
         height: 100%;
-        object-fit: cover;
-        margin: 0 auto;
-        border-radius: 14px;
-        border: 2px solid transparent;
-        transition: all .3s ease-in-out;
-      }
+
+        .slick-list {
+            height: inherit;
+        }
+
+        .slick-track {
+            height: inherit;
+        }
+
+        &-item {
+            // height: 929px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s, 0.8s;
+            border-radius: 0 30px 30px 0;
+            overflow: hidden;
+            .block-index-08-content-gallery & {
+                @include b(mobile) {
+                    border-radius: 0;
+                }
+            }
+            &.slick-current {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            @include b(desktop) {
+                height: inherit;
+            }
+
+            img {
+                width: 100%;
+                height: inherit;
+                object-fit: cover;
+                display: block;
+            }
+        }
     }
 
-    .slick-current {
+    &__nav {
+        position: absolute;
+        bottom: 56px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        width: 295px;
 
-      img {
-        border-color: $accent;
-      }
-    }
-  }
+        &-item {
+            width: 73px;
+            height: 63px;
+            padding: 0 5px;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
 
-  &__ctrl {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding-top: 52px;
-    position: absolute;
-    bottom: 64px;
-    left: 68px;
-    right: 68px;
+            img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                margin: 0 auto;
+                border-radius: 14px;
+                border: 2px solid transparent;
+                transition: all 0.3s ease-in-out;
+            }
+        }
 
-    @include b(desktop) {
-      left: 25px;
-      right: 25px;
-      bottom: 40px;
-    }
-
-    @include b(mobile) {
-      position: static;
-      padding: 29px 25px 0;
-    }
-
-    &-btn {
-      width: 214px;
-      margin-right: 27px;
-
-      @include b(mobile) {
-        width: 190px;
-        margin-right: 24px;
-        white-space: nowrap;
-      }
+        .slick-current {
+            img {
+                border-color: $accent;
+            }
+        }
     }
 
-    &-link {
-      border-bottom: 1px solid $accent;
+    &__ctrl {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-top: 52px;
+        position: absolute;
+        bottom: 64px;
+        left: 68px;
+        right: 68px;
 
-      @include b(mobile) {
-        font-size: 14px;
-      }
+        @include b(desktop) {
+            left: 25px;
+            right: 25px;
+            bottom: 40px;
+        }
 
-      &:hover {
-        color: $main-hover;
-        border-bottom-color: $main-hover;
-      }
+        @include b(mobile) {
+            position: static;
+            padding: 29px 25px 0;
+        }
+
+        &-btn {
+            width: 214px;
+            margin-right: 27px;
+
+            @include b(mobile) {
+                width: 190px;
+                margin-right: 24px;
+                white-space: nowrap;
+            }
+        }
+
+        &-link {
+            border-bottom: 1px solid $accent;
+
+            @include b(mobile) {
+                font-size: 14px;
+            }
+
+            &:hover {
+                color: $main-hover;
+                border-bottom-color: $main-hover;
+            }
+        }
     }
-  }
 }
