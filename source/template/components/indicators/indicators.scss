@@ -51,6 +51,9 @@
                 @include b(mobile) {
                     display: flex;
                     height: 400px;
+                    order: -1;
+                    padding: 0;
+                    padding-bottom: 35px;
                 }
             }
             @include b(desktop) {
@@ -111,6 +114,16 @@
         flex-direction: column;
         &:last-child {
             border-bottom: 1px solid #d6d6d6;
+        }
+        .block-index-08-content-gallery & {
+            @include b(mobile) {
+                border: none;
+            }
+            &:last-child {
+                @include b(mobile) {
+                    border: none;
+                }
+            }
         }
 
         &-btn {
@@ -289,6 +302,8 @@
             .block-index-08-content-gallery & {
                 @include b(mobile) {
                     border-radius: 0;
+                    border-top-left-radius: 30px;
+                    border-top-right-radius: 30px;
                 }
             }
             &.slick-current {
@@ -316,7 +331,11 @@
         transform: translateX(-50%);
         z-index: 2;
         width: 295px;
-
+        .block-index-08-content-gallery & {
+            @include b(mobile) {
+                bottom: 35px;
+            }
+        }
         &-item {
             width: 73px;
             height: 63px;
