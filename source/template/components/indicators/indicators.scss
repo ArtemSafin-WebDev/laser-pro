@@ -118,6 +118,7 @@
         .block-index-08-content-gallery & {
             @include b(mobile) {
                 border: none;
+                height: 100%;
             }
             &:last-child {
                 @include b(mobile) {
