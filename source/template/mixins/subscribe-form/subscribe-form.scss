@@ -145,7 +145,7 @@
   &__box {
     @include ulist;
     vertical-align: top;
-    width: 33.33%;
+    width: 50%;
 
     @include b(mobile) {
       width: 100%;
@@ -157,6 +157,7 @@
       input {
         border-radius: 0;
         border-width: 0 1px;
+        border-right-width: 0;
 
         @include b(mobile) {
           border-width: 1px 0;

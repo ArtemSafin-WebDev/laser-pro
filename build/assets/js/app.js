@@ -996,6 +996,12 @@ exports.default = function () {
         }
       }]
     });
+
+    if (!$("body").hasClass("is-admin")) {
+      $(".subtitle.hero__subtitle").each(function () {
+        if ($(this).text().replace(/\s/g, "") == '') $(this).remove();
+      });
+    }
   });
 };
 
