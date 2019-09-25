@@ -220,7 +220,7 @@
   .subscribe {
     &-form {
       max-width: 90%;
-      @include b(mobile) {
+      @include b(tablet) {
         max-width: initial;
       }
     }
