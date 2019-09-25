@@ -217,6 +217,15 @@
       }
     }
   }
+
+  .subscribe {
+    &-form {
+      max-width: 440px;
+      @include b(mobile) {
+        max-width: initial;
+      }
+    }
+  }
 }
 
 .block-index-02-callback {

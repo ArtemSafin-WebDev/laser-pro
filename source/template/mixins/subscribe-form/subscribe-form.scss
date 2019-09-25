@@ -155,7 +155,7 @@
   &__box {
     @include ulist;
     vertical-align: top;
-    width: 50%;
+    width: 100%;
 
     @include b(mobile) {
       width: 100%;
@@ -202,9 +202,5 @@
       }
       
     }
-
-    // @include b(mobile) {
-    //   font-size: 11px;
-    // }
   }
 }
