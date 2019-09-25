@@ -1,5 +1,10 @@
 .subscribe-form {
 
+
+  .callback & {
+    max-width: none !important;
+  }
+
   &--white {
 
     .subscribe-form__policy {
@@ -43,7 +48,7 @@
     }
 
     .subscribe-form__btn {
-
+      align-self: flex-start;
       @include b(desktop) {
         display: block;
         margin-top: 10px;
@@ -74,8 +79,13 @@
   }
 
   &__holder {
+    display: flex;
+    width: 100%;
     @include rlist;
     margin-bottom: 16px;
+    @include b(desktop) {
+      flex-direction: column;
+    }
 
     @include b(mobile) {
       margin-bottom: 21px;
@@ -87,7 +97,7 @@
     vertical-align: top;
     width: calc(100% - 223px);
     padding-right: 9px;
-
+    flex-grow: 1;
     @include b(mobile) {
       width: 100%;
       padding-right: 0;
@@ -114,7 +124,7 @@
     text-overflow: ellipsis;
     border-width: 0;
     border-radius: 0;
-
+    
     &-title {
       font-size: 14px;
       color: #bcbdc4;
