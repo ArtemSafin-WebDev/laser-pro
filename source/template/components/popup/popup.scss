@@ -274,7 +274,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: flex-end;
+    // align-items: flex-end;
   }
 
   &__content {
@@ -291,8 +291,9 @@
   }
 
   &__img {
-    width: 50%;
-
+    width: 38%;
+    margin: 0 auto;
+    position: relative;
     @include b(mobile) {
       width: 100%;
     }
@@ -300,11 +301,17 @@
     img {
       display: block;
       width: 100%;
-
+      position: absolute;
+      height: 100%;
+      left: 0;
+      top: 0;
+      object-fit: contain;
+      object-position: bottom;
       @include b(mobile) {
         width: 232px;
         max-width: 100%;
         margin: 0 auto;
+        position: static;
       }
     }
   }
