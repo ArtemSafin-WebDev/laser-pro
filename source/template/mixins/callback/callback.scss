@@ -126,18 +126,18 @@
     color: #fff;
     font-size: 17px;
     line-height: 25px;
-    padding-bottom: 122px;
+    padding-bottom: 60px;
     max-width: 460px;
 
     @include b(tablet) {
-      padding-bottom: 80px;
+      padding-bottom: 40px;
     }
 
     @include b(mobile) {
       max-width: 325px;
       font-size: 14px;
       line-height: 20px;
-      padding-bottom: 48px;
+      padding-bottom: 30px;
     }
   }
 
@@ -219,7 +219,7 @@
 
   .subscribe {
     &-form {
-      max-width: 440px;
+      max-width: 90%;
       @include b(mobile) {
         max-width: initial;
       }

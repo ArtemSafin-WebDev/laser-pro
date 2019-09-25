@@ -130,7 +130,7 @@
       }
 
       &:before {
-        content: '';
+        content: "";
         position: absolute;
         top: 5px;
         left: 3px;
@@ -212,7 +212,6 @@
     }
 
     .slick-arrow {
-      
       &.slick-disabled {
         opacity: 0;
         visibility: hidden;
@@ -226,8 +225,8 @@
       padding: 0 14px;
       opacity: 0;
       visibility: hidden;
-      transform: scale(.7) translate(135px, 177px);
-      transition: all .3s ease-in-out;
+      transform: scale(0.7) translate(135px, 177px);
+      transition: all 0.3s ease-in-out;
 
       @include b(tablet) {
         opacity: 1;
@@ -254,7 +253,7 @@
         height: 403px;
       }
     }
-    
+
     &-info {
       position: absolute;
       left: 0;
@@ -298,17 +297,17 @@
     }
   }
 
-  .subscribe {
-    &-form {
-      max-width: 440px;
+  .subscribe-form {
+    max-width: 80%;
+
+    @include b(tablet) {
+      max-width: 100%;
     }
   }
 }
 
 .hero-v2 {
-
   .slick-arrow {
-    
     @include b(mobile) {
       opacity: 0;
       visibility: hidden;
@@ -322,7 +321,6 @@
   }
 
   .slick-prev {
-
     @include b(tablet) {
       left: auto;
       right: 71px;
@@ -370,7 +368,7 @@
       padding: 26px 25px 58px;
     }
 
-    .hero__subtitle{
+    .hero__subtitle {
       color: #fff;
     }
 
