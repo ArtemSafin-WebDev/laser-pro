@@ -21,11 +21,11 @@
     @include b(tablet) {
       overflow: visible;
       position: relative;
-      padding-bottom: 122px;
+      padding-bottom: 127px;
     }
 
     @include b(mobile) {
-      padding: 0 25px 272px;
+      padding: 0 25px 181px;
     }
   }
 
@@ -295,6 +295,12 @@
       @include b(mobile) {
         font-size: 12px;
       }
+    }
+  }
+
+  .subscribe {
+    &-form {
+      max-width: 440px;
     }
   }
 }
