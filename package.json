@@ -80,7 +80,7 @@
     "jquery": "^3.4.1",
     "jquery-match-height": "^0.7.2",
     "jquery.maskedinput": "^1.4.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "normalize.css": "^8.0.1",
     "slick-carousel": "^1.8.1",
     "svg4everybody": "^2.1.9",
