@@ -5462,6 +5462,11 @@ inline-source-map@~0.6.0:
   dependencies:
     source-map "~0.5.3"
 
+inputmask@^4.0.8:
+  version "4.0.9"
+  resolved "https://registry.yarnpkg.com/inputmask/-/inputmask-4.0.9.tgz#a60fc46cee52a35a0ba5f50b5cca3a6733ece18c"
+  integrity sha512-EodaYhJKncXRBwvCE8YrRmAFmBJ6bWdgX4Qw8QSnK5GBDXE03jgpJhrS+a2N0v2Zsgp+OjKXy7qACktjYD83Uw==
+
 insert-module-globals@^7.0.0:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/insert-module-globals/-/insert-module-globals-7.0.1.tgz#c03bf4e01cb086d5b5e5ace8ad0afe7889d638c3"
@@ -5960,6 +5965,11 @@ jquery-match-height@^0.7.2:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/jquery-match-height/-/jquery-match-height-0.7.2.tgz#f8d9f3ba5314daab109cf07408674be204be5f0e"
   integrity sha1-+NnzulMU2qsQnPB0CGdL4gS+Xw4=
+
+jquery.maskedinput@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/jquery.maskedinput/-/jquery.maskedinput-1.4.1.tgz#3ea8f4cdc4eafce7354c27b66a73d0f44defc327"
+  integrity sha1-Pqj0zcTq/Oc1TCe2anPQ9E3vwyc=
 
 jquery@^3.4.1:
   version "3.4.1"
@@ -6520,9 +6530,9 @@ lodash.merge@^4.4.0:
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.1.tgz#adc25d9cb99b9391c59624f379fbba60d7111d54"
 
 lodash.mergewith@^4.6.1:
-  version "4.6.1"
-  resolved "https://registry.yarnpkg.com/lodash.mergewith/-/lodash.mergewith-4.6.1.tgz#639057e726c3afbdb3e7d42741caa8d6e4335927"
-  integrity sha512-eWw5r+PYICtEBgrBE5hhlT6aAa75f411bgDz/ZL2KZqYV03USvucsxcHUIlGTDTECs1eunpI7HOV7U+WLDvNdQ==
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/lodash.mergewith/-/lodash.mergewith-4.6.2.tgz#617121f89ac55f59047c7aec1ccd6654c6590f55"
+  integrity sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==
 
 lodash.pairs@^3.0.0:
   version "3.0.1"
